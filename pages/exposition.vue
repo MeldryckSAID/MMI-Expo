@@ -13,6 +13,8 @@ import {
   WebGLRenderer,
   PerspectiveCamera,
   PointLight,
+  Vector3,
+  Clock,
 } from "three";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 
@@ -22,6 +24,15 @@ let renderer: WebGLRenderer;
 
 let character: Object3D;
 let characterBox: Box3;
+
+const collisionBoxList = <Box3[]>[];
+
+const keys = ref({
+  up: false,
+  down: false,
+  left: false,
+  right: false,
+});
 
 const setup = () => {
   scene = new Scene();
@@ -71,8 +82,63 @@ function onWindowResize() {
   render();
 }
 
+const clock = new Clock();
+
+const cameraHeight = 2;
+const cameraDistance = 2;
+
 const animate = () => {
+  const delta = clock.getDelta();
   requestAnimationFrame(animate);
+
+  if (modelReady) {
+    mixer.update(clock.getDelta());
+    mixer.update(delta);
+    let speed = 1.5;
+    // Update character position based on keyboard input
+    if (keys.value.up) character.translateZ(speed * delta);
+    if (keys.value.down) character.translateZ(-speed * delta);
+    if (keys.value.left) character.rotation.y += speed * delta;
+    if (keys.value.right) character.rotation.y -= speed * delta;
+    if (keys.value.up || keys.value.left || keys.value.right) {
+      setAction(animationActions[1]);
+    } else if (keys.value.down) {
+      setAction(animationActions[3]);
+    } else {
+      setAction(animationActions[2]);
+    }
+
+    const nextPosition = character.position
+      .clone()
+      .add(new Vector3(0, 0, speed * delta));
+    characterBox.setFromCenterAndSize(
+      nextPosition,
+      characterBox.getSize(new Vector3())
+    );
+    collisionBoxList.forEach((box) => {
+      if (characterBox.intersectsBox(box)) {
+        if (keys.value.up) character.translateZ(-speed * delta);
+        if (keys.value.down) character.translateZ(speed * delta);
+      }
+    });
+
+    // Position the camera behind and slightly above the character
+    const x =
+      character.position.x -
+      cameraDistance * Math.sin(character.rotation.y) -
+      0.3;
+    const z =
+      character.position.z - cameraDistance * Math.cos(character.rotation.y);
+    camera.position.set(x, character.position.y + cameraHeight, z);
+
+    // Calculate a point far in front of the character and make the camera look at that point
+    const lookAtPoint = new Vector3(
+      character.position.x + 10 * Math.sin(character.rotation.y),
+      character.position.y,
+      character.position.z + 10 * Math.cos(character.rotation.y)
+    );
+    camera.lookAt(lookAtPoint);
+  }
   render();
 };
 
@@ -94,9 +160,7 @@ fbxLoader.load(
     char.scale.set(0.01, 0.01, 0.01);
     mixer = new AnimationMixer(char);
 
-    const animationAction = mixer.clipAction(
-      (char as Object3D).animations[0]
-    );
+    const animationAction = mixer.clipAction((char as Object3D).animations[0]);
     animationActions.push(animationAction);
     activeAction = animationActions[0];
 
@@ -200,10 +264,35 @@ const setAction = (toAction: AnimationAction) => {
 onMounted(() => {
   setup();
   animate();
+  document.addEventListener(
+    "keydown",
+    (e) => {
+      if (e.code === "KeyW") keys.value.up = true;
+      if (e.code === "KeyS") keys.value.down = true;
+      if (e.code === "KeyA") keys.value.left = true;
+      if (e.code === "KeyD") keys.value.right = true;
+      console.log(keys.value);
+      
+    },
+    false
+  ); // keydown
+
+  document.addEventListener(
+    "keyup",
+    (e) => {
+      if (e.code === "KeyW") keys.value.up = false;
+      if (e.code === "KeyS") keys.value.down = false;
+      if (e.code === "KeyA") keys.value.left = false;
+      if (e.code === "KeyD") keys.value.right = false;
+    },
+    false
+  ); //
   window.addEventListener("resize", onWindowResize, false);
 });
 
 onUnmounted(() => {
+  document.removeEventListener("keydown", () => {});
+  document.removeEventListener("keyup", () => {});
   window.removeEventListener("resize", onWindowResize, false);
 });
 
