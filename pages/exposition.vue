@@ -3,6 +3,9 @@ import {
   BoxGeometry,
   Mesh,
   MeshBasicMaterial,
+  Object3D,
+  AnimationMixer,
+  AnimationAction,
   PlaneGeometry,
   MeshStandardMaterial,
   Scene,
@@ -11,10 +14,14 @@ import {
   PerspectiveCamera,
   PointLight,
 } from "three";
+import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 
 let scene: Scene;
 let camera: PerspectiveCamera;
 let renderer: WebGLRenderer;
+
+let character: Object3D;
+let characterBox: Box3;
 
 const setup = () => {
   scene = new Scene();
@@ -72,6 +79,123 @@ const animate = () => {
 function render() {
   renderer.render(scene, camera);
 }
+
+let mixer: AnimationMixer;
+let modelReady = false;
+const animationActions: AnimationAction[] = [];
+let activeAction: AnimationAction;
+let lastAction: AnimationAction;
+const fbxLoader: FBXLoader = new FBXLoader();
+
+fbxLoader.load(
+  "/fbx/character/char.fbx",
+  (char) => {
+    character = char;
+    char.scale.set(0.01, 0.01, 0.01);
+    mixer = new AnimationMixer(char);
+
+    const animationAction = mixer.clipAction(
+      (char as Object3D).animations[0]
+    );
+    animationActions.push(animationAction);
+    activeAction = animationActions[0];
+
+    scene.add(char);
+
+    //add an animation from another file
+    fbxLoader.load(
+      "/fbx/animations/Walking.fbx",
+      (walkAnim) => {
+        console.log("loaded walking");
+
+        const animationAction = mixer.clipAction(
+          (walkAnim as Object3D).animations[0]
+        );
+        animationActions.push(animationAction);
+
+        fbxLoader.load(
+          "/fbx/animations/Idle.fbx",
+          (idleAnim) => {
+            console.log("loaded Idle");
+
+            const animationAction = mixer.clipAction(
+              (idleAnim as Object3D).animations[0]
+            );
+            animationActions.push(animationAction);
+
+            setAction(animationActions[2]);
+
+            fbxLoader.load(
+              "/fbx/animations/WalkingB.fbx",
+              (walkBackAnim) => {
+                console.log("loaded WalkingBackwards");
+
+                const animationAction = mixer.clipAction(
+                  (walkBackAnim as Object3D).animations[0]
+                );
+                animationActions.push(animationAction);
+
+                modelReady = true;
+                characterBox = new Box3().setFromObject(character);
+              },
+              (xhr) => {
+                // console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+              },
+              (error) => {
+                console.log(error);
+              }
+            );
+          },
+          (xhr) => {
+            // console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      },
+      (xhr) => {
+        // console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  },
+  (xhr) => {
+    // console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+  },
+  (error) => {
+    console.log(error);
+  }
+);
+
+const animations = {
+  default: function () {
+    setAction(animationActions[0]);
+  },
+  walking: function () {
+    setAction(animationActions[1]);
+  },
+  Idle: function () {
+    setAction(animationActions[2]);
+  },
+  walkingBackwards: function () {
+    setAction(animationActions[3]);
+  },
+};
+
+const setAction = (toAction: AnimationAction) => {
+  if (toAction != activeAction) {
+    lastAction = activeAction;
+    activeAction = toAction;
+    //lastAction.stop()
+    lastAction.fadeOut(1);
+    activeAction.reset();
+    activeAction.fadeIn(1);
+    activeAction.play();
+  }
+};
 
 onMounted(() => {
   setup();
