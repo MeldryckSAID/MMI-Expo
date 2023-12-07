@@ -57,6 +57,13 @@ const setup = () => {
 
 const canvas = ref(null);
 
+function onWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  render();
+}
+
 const animate = () => {
   requestAnimationFrame(animate);
   render();
@@ -69,9 +76,12 @@ function render() {
 onMounted(() => {
   setup();
   animate();
+  window.addEventListener("resize", onWindowResize, false);
 });
 
-onUnmounted(() => {});
+onUnmounted(() => {
+  window.removeEventListener("resize", onWindowResize, false);
+});
 
 definePageMeta({
   layout: "exposition",
