@@ -25,6 +25,8 @@ let renderer: WebGLRenderer;
 let character: Object3D;
 let characterBox: Box3;
 
+let isLoaded = ref(false);
+
 const collisionBoxList = <Box3[]>[];
 
 const keys = ref({
@@ -200,6 +202,7 @@ fbxLoader.load(
                 animationActions.push(animationAction);
 
                 modelReady = true;
+                isLoaded.value = true;
                 characterBox = new Box3().setFromObject(character);
               },
               (xhr) => {
@@ -296,13 +299,47 @@ definePageMeta({
 </script>
 
 <template>
-  <canvas ref="canvas" class="canvas" />
+  <div class="loader" :class="{ '-show': isLoaded }"></div>
+  <canvas ref="canvas" class="canvas" :class="{ '-show': isLoaded }" />
 </template>
 
 <style lang="scss">
-.canvas {
-  display: flex;
+.loader {
+  background: $primaryColor;
   width: 100vw;
   height: 100vh;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    margin: -50px 0 0 -50px;
+    border-radius: 50%;
+    border: 4px solid $white;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+  }
+  &.-show {
+    display: none;
+  }
+}
+keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.canvas {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  &.-show {
+    display: flex;
+  }
 }
 </style>
