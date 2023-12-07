@@ -52,14 +52,14 @@ const setup = () => {
 
   // Add the ground to the scene
   scene.add(ground);
-  render()
+  render();
 };
 
 const canvas = ref(null);
 
 const animate = () => {
   requestAnimationFrame(animate);
-  render()
+  render();
 };
 
 function render() {
@@ -71,8 +71,10 @@ onMounted(() => {
   animate();
 });
 
-onUnmounted(() => {
+onUnmounted(() => {});
 
+definePageMeta({
+  layout: "exposition",
 });
 </script>
 
