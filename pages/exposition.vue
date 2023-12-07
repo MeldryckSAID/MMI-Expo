@@ -261,38 +261,32 @@ const setAction = (toAction: AnimationAction) => {
   }
 };
 
+const keydownHandler = (e: KeyboardEvent) => {
+  if (e.code === "KeyW") keys.value.up = true;
+  if (e.code === "KeyS") keys.value.down = true;
+  if (e.code === "KeyA") keys.value.left = true;
+  if (e.code === "KeyD") keys.value.right = true;
+};
+
+const keyupHandler = (e: KeyboardEvent) => {
+  if (e.code === "KeyW") keys.value.up = false;
+  if (e.code === "KeyS") keys.value.down = false;
+  if (e.code === "KeyA") keys.value.left = false;
+  if (e.code === "KeyD") keys.value.right = false;
+};
 onMounted(() => {
   setup();
   animate();
-  document.addEventListener(
-    "keydown",
-    (e) => {
-      if (e.code === "KeyW") keys.value.up = true;
-      if (e.code === "KeyS") keys.value.down = true;
-      if (e.code === "KeyA") keys.value.left = true;
-      if (e.code === "KeyD") keys.value.right = true;
-      console.log(keys.value);
-      
-    },
-    false
-  ); // keydown
 
-  document.addEventListener(
-    "keyup",
-    (e) => {
-      if (e.code === "KeyW") keys.value.up = false;
-      if (e.code === "KeyS") keys.value.down = false;
-      if (e.code === "KeyA") keys.value.left = false;
-      if (e.code === "KeyD") keys.value.right = false;
-    },
-    false
-  ); //
+  document.addEventListener("keydown", keydownHandler, false);
+  document.addEventListener("keyup", keyupHandler, false);
+
   window.addEventListener("resize", onWindowResize, false);
 });
 
 onUnmounted(() => {
-  document.removeEventListener("keydown", () => {});
-  document.removeEventListener("keyup", () => {});
+  document.removeEventListener("keydown", keydownHandler, false);
+  document.removeEventListener("keyup", keyupHandler, false);
   window.removeEventListener("resize", onWindowResize, false);
 });
 
