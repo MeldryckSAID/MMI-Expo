@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div>Galerie</div>
+  <div>Menu</div>
 </template>
 
 <style lang="scss"></style>

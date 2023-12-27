@@ -1,11 +1,10 @@
-<script setup>
-
-</script>
+<script setup></script>
 
 <template>
-<div>salut</div>
+  <div>home</div>
+  <MyIcon name="open" />
+  <MyIcon name="close" />
+  <MyIcon />
 </template>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>
