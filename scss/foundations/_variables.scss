@@ -1,19 +1,49 @@
-@import './functions';
-@import './mixins';
+@import "./functions";
+@import "./mixins";
 
-$primaryColor : #F48E28;
-$secondaryColor : #F5DDC4;
-$white : #FFFFFF;
-$black : #000000;
-$gray : #B6B6B6;
+@font-face {
+  font-family: "ROASHE";
+  src: url("../../public/font/Roashe.ttf") format("truetype");
+}
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
 
+//color
 
-$small-font-size : rem(13);
-$regular-font-size : rem(18);
-$medium-font-size : rem(26);
-$large-font-size : rem(36);
-$big-font-size : rem(48);
-$giant-font-size : rem(95);
+$w-white: #ffffff;
+$b-black: #000000;
+$g-gray: #f6f4f4;
+$g-gray2: #e9e9eb;
+$r-red: #820410;
+
+//font
+
+$okine: "okine", serif;
+$arc: "Archivo Black", sans-serif;
+$roashe: "ROASHE";
+
+// size text pc
+
+$h1pc: 3.125rem;
+$h2pc: 2.5rem;
+$h3pc: 1.875rem;
+$h4pc: 1.25rem;
+$text1pc: 1.063rem;
+$text2pc: 1.25rem;
+$text3pc: 0.938rem;
+$formulairepc: 1rem;
+$menupc: 4.75rem;
+
+// size text  téléphonie
+
+$h1tel: 1.563rem;
+$h2tel: 1.438rem;
+$h3tel: 1.313rem;
+$h4tel: 0.813rem;
+$text1tel: 0.75rem;
+$text2tel: 0.875rem;
+$text3tel: 0.625rem;
+$menutel: 2.313rem;
+$formulairetel: 0.875rem;
 
 $small: 640px;
 $medium: 768px;
