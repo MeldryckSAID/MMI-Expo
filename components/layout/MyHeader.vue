@@ -1,13 +1,18 @@
-<script setup>
-
-</script>
+<script setup></script>
 
 <template>
-<header>
-  MyHeader
-</header>
+  <header>
+    <div class="header__content">
+      <MyMenu />
+      <Logo/>
+      <MyIcon name="visite"/>
+    </div>
+  </header>
 </template>
 
 <style lang="scss">
-
+.header__content {
+  display: flex;
+  justify-content: space-between;
+}
 </style>

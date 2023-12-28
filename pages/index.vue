@@ -9,7 +9,6 @@
   </div>
   <div class="test5">
     <MyMenu />
-    <MyIcon />
   </div>
 </template>
 

@@ -3,6 +3,8 @@ import { computed } from "vue";
 
 import close from "../components/icon/icons/IconMenuClose.vue";
 import open from "../components/icon/icons/IconMenuOpen.vue";
+import visite from "../components/icon/icons/IconVisite.vue";
+import logo from "../components/icon/icons/Logo.vue";
 
 const props = defineProps({
   name: String,
@@ -17,6 +19,10 @@ const getIcon = computed(() => {
       return open;
     case "close":
       return close;
+    case "visite":
+      return visite;
+    case "logo":
+      return logo;
     
 
     default:
