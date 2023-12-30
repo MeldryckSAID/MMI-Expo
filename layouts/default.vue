@@ -10,14 +10,9 @@
 <style lang="scss">
 .layout {
   &__header {
-    $topGap: rem(20);
-    @include medium-up {
-      $topGap: rem(50);
-    }
     z-index: 100;
     max-width: rem(1400);
     margin-inline: auto;
-    margin-top: $topGap;
   }
   &__page {
     width: 100vw;

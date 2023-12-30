@@ -4,6 +4,7 @@
     height="65"
     viewBox="0 0 229 65"
     fill="none"
+    class="logo"
     xmlns="http://www.w3.org/2000/svg"
   >
     <g id="Logo_MMI_EXPO">
@@ -59,3 +60,11 @@
     </g>
   </svg>
 </template>
+
+<style lang="scss" scoped>
+@media (max-width: 425px) {
+  .logo {
+    width:175px
+  }
+}
+</style>

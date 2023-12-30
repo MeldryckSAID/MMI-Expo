@@ -6,6 +6,7 @@
       height="26"
       viewBox="0 0 63 26"
       fill="none"
+      class="closee"
       @mouseover="onMouseOver"
       @mouseout="onMouseOut"
       :class="{ hover: isHovered }"
@@ -82,6 +83,11 @@ export default {
 <style scoped>
 .hover path {
   transition: stroke-dashoffset 0.5s ease-out;
+}
+@media (max-width: 425px) {
+  .closee {
+    width: 40px;
+  }
 }
 </style>
 

@@ -6,7 +6,7 @@
       height="41"
       viewBox="0 0 59 41"
       fill="none"
-      class="svg-icon"
+      class="openn"
       @mouseover="onMouseOver"
       @mouseout="onMouseOut"
       :class="{ hover: isHovered }"
@@ -70,5 +70,10 @@ export default {
 <style scoped>
 .hover path {
   transition: stroke-dashoffset 0.5s ease-out;
+}
+@media (max-width: 425px) {
+  .openn {
+    width: 40px;
+  }
 }
 </style>
