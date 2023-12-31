@@ -4,7 +4,9 @@
   <header>
     <div class="header__content">
       <MyMenu />
-      <Logo />
+
+      <nuxt-link to="/" class="link"> <MyLogo name="logo" /> </nuxt-link>
+
       <MyIcon class="virtuel" name="visite" />
     </div>
   </header>
@@ -13,8 +15,8 @@
 <style lang="scss">
 .header__content {
   padding-inline: 10%;
-  padding-bottom:1% ;
-  padding-top:1% ;
+  padding-bottom: 1%;
+  padding-top: 1%;
   display: flex;
   justify-content: space-between;
   align-items: center;

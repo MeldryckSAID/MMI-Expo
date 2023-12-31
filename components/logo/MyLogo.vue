@@ -1,11 +1,8 @@
 <script setup>
 import { computed } from "vue";
 
-import close from "../components/icon/icons/IconMenuClose.vue";
-import open from "../components/icon/icons/IconMenuOpen.vue";
-import visite from "../components/icon/icons/IconVisite.vue";
-import insta from "../components/icon/icons/IconInsta.vue";
-import letter from "../components/icon/icons/IconLetter.vue";
+import logo from "../components/logo/logos/Logo.vue";
+import mmi from "../components/logo/logos/LogoMmi.vue";
 
 const props = defineProps({
   name: String,
@@ -14,21 +11,15 @@ const props = defineProps({
   size: String,
   fill: String,
 });
-const getIcon = computed(() => {
+const getlogo = computed(() => {
   switch (props.name) {
-    case "open":
-      return open;
-    case "close":
-      return close;
-    case "visite":
-      return visite;
-    case "letter":
-      return letter;
-    case "insta":
-      return insta;
+    case "logo":
+      return logo;
+    case "mmi":
+      return mmi;
 
     default:
-      return open;
+      return logo;
   }
 });
 
@@ -51,18 +42,16 @@ const className = computed(() => ({
 </script>
 
 <template>
-  <i :class="className" class="icon">
-    <component :is="getIcon" />
+  <i :class="className" class="logo">
+    <component :is="getlogo" />
   </i>
 </template>
 
 <style lang="scss" scoped>
-.icon {
+.logo {
   align-items: center;
   display: inline-flex;
-  height: rem(50);
   justify-content: center;
-  width: rem(50);
 
   //background
   &.-primary {
