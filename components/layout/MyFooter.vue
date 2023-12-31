@@ -25,6 +25,13 @@
 </template>
 
 <style lang="scss" scoped>
+.link {
+  color: white;
+  text-decoration: none;
+}
+p {
+  color: white;
+}
 @media (max-width: 425px) {
   .footer__content {
     background-color: black;
@@ -44,13 +51,6 @@
       text-align: center;
       display: flex;
       flex-direction: column;
-    }
-    .link {
-      color: white;
-      text-decoration: none;
-    }
-    p {
-      color: white;
     }
   }
 }

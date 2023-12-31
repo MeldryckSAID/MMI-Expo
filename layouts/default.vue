@@ -11,12 +11,11 @@
 .layout {
   &__header {
     z-index: 100;
-    max-width: rem(1400);
     margin-inline: auto;
   }
   &__page {
     width: 100vw;
-    margin:  rem(50) auto;
+    margin: rem(50) auto;
     max-width: rem(1400);
     min-height: 100vh;
   }

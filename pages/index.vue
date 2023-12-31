@@ -7,9 +7,7 @@
     <p class="test3">home</p>
     <p class="test4">home</p>
   </div>
-  <div class="test5">
-    <MyMenu />
-  </div>
+ 
 </template>
 
 <style lang="scss">
