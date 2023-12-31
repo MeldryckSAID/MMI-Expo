@@ -25,7 +25,7 @@
 </template>
 
 <style lang="scss" scoped>
-@media (min-width: 425px) {
+@media (max-width: 425px) {
   .footer__content {
     background-color: black;
     padding: 5px;
@@ -63,6 +63,7 @@
   .section {
     display: flex;
     flex-direction: row-reverse;
+    justify-content: space-evenly;
 
     .section1 {
       display: flex;
@@ -75,7 +76,7 @@
 
         justify-content: center;
         flex-direction: row;
-        width: 200px;
+        width: fit-content;
       }
     }
 
