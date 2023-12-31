@@ -1,33 +1,38 @@
 <template>
- 
-    <MyIcon
-      class="menu-button"
-      aria-controls="menu"
-      :aria-expanded="menuOuvert"
-      @click="menuOuvert = !menuOuvert"
-      :class="[menuOuvert ? 'hidden' : '']"
-      name="close"
-    />
-
+  <MyIcon
+    class="menu-button"
+    aria-controls="menu"
+    :aria-expanded="menuOuvert"
+    @click="toggleMenu"
+    :class="[menuOuvert ? 'hidden' : '']"
+    name="close"
+  />
 
   <!-- Menu hamburger déroulé -->
   <div class="menu-container" :class="[menuOuvert ? 'open' : '']">
     <div class="menu-header">
-      <nuxt-link to="/">
-        <MyIcon name="open" class="stroke-white stroke-2" />
-      </nuxt-link>
+      <MyIcon
+        name="open"
+        class="close-menu"
+        @click.stop="toggleMenu"
+      />
     </div>
     <p>test</p>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
+
 let menuOuvert = ref(false);
+
+const toggleMenu = () => {
+  menuOuvert.value = !menuOuvert.value;
+};
 </script>
 
 <style lang="scss" scoped>
 /* Button to hide menu */
-
 
 /* Menu container */
 .menu-container {
@@ -57,5 +62,4 @@ let menuOuvert = ref(false);
   font-size: 40px;
   text-align: left;
 }
-
 </style>
