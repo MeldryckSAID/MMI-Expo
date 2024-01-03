@@ -18,6 +18,8 @@ import {
   MathUtils,
   MeshPhongMaterial,
   TextureLoader,
+  Raycaster,
+  Vector2,
 } from "three";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 
@@ -27,6 +29,8 @@ let renderer: WebGLRenderer;
 
 let character: Object3D;
 let characterBox: Box3;
+
+let listIntersect: Mesh[] = [];
 
 let isLoaded = ref(false);
 
@@ -121,7 +125,19 @@ const setup = () => {
   const image = new Mesh(imageGeometry, imageMaterial);
   image.position.set(0, 0, -0.5);
   wallImage.add(image);
+  //add a name to the wallimage to be able to recognize it later
+  wallImage.name = "Image 1";
+
   scene.add(wallImage);
+  listIntersect.push(wallImage);
+
+  const wallImage2 = new Mesh(wallGeometry3, wallMaterial);
+  wallImage2.position.set(3, 3, 0);
+  wallImage2.rotation.y = Math.PI / 2;
+  wallImage2.add(image.clone());
+  wallImage2.name = "Image 2";
+  scene.add(wallImage2);
+  listIntersect.push(wallImage2);
 
   render();
 };
@@ -299,10 +315,23 @@ const keyupHandler = (e: KeyboardEvent) => {
   if (e.code === "KeyA") keys.value.left = false;
   if (e.code === "KeyD") keys.value.right = false;
 };
+
+const raycaster = new Raycaster();
+const mouse = new Vector2();
+const onClick = (e: MouseEvent) => {
+  mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+  raycaster.setFromCamera(mouse, camera);
+  const intersects = raycaster.intersectObjects(listIntersect);
+  if (intersects.length > 0) {
+    console.log(intersects[0].object.parent?.name || "is not named");
+  }
+};
 onMounted(() => {
   setup();
   animate();
 
+  document.addEventListener("click", onClick, false);
   document.addEventListener("keydown", keydownHandler, false);
   document.addEventListener("keyup", keyupHandler, false);
 
@@ -310,6 +339,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
+  document.removeEventListener("click", onClick, false);
   document.removeEventListener("keydown", keydownHandler, false);
   document.removeEventListener("keyup", keyupHandler, false);
   window.removeEventListener("resize", onWindowResize, false);
