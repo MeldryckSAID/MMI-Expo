@@ -29,6 +29,7 @@ let renderer: WebGLRenderer;
 
 let character: Object3D;
 let characterBox: Box3;
+let canMove = ref(true);
 
 let listIntersect: Mesh[] = [];
 
@@ -165,13 +166,17 @@ const animate = () => {
     mixer.update(delta);
     let speed = 2.5;
     // Update character position based on keyboard input
-    if (keys.value.up) character.translateZ(speed * delta);
-    if (keys.value.down) character.translateZ(-speed * delta);
-    if (keys.value.left) character.rotation.y += speed * delta;
-    if (keys.value.right) character.rotation.y -= speed * delta;
-    if (keys.value.up || keys.value.left || keys.value.right) {
+    if (keys.value.up && canMove.value) character.translateZ(speed * delta);
+    if (keys.value.down && canMove.value) character.translateZ(-speed * delta);
+    if (keys.value.left && canMove.value) character.rotation.y += speed * delta;
+    if (keys.value.right && canMove.value)
+      character.rotation.y -= speed * delta;
+    if (
+      (keys.value.up || keys.value.left || keys.value.right) &&
+      canMove.value
+    ) {
       setAction(animationActions[1], false);
-    } else if (keys.value.down) {
+    } else if (keys.value.down && canMove.value) {
       setAction(animationActions[1], true);
     } else {
       setAction(animationActions[2], false);
@@ -318,6 +323,7 @@ const keyupHandler = (e: KeyboardEvent) => {
 
 const raycaster = new Raycaster();
 const mouse = new Vector2();
+let src = ref("");
 const onClick = (e: MouseEvent) => {
   mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
   mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
@@ -325,6 +331,8 @@ const onClick = (e: MouseEvent) => {
   const intersects = raycaster.intersectObjects(listIntersect);
   if (intersects.length > 0) {
     console.log(intersects[0].object.parent?.name || "is not named");
+    src.value = "stockholm.jpg";
+    canMove.value = false;
   }
 };
 onMounted(() => {
@@ -352,6 +360,18 @@ definePageMeta({
 
 <template>
   <div class="loader" :class="{ '-show': isLoaded }"></div>
+  <div class="exposition__wrapper" :class="{ '-show': src }">
+    <span
+      @click="
+        {
+          canMove = true;
+          src = '';
+        }
+      "
+      >X</span
+    >
+    <img :src="src" aria-hidden class="exposition__image" />
+  </div>
   <canvas ref="canvas" class="canvas" :class="{ '-show': isLoaded }" />
 </template>
 
@@ -385,6 +405,42 @@ keyframes spin {
   to {
     transform: rotate(360deg);
   }
+}
+.exposition__wrapper {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.555);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  & span {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: 1px solid $white;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 1rem;
+    color: $white;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  &.-show {
+    display: flex;
+  }
+}
+.exposition__image {
+  width: 80vw;
+  height: 80vh;
+  object-fit: cover;
+  z-index: 150;
 }
 .canvas {
   display: none;
