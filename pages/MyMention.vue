@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div>Mention</div>
+ <MyOutro>Mention Légales</MyOutro>
 </template>
 
 <style lang="scss"></style>

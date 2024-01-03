@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div>Contact</div>
+  <MyOutro>Contact</MyOutro>
 </template>
 
 <style lang="scss"></style>

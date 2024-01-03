@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div>Galerie</div>
+  <MyOutro>Galerie Photos  </MyOutro>
 </template>
 
 <style lang="scss"></style>
