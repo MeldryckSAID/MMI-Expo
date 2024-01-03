@@ -17,7 +17,7 @@ import {
   Clock,
   MathUtils,
   MeshPhongMaterial,
-TextureLoader,
+  TextureLoader,
 } from "three";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 
@@ -108,8 +108,20 @@ const setup = () => {
     new Box3().setFromObject(wall4)
   );
 
-
-
+  //add smaller wall inside to post images
+  const wallGeometry3 = new BoxGeometry(16 / 2, 9 / 2, 1);
+  const wallImage = new Mesh(wallGeometry3, wallMaterial);
+  wallImage.position.set(0, 3, 5);
+  //add an image on the wall
+  const imageGeometry = new BoxGeometry(16 / 2, 9 / 2, 0.5);
+  const imageMaterial = new MeshBasicMaterial({
+    color: 0xffffff,
+    map: new TextureLoader().load("/stockholm.jpg"),
+  });
+  const image = new Mesh(imageGeometry, imageMaterial);
+  image.position.set(0, 0, -0.5);
+  wallImage.add(image);
+  scene.add(wallImage);
 
   render();
 };
