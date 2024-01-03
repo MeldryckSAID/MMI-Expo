@@ -6,6 +6,7 @@ import open from "../components/icon/icons/IconMenuOpen.vue";
 import visite from "../components/icon/icons/IconVisite.vue";
 import insta from "../components/icon/icons/IconInsta.vue";
 import letter from "../components/icon/icons/IconLetter.vue";
+import line from "../components/icon/icons/IconLine.vue";
 
 const props = defineProps({
   name: String,
@@ -26,6 +27,8 @@ const getIcon = computed(() => {
       return letter;
     case "insta":
       return insta;
+    case "line":
+      return line;
 
     default:
       return open;
@@ -60,9 +63,9 @@ const className = computed(() => ({
 .icon {
   align-items: center;
   display: inline-flex;
-  height: rem(50);
+  // height: rem(50);
   justify-content: center;
-  width: rem(50);
+  // width: rem(50);
 
   //background
   &.-primary {

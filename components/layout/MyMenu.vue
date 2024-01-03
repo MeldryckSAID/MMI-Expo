@@ -1,28 +1,36 @@
 <template>
   <MyIcon
-    class="menu-button"
+    class="open-menu"
     aria-controls="menu"
     :aria-expanded="menuOuvert"
     @click="toggleMenu"
     :class="[menuOuvert ? 'hidden' : '']"
-    name="close"
+    name="open"
   />
 
   <!-- Menu hamburger déroulé -->
   <div class="menu-container" :class="[menuOuvert ? 'open' : '']">
     <div class="menu-header">
-      <MyIcon
-        name="open"
-        class="close-menu"
-        @click.stop="toggleMenu"
-      />
+      <MyIcon name="close" class="close-menu" @click.stop="toggleMenu" />
     </div>
-    <p>test</p>
+    <div class="menu-links">
+      <MyLinks @click.stop="toggleMenu" to="/">Home</MyLinks>
+      <MyLinks @click.stop="toggleMenu" :isReversed="true" to="/MyContact"
+        >Contact</MyLinks
+      >
+      <MyLinks @click.stop="toggleMenu" to="/MyAbout">À propos</MyLinks>
+      <MyLinks @click.stop="toggleMenu" :isReversed="true" to="/MyGalerie"
+        >Galeris Photos</MyLinks
+      >
+      <MyLinks @click.stop="toggleMenu" to="/MyVisite"
+        >VISITE VIRTUELLE
+      </MyLinks>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 
 let menuOuvert = ref(false);
 
@@ -32,8 +40,12 @@ const toggleMenu = () => {
 </script>
 
 <style lang="scss" scoped>
-/* Button to hide menu */
+/* Button  menu */
 
+.open-menu,
+.close-menu {
+  cursor: pointer;
+}
 /* Menu container */
 .menu-container {
   position: fixed;
@@ -41,7 +53,7 @@ const toggleMenu = () => {
   transform: translateX(-100%);
   transition: transform 1000ms ease;
   z-index: 90;
-  background-color: aqua;
+  background-color: $g-gray2;
   color: white;
 }
 
@@ -52,14 +64,35 @@ const toggleMenu = () => {
 
 /* Logo and title styles */
 .menu-header {
-  margin: 5rem;
+  margin: 0.5rem;
   display: flex;
   align-items: center;
 }
 
 .menu-header p {
   font-weight: bold;
-  font-size: 40px;
+  font-size: $menupc;
   text-align: left;
+}
+.menu-links {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (max-width: 425px) {
+  .menu-container {
+    background-color: $g-gray2;
+    display: flex;
+
+    flex-direction: column;
+  }
+  .menu-links {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 3rem;
+  }
 }
 </style>
