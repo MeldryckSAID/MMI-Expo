@@ -118,13 +118,13 @@ const setup = () => {
   const wallImage = new Mesh(wallGeometry3, wallMaterial);
   wallImage.position.set(0, 3, 5);
   //add an image on the wall
-  const imageGeometry = new BoxGeometry(16 / 2, 9 / 2, 0.5);
+  const imageGeometry = new BoxGeometry(16 / 2, 9 / 2, 0.25);
   const imageMaterial = new MeshBasicMaterial({
     color: 0xffffff,
     map: new TextureLoader().load("/stockholm.jpg"),
   });
   const image = new Mesh(imageGeometry, imageMaterial);
-  image.position.set(0, 0, -0.5);
+  image.position.set(0, 0, -0.6);
   wallImage.add(image);
   //add a name to the wallimage to be able to recognize it later
   wallImage.name = "Image 1";
@@ -328,11 +328,24 @@ const onClick = (e: MouseEvent) => {
   mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
   mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
   raycaster.setFromCamera(mouse, camera);
-  const intersects = raycaster.intersectObjects(listIntersect);
-  if (intersects.length > 0) {
-    console.log(intersects[0].object.parent?.name || "is not named");
-    src.value = "stockholm.jpg";
-    canMove.value = false;
+  if (src.value === "") {
+    //detect only if not already looking at an image
+
+
+
+
+    const intersects = raycaster.intersectObjects(listIntersect);
+    if (intersects.length > 0) {
+      console.log(intersects[0].object.parent?.name || "is not named");
+      src.value = "stockholm.jpg";
+      canMove.value = false;
+    }
+  }
+};
+const escape = (e: KeyboardEvent) => {
+  if (e.code === "Escape") {
+    src.value = "";
+    canMove.value = true;
   }
 };
 onMounted(() => {
@@ -342,6 +355,7 @@ onMounted(() => {
   document.addEventListener("click", onClick, false);
   document.addEventListener("keydown", keydownHandler, false);
   document.addEventListener("keyup", keyupHandler, false);
+  document.addEventListener("keyup", escape, false);
 
   window.addEventListener("resize", onWindowResize, false);
 });
@@ -371,6 +385,14 @@ definePageMeta({
       >X</span
     >
     <img :src="src" aria-hidden class="exposition__image" />
+  </div>
+  <div class="exposition__keys">
+    <span>avancer : Z</span>
+    <span>reculer : S</span>
+    <span>gauche : Q</span>
+    <span>droite : D</span>
+    <span>quitter image : esc</span>
+    <span>voir image : click souris</span>
   </div>
   <canvas ref="canvas" class="canvas" :class="{ '-show': isLoaded }" />
 </template>
@@ -404,6 +426,19 @@ keyframes spin {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+.exposition__keys {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: $white;
+  font-size: 1rem;
+  z-index: 100;
+  padding: 1rem;
+  & span {
+    display: block;
+    margin-bottom: .5rem;
   }
 }
 .exposition__wrapper {
