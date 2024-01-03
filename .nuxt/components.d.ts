@@ -2,6 +2,7 @@
 declare module 'vue' {
   export interface GlobalComponents {
     'MyLinks': typeof import("../components/MyLinks.vue")['default']
+    'MyTitle': typeof import("../components/MyTitle.vue")['default']
     'Mybutton': typeof import("../components/Mybutton.vue")['default']
     'MyIcon': typeof import("../components/icon/MyIcon.vue")['default']
     'IconInsta': typeof import("../components/icon/icons/IconInsta.vue")['default']
@@ -38,6 +39,7 @@ declare module 'vue' {
     'Html': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Html']
     'Body': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
     'LazyMyLinks': typeof import("../components/MyLinks.vue")['default']
+    'LazyMyTitle': typeof import("../components/MyTitle.vue")['default']
     'LazyMybutton': typeof import("../components/Mybutton.vue")['default']
     'LazyMyIcon': typeof import("../components/icon/MyIcon.vue")['default']
     'LazyIconInsta': typeof import("../components/icon/icons/IconInsta.vue")['default']
@@ -77,6 +79,7 @@ declare module 'vue' {
 }
 
 export const MyLinks: typeof import("../components/MyLinks.vue")['default']
+export const MyTitle: typeof import("../components/MyTitle.vue")['default']
 export const Mybutton: typeof import("../components/Mybutton.vue")['default']
 export const MyIcon: typeof import("../components/icon/MyIcon.vue")['default']
 export const IconInsta: typeof import("../components/icon/icons/IconInsta.vue")['default']
@@ -113,6 +116,7 @@ export const Head: typeof import("../node_modules/nuxt/dist/head/runtime/compone
 export const Html: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Html']
 export const Body: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
 export const LazyMyLinks: typeof import("../components/MyLinks.vue")['default']
+export const LazyMyTitle: typeof import("../components/MyTitle.vue")['default']
 export const LazyMybutton: typeof import("../components/Mybutton.vue")['default']
 export const LazyMyIcon: typeof import("../components/icon/MyIcon.vue")['default']
 export const LazyIconInsta: typeof import("../components/icon/icons/IconInsta.vue")['default']
