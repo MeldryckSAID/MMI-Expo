@@ -15,6 +15,9 @@ import {
   PointLight,
   Vector3,
   Clock,
+  MathUtils,
+  MeshPhongMaterial,
+TextureLoader,
 } from "three";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 
@@ -44,8 +47,8 @@ const setup = () => {
     0.1,
     1000
   );
-  const light = new PointLight(0xffffff, 1000);
-  light.position.set(2.5, 7.5, 15);
+  const light = new PointLight(0xffffff, 10000, 1000);
+  light.position.set(0, 50, 0);
   scene.add(light);
 
   camera = new PerspectiveCamera(
@@ -62,7 +65,12 @@ const setup = () => {
   const groundGeometry = new PlaneGeometry(100, 100, 32, 32);
 
   // Create a basic material for the ground
-  const groundMaterial = new MeshStandardMaterial({ color: 0xffffff });
+  const groundMaterial = new MeshPhongMaterial({
+    color: 0x151515,
+    specular: 0xffffff,
+    shininess: 50,
+    emissive: 0x101010,
+  });
 
   // Create a mesh with the geometry and material
   const ground = new Mesh(groundGeometry, groundMaterial);
@@ -72,6 +80,37 @@ const setup = () => {
 
   // Add the ground to the scene
   scene.add(ground);
+
+  //add 4 walls
+  const wallGeometry = new BoxGeometry(60, 30, 5);
+  const wallGeometry2 = new BoxGeometry(30, 30, 5);
+  const wallMaterial = new MeshPhongMaterial({
+    color: 0x323232,
+    specular: 0xffffff,
+    shininess: 50,
+    emissive: 0x323232,
+  });
+  const wall1 = new Mesh(wallGeometry, wallMaterial);
+  const wall2 = new Mesh(wallGeometry2, wallMaterial);
+  const wall3 = new Mesh(wallGeometry, wallMaterial);
+  const wall4 = new Mesh(wallGeometry2, wallMaterial);
+  wall1.position.set(0, 0, 15);
+  wall2.position.set(30, 0, 0);
+  wall2.rotation.y = Math.PI / 2;
+  wall3.position.set(0, 0, -15);
+  wall4.position.set(-30, 0, 0);
+  wall4.rotation.y = Math.PI / 2;
+  scene.add(wall2, wall1, wall3, wall4);
+  collisionBoxList.push(
+    new Box3().setFromObject(wall1),
+    new Box3().setFromObject(wall2),
+    new Box3().setFromObject(wall3),
+    new Box3().setFromObject(wall4)
+  );
+
+
+
+
   render();
 };
 
@@ -96,18 +135,18 @@ const animate = () => {
   if (modelReady) {
     mixer.update(clock.getDelta());
     mixer.update(delta);
-    let speed = 1.5;
+    let speed = 2.5;
     // Update character position based on keyboard input
     if (keys.value.up) character.translateZ(speed * delta);
     if (keys.value.down) character.translateZ(-speed * delta);
     if (keys.value.left) character.rotation.y += speed * delta;
     if (keys.value.right) character.rotation.y -= speed * delta;
     if (keys.value.up || keys.value.left || keys.value.right) {
-      setAction(animationActions[1]);
+      setAction(animationActions[1], false);
     } else if (keys.value.down) {
-      setAction(animationActions[3]);
+      setAction(animationActions[1], true);
     } else {
-      setAction(animationActions[2]);
+      setAction(animationActions[2], false);
     }
 
     const nextPosition = character.position
@@ -119,8 +158,8 @@ const animate = () => {
     );
     collisionBoxList.forEach((box) => {
       if (characterBox.intersectsBox(box)) {
-        if (keys.value.up) character.translateZ(-speed * delta);
-        if (keys.value.down) character.translateZ(speed * delta);
+        if (keys.value.up) character.translateZ(-speed * delta * 2);
+        if (keys.value.down) character.translateZ(speed * delta * 2);
       }
     });
 
@@ -189,29 +228,11 @@ fbxLoader.load(
             );
             animationActions.push(animationAction);
 
-            setAction(animationActions[2]);
+            setAction(animationActions[2], false);
 
-            fbxLoader.load(
-              "/fbx/animations/WalkingB.fbx",
-              (walkBackAnim) => {
-                console.log("loaded WalkingBackwards");
-
-                const animationAction = mixer.clipAction(
-                  (walkBackAnim as Object3D).animations[0]
-                );
-                animationActions.push(animationAction);
-
-                modelReady = true;
-                isLoaded.value = true;
-                characterBox = new Box3().setFromObject(character);
-              },
-              (xhr) => {
-                // console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
-              },
-              (error) => {
-                console.log(error);
-              }
-            );
+            modelReady = true;
+            isLoaded.value = true;
+            characterBox = new Box3().setFromObject(character);
           },
           (xhr) => {
             // console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
@@ -237,30 +258,19 @@ fbxLoader.load(
   }
 );
 
-const animations = {
-  default: function () {
-    setAction(animationActions[0]);
-  },
-  walking: function () {
-    setAction(animationActions[1]);
-  },
-  Idle: function () {
-    setAction(animationActions[2]);
-  },
-  walkingBackwards: function () {
-    setAction(animationActions[3]);
-  },
-};
-
-const setAction = (toAction: AnimationAction) => {
+const setAction = (toAction: AnimationAction, reverse: boolean) => {
   if (toAction != activeAction) {
     lastAction = activeAction;
     activeAction = toAction;
-    //lastAction.stop()
     lastAction.fadeOut(1);
     activeAction.reset();
     activeAction.fadeIn(1);
     activeAction.play();
+    if (reverse) {
+      activeAction.timeScale = -1;
+    } else {
+      activeAction.timeScale = 1;
+    }
   }
 };
 
