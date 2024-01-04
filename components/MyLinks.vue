@@ -36,7 +36,11 @@
 @media (max-width: 425px) {
   .links {
     font-size: $menutel;
-    
+  }
+}
+@media (min-width: 426px) {
+  .links {
+    width: 600px;
   }
 }
 </style>

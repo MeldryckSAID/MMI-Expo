@@ -1,5 +1,5 @@
 <template>
-  <MyTitle class="titre" el="h2" size="xlarge"><slot></slot></MyTitle>
+  <MyTitle class="titre" el="h1" size="xlarge"><slot></slot></MyTitle>
   <div class="ligne"></div>
 </template>
 
