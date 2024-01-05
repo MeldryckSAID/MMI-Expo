@@ -19,11 +19,11 @@
 .button {
   position: relative;
   border: 2px solid $b-black;
-  border-radius: rem(15);
+  border-radius: 2px;
   display: inline-grid;
   place-content: center;
   font-family: $okine;
-  font-size: 15px;
+  font-size: $text2pc;
   font-weight: 600;
   width: 178px;
   height: 52px;
@@ -35,7 +35,7 @@
   color: black;
   text-decoration: none;
   &:hover {
-    background-position: 100% 0;
+    background-position: 100% 0% ;
     color: $w-white;
     box-shadow: inset 0 0 0 2px rgba($b-black, 0.5), 0 0 0;
   }
