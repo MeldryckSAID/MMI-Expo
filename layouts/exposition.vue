@@ -11,6 +11,7 @@
     margin: 0;
   }
   &__link{
+    user-select: none;
     position: absolute;
     bottom: 1rem;
     right: 1rem;
