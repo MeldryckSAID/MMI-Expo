@@ -324,6 +324,7 @@ const keyupHandler = (e: KeyboardEvent) => {
 const raycaster = new Raycaster();
 const mouse = new Vector2();
 let src = ref("");
+
 const onClick = (e: MouseEvent) => {
   mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
   mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
@@ -331,23 +332,29 @@ const onClick = (e: MouseEvent) => {
   if (src.value === "") {
     //detect only if not already looking at an image
 
-
-
-
     const intersects = raycaster.intersectObjects(listIntersect);
     if (intersects.length > 0) {
       console.log(intersects[0].object.parent?.name || "is not named");
       src.value = "stockholm.jpg";
       canMove.value = false;
+      raycaster.layers.disableAll();
     }
   }
 };
 const escape = (e: KeyboardEvent) => {
   if (e.code === "Escape") {
-    src.value = "";
-    canMove.value = true;
+    hideImg();
   }
 };
+
+const hideImg = () => {
+  src.value = "";
+  canMove.value = true;
+  setTimeout(() => {
+    raycaster.layers.enableAll();
+  }, 100);
+};
+
 onMounted(() => {
   setup();
   animate();
@@ -375,15 +382,7 @@ definePageMeta({
 <template>
   <div class="loader" :class="{ '-show': isLoaded }"></div>
   <div class="exposition__wrapper" :class="{ '-show': src }">
-    <span
-      @click="
-        {
-          canMove = true;
-          src = '';
-        }
-      "
-      >X</span
-    >
+    <span @click="hideImg()">X</span>
     <img :src="src" aria-hidden class="exposition__image" />
   </div>
   <div class="exposition__keys">
@@ -438,7 +437,7 @@ keyframes spin {
   padding: 1rem;
   & span {
     display: block;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
 }
 .exposition__wrapper {
