@@ -37,29 +37,8 @@ let listIntersect: Mesh[] = [];
 
 let listArt = [
   "stockholm.jpg",
-  "stockholm.jpg",
-  "stockholm.jpg",
-  "stockholm.jpg",
-  "stockholm.jpg",
-  "stockholm.jpg",
-  "stockholm.jpg",
-  "stockholm.jpg",
-  "stockholm.jpg",
-  "stockholm.jpg",
-  "stockholm.jpg",
-  "stockholm.jpg",
-  "stockholm.jpg",
-  "stockholm.jpg",
-  "stockholm.jpg",
-  "stockholm.jpg",
-  "stockholm.jpg",
-  "stockholm.jpg",
-  "stockholm.jpg",
-  "stockholm.jpg",
-  "stockholm.jpg",
-  "stockholm.jpg",
-  "stockholm.jpg",
-  "stockholm.jpg",
+  "image1.avif",
+  "image2.webp"
 ];
 
 let isLoaded = ref(false);
@@ -195,13 +174,13 @@ const setup = () => {
     //add an image on the wall
     const imageGeometry = new BoxGeometry(16 / 2, 9 / 2, 0.25);
     const imageMaterial = new MeshBasicMaterial({
-      color: 0xffffff,
       map: new TextureLoader().load("/" + art),
     });
     const image = new Mesh(imageGeometry, imageMaterial);
     image.position.set(0, 0, -0.6);
     wallImage.add(image);
-    wallImage.name = "Image " + i;
+    wallImage.name = art;
+    
 
     scene.add(wallImage);
     listIntersect.push(wallImage);
@@ -399,8 +378,7 @@ const onClick = (e: MouseEvent) => {
 
     const intersects = raycaster.intersectObjects(listIntersect);
     if (intersects.length > 0) {
-      console.log(intersects[0].object.parent?.name || "is not named");
-      src.value = "stockholm.jpg";
+      src.value = intersects[0].object.parent?.name || "";
       canMove.value = false;
       raycaster.layers.disableAll();
     }
