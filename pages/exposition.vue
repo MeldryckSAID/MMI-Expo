@@ -603,7 +603,6 @@ definePageMeta({
     bottom: 1rem;
     left: 1rem;
     display: grid;
-    pointer-events: none;
     grid-template:
       "left up right"
       "left down right";
