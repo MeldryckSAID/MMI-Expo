@@ -23,6 +23,8 @@ import {
 } from "three";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 
+const canvas = ref(undefined);
+
 let scene: Scene;
 let camera: PerspectiveCamera;
 let renderer: WebGLRenderer;
@@ -32,6 +34,33 @@ let characterBox: Box3;
 let canMove = ref(true);
 
 let listIntersect: Mesh[] = [];
+
+let listArt = [
+  "stockholm.jpg",
+  "stockholm.jpg",
+  "stockholm.jpg",
+  "stockholm.jpg",
+  "stockholm.jpg",
+  "stockholm.jpg",
+  "stockholm.jpg",
+  "stockholm.jpg",
+  "stockholm.jpg",
+  "stockholm.jpg",
+  "stockholm.jpg",
+  "stockholm.jpg",
+  "stockholm.jpg",
+  "stockholm.jpg",
+  "stockholm.jpg",
+  "stockholm.jpg",
+  "stockholm.jpg",
+  "stockholm.jpg",
+  "stockholm.jpg",
+  "stockholm.jpg",
+  "stockholm.jpg",
+  "stockholm.jpg",
+  "stockholm.jpg",
+  "stockholm.jpg",
+];
 
 let isLoaded = ref(false);
 
@@ -112,38 +141,74 @@ const setup = () => {
     new Box3().setFromObject(wall3),
     new Box3().setFromObject(wall4)
   );
+  let rotation = 0;
+  let j = 0;
+  let etage = 0
+  let etageI = 0
+  
+  listArt.forEach((art, i) => {
+    //add smaller wall inside to post images
+    const wallImageGeometry = new BoxGeometry(16 / 2, 9 / 2, 1);
+    const wallImage = new Mesh(wallImageGeometry, wallMaterial);
+    let xStart = -18;
 
-  //add smaller wall inside to post images
-  const wallGeometry3 = new BoxGeometry(16 / 2, 9 / 2, 1);
-  const wallImage = new Mesh(wallGeometry3, wallMaterial);
-  wallImage.position.set(0, 3, 5);
-  //add an image on the wall
-  const imageGeometry = new BoxGeometry(16 / 2, 9 / 2, 0.25);
-  const imageMaterial = new MeshBasicMaterial({
-    color: 0xffffff,
-    map: new TextureLoader().load("/stockholm.jpg"),
+    let x = i < 12 ? i * 9 + xStart : etageI * 9 + xStart ;
+    let y = 3 + 6 * etage;
+    let z = 13.2;
+
+    if(etage > 0) etageI++
+
+
+    switch (rotation) {
+      case 0:
+        if (x > 18) {
+          x = 28.2;
+          z = 0;
+          wallImage.rotation.y = Math.PI / 2;
+          rotation = 2;
+        }
+        break;
+      case 2:
+        x = 18 - j * 9;
+        z = -13.2;
+        wallImage.rotation.y = Math.PI;
+        j++;
+
+        if (x < -18) {
+          x = -28.2;
+          z = 0;
+          wallImage.rotation.y = -Math.PI / 2;
+          rotation = 0
+          etage++
+          j= 0
+          etageI = 0
+
+        }
+
+        break;
+    }
+
+    
+    
+    wallImage.position.set(x, y, z);
+
+    //add an image on the wall
+    const imageGeometry = new BoxGeometry(16 / 2, 9 / 2, 0.25);
+    const imageMaterial = new MeshBasicMaterial({
+      color: 0xffffff,
+      map: new TextureLoader().load("/" + art),
+    });
+    const image = new Mesh(imageGeometry, imageMaterial);
+    image.position.set(0, 0, -0.6);
+    wallImage.add(image);
+    wallImage.name = "Image " + i;
+
+    scene.add(wallImage);
+    listIntersect.push(wallImage);
   });
-  const image = new Mesh(imageGeometry, imageMaterial);
-  image.position.set(0, 0, -0.6);
-  wallImage.add(image);
-  //add a name to the wallimage to be able to recognize it later
-  wallImage.name = "Image 1";
-
-  scene.add(wallImage);
-  listIntersect.push(wallImage);
-
-  const wallImage2 = new Mesh(wallGeometry3, wallMaterial);
-  wallImage2.position.set(3, 3, 0);
-  wallImage2.rotation.y = Math.PI / 2;
-  wallImage2.add(image.clone());
-  wallImage2.name = "Image 2";
-  scene.add(wallImage2);
-  listIntersect.push(wallImage2);
 
   render();
 };
-
-const canvas = ref(null);
 
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
@@ -164,7 +229,7 @@ const animate = () => {
   if (modelReady) {
     mixer.update(clock.getDelta());
     mixer.update(delta);
-    let speed = 2.5;
+    let speed = 5;
     // Update character position based on keyboard input
     if (keys.value.up && canMove.value) character.translateZ(speed * delta);
     if (keys.value.down && canMove.value) character.translateZ(-speed * delta);
@@ -362,11 +427,11 @@ const keyClick = (keyValue: keyValue, isPressed: boolean) => {
   if (keyValue === "KeyS") keys.value.down = isPressed ? true : false;
   if (keyValue === "KeyA") keys.value.left = isPressed ? true : false;
   if (keyValue === "KeyD") keys.value.right = isPressed ? true : false;
-  if(isPressed){
-    raycaster.layers.disableAll()
-  }else{
+  if (isPressed) {
+    raycaster.layers.disableAll();
+  } else {
     setTimeout(() => {
-      raycaster.layers.enableAll()
+      raycaster.layers.enableAll();
     }, 100);
   }
 };
@@ -506,7 +571,9 @@ definePageMeta({
     </div>
     <canvas ref="canvas" class="canvas" :class="{ '-show': isLoaded }" />
   </div>
-  <div class="expoWarning">Turn your screen || tournez votre écrans en paysage</div>
+  <div class="expoWarning">
+    Turn your screen || tournez votre écrans en paysage
+  </div>
 </template>
 
 <style lang="scss">
@@ -644,13 +711,13 @@ definePageMeta({
   }
 }
 
-.exposition{
+.exposition {
   visibility: visible;
   @media (orientation: portrait) {
     visibility: hidden;
   }
 }
-.expoWarning{
+.expoWarning {
   position: absolute;
   top: 0;
   display: grid;
