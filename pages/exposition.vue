@@ -699,5 +699,8 @@ definePageMeta({
   width: 100%;
   height: 100%;
   z-index: -1;
+  @media (orientation: landscape) {
+    display: none;
+  }
 }
 </style>
