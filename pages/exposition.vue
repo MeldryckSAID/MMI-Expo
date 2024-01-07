@@ -651,6 +651,10 @@ definePageMeta({
     font-size: 1rem;
     z-index: 100;
     padding: 1rem;
+    display: none;
+    @media (min-width: 1500px) {
+      display: unset;
+    }
     & span {
       display: block;
       margin-bottom: 0.5rem;
