@@ -7,6 +7,7 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
+  
   css: ["@/scss/main.scss"],
   vite: {
     css: {

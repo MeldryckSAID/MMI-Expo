@@ -3,6 +3,7 @@
   <MyHeader class="layout__header" />
   <main class="layout__page">
     <NuxtPage />
+    <MyBackground />
   </main>
   <MyFooter class="layout__footer" />
 </template>

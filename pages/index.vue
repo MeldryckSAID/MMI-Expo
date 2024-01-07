@@ -1,40 +1,32 @@
 <script setup></script>
 
 <template>
-  <div>
-    <p class="test">home</p>
-    <p class="test2">home</p>
-    <p class="test3">home</p>
-    <p class="test4">home</p>
+  <div class="slide"> 
+    <img src="/img/a.png" alt="" />
+    <img src="/img/b.png" alt="" />
+    <img src="/img/c.png" alt="" />
+    <img src="/img/d.png" alt="" />
+    <img src="/img/e.png" alt="" />
   </div>
- 
 </template>
 
-<style lang="scss">
-.test {
-  font-size: $h1pc;
-  background-color: $r-red;
-  font-family: $okine;
+<style lang="scss" scoped>
+html, body {
+  overflow-x: auto; /* Activer le défilement horizontal sur l'ensemble de la page */
+  overflow-y: hidden; /* Désactiver le défilement vertical */
+  margin: 0; /* Supprimer les marges par défaut pour empêcher le défilement vertical inutile */
 }
-.test2 {
-  font-size: $h2pc;
-  font-family: $arc;
-  background-color: $g-gray;
-}
-.test3 {
-  font-size: $h3pc;
-  font-family: $roashe;
-  background-color: $g-gray2;
-}
-.test4 {
-  font-size: $h4pc;
-  font-family: $okine;
-  background-color: $b-black;
-  color: $g-gray2;
-}
-.test5 {
+
+.slide {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
+  gap: 200px;
+  white-space: nowrap; /* Empêcher les images de passer à la ligne suivante */
+  width: 100vw; /* Assurer que le conteneur prend la largeur complète de la vue */
+}
+
+img {
+  max-width: 100%; /* Assurer que les images ne dépassent pas la largeur du conteneur */
+  height: auto; /* Maintenir le rapport hauteur/largeur des images */
 }
 </style>
