@@ -355,6 +355,22 @@ const hideImg = () => {
   }, 100);
 };
 
+type keyValue = "KeyA" | "KeyW" | "KeyS" | "KeyD";
+
+const keyClick = (keyValue: keyValue, isPressed: boolean) => {
+  if (keyValue === "KeyW") keys.value.up = isPressed ? true : false;
+  if (keyValue === "KeyS") keys.value.down = isPressed ? true : false;
+  if (keyValue === "KeyA") keys.value.left = isPressed ? true : false;
+  if (keyValue === "KeyD") keys.value.right = isPressed ? true : false;
+  if(isPressed){
+    raycaster.layers.disableAll()
+  }else{
+    setTimeout(() => {
+      raycaster.layers.enableAll()
+    }, 100);
+  }
+};
+
 onMounted(() => {
   setup();
   animate();
@@ -380,20 +396,117 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="loader" :class="{ '-show': isLoaded }"></div>
-  <div class="exposition__wrapper" :class="{ '-show': src }">
-    <span @click="hideImg()">X</span>
-    <img :src="src" aria-hidden class="exposition__image" />
+  <div class="exposition">
+    <div class="loader" :class="{ '-show': isLoaded }"></div>
+    <div class="exposition__wrapper" :class="{ '-show': src }">
+      <span @click="hideImg()">X</span>
+      <img :src="src" aria-hidden class="exposition__image" />
+    </div>
+    <div class="exposition__cursor">
+      <div
+        class="exposition__keyArrow -left"
+        @pointerdown="keyClick('KeyA', true)"
+        @pointerup="keyClick('KeyA', false)"
+      >
+        <svg
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 185.343 185.343"
+        >
+          <g>
+            <g>
+              <path
+                style="fill: #fff"
+                d="M51.707,185.343c-2.741,0-5.493-1.044-7.593-3.149c-4.194-4.194-4.194-10.981,0-15.175
+          l74.352-74.347L44.114,18.32c-4.194-4.194-4.194-10.987,0-15.175c4.194-4.194,10.987-4.194,15.18,0l81.934,81.934
+          c4.194,4.194,4.194,10.987,0,15.175l-81.934,81.939C57.201,184.293,54.454,185.343,51.707,185.343z"
+              />
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div
+        class="exposition__keyArrow -up"
+        @pointerdown="keyClick('KeyW', true)"
+        @pointerup="keyClick('KeyW', false)"
+      >
+        <svg
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 185.343 185.343"
+        >
+          <g>
+            <g>
+              <path
+                style="fill: #fff"
+                d="M51.707,185.343c-2.741,0-5.493-1.044-7.593-3.149c-4.194-4.194-4.194-10.981,0-15.175
+          l74.352-74.347L44.114,18.32c-4.194-4.194-4.194-10.987,0-15.175c4.194-4.194,10.987-4.194,15.18,0l81.934,81.934
+          c4.194,4.194,4.194,10.987,0,15.175l-81.934,81.939C57.201,184.293,54.454,185.343,51.707,185.343z"
+              />
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div
+        class="exposition__keyArrow -down"
+        @pointerdown="keyClick('KeyS', true)"
+        @pointerup="keyClick('KeyS', false)"
+      >
+        <svg
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 185.343 185.343"
+        >
+          <g>
+            <g>
+              <path
+                style="fill: #fff"
+                d="M51.707,185.343c-2.741,0-5.493-1.044-7.593-3.149c-4.194-4.194-4.194-10.981,0-15.175
+          l74.352-74.347L44.114,18.32c-4.194-4.194-4.194-10.987,0-15.175c4.194-4.194,10.987-4.194,15.18,0l81.934,81.934
+          c4.194,4.194,4.194,10.987,0,15.175l-81.934,81.939C57.201,184.293,54.454,185.343,51.707,185.343z"
+              />
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div
+        class="exposition__keyArrow -right"
+        @pointerdown="keyClick('KeyD', true)"
+        @pointerup="keyClick('KeyD', false)"
+      >
+        <svg
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 185.343 185.343"
+        >
+          <g>
+            <g>
+              <path
+                style="fill: #fff"
+                d="M51.707,185.343c-2.741,0-5.493-1.044-7.593-3.149c-4.194-4.194-4.194-10.981,0-15.175
+          l74.352-74.347L44.114,18.32c-4.194-4.194-4.194-10.987,0-15.175c4.194-4.194,10.987-4.194,15.18,0l81.934,81.934
+          c4.194,4.194,4.194,10.987,0,15.175l-81.934,81.939C57.201,184.293,54.454,185.343,51.707,185.343z"
+              />
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="exposition__keys">
+      <span>avancer : Z</span>
+      <span>reculer : S</span>
+      <span>gauche : Q</span>
+      <span>droite : D</span>
+      <span>quitter image : esc</span>
+      <span>voir image : click souris</span>
+    </div>
+    <canvas ref="canvas" class="canvas" :class="{ '-show': isLoaded }" />
   </div>
-  <div class="exposition__keys">
-    <span>avancer : Z</span>
-    <span>reculer : S</span>
-    <span>gauche : Q</span>
-    <span>droite : D</span>
-    <span>quitter image : esc</span>
-    <span>voir image : click souris</span>
-  </div>
-  <canvas ref="canvas" class="canvas" :class="{ '-show': isLoaded }" />
+  <div class="expoWarning">Turn your screen || tournez votre écrans en paysage</div>
 </template>
 
 <style lang="scss">
@@ -419,7 +532,7 @@ definePageMeta({
     display: none;
   }
 }
-keyframes spin {
+@keyframes spin {
   from {
     transform: rotate(0deg);
   }
@@ -470,6 +583,52 @@ keyframes spin {
     display: flex;
   }
 }
+.exposition__cursor {
+  position: absolute;
+  z-index: 10;
+  bottom: 1rem;
+  left: 1rem;
+  display: grid;
+  grid-template:
+    "left up right"
+    "left down right";
+  @media (min-width: 1500px) {
+    display: none;
+  }
+  .exposition__keyArrow {
+    display: grid;
+    box-sizing: border-box;
+    place-items: flex-end;
+    svg {
+      border: 3px solid white;
+      box-sizing: border-box;
+      padding: 0.75rem;
+      width: 50px;
+      height: 50px;
+    }
+    &.-left {
+      grid-area: left;
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+    &.-right {
+      grid-area: right;
+    }
+    &.-up {
+      grid-area: up;
+      svg {
+        transform: rotate(-90deg);
+      }
+    }
+    &.-down {
+      grid-area: down;
+      svg {
+        transform: rotate(90deg);
+      }
+    }
+  }
+}
 .exposition__image {
   width: 80vw;
   height: 80vh;
@@ -483,5 +642,21 @@ keyframes spin {
   &.-show {
     display: flex;
   }
+}
+
+.exposition{
+  visibility: visible;
+  @media (orientation: portrait) {
+    visibility: hidden;
+  }
+}
+.expoWarning{
+  position: absolute;
+  top: 0;
+  display: grid;
+  place-content: center;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 </style>
