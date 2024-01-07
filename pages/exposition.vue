@@ -35,11 +35,7 @@ let canMove = ref(true);
 
 let listIntersect: Mesh[] = [];
 
-let listArt = [
-  "stockholm.jpg",
-  "image1.avif",
-  "image2.webp"
-];
+let listArt = ["stockholm.jpg", "image1.avif", "image2.webp"];
 
 let isLoaded = ref(false);
 
@@ -122,21 +118,20 @@ const setup = () => {
   );
   let rotation = 0;
   let j = 0;
-  let etage = 0
-  let etageI = 0
-  
+  let etage = 0;
+  let etageI = 0;
+
   listArt.forEach((art, i) => {
     //add smaller wall inside to post images
     const wallImageGeometry = new BoxGeometry(16 / 2, 9 / 2, 1);
     const wallImage = new Mesh(wallImageGeometry, wallMaterial);
     let xStart = -18;
 
-    let x = i < 12 ? i * 9 + xStart : etageI * 9 + xStart ;
+    let x = i < 12 ? i * 9 + xStart : etageI * 9 + xStart;
     let y = 3 + 6 * etage;
     let z = 13.2;
 
-    if(etage > 0) etageI++
-
+    if (etage > 0) etageI++;
 
     switch (rotation) {
       case 0:
@@ -157,18 +152,15 @@ const setup = () => {
           x = -28.2;
           z = 0;
           wallImage.rotation.y = -Math.PI / 2;
-          rotation = 0
-          etage++
-          j= 0
-          etageI = 0
-
+          rotation = 0;
+          etage++;
+          j = 0;
+          etageI = 0;
         }
 
         break;
     }
 
-    
-    
     wallImage.position.set(x, y, z);
 
     //add an image on the wall
@@ -180,7 +172,6 @@ const setup = () => {
     image.position.set(0, 0, -0.6);
     wallImage.add(image);
     wallImage.name = art;
-    
 
     scene.add(wallImage);
     listIntersect.push(wallImage);
@@ -556,7 +547,7 @@ definePageMeta({
 
 <style lang="scss">
 .loader {
-  background: $primaryColor;
+  background: black;
   width: 100vw;
   height: 100vh;
   position: relative;
@@ -585,101 +576,7 @@ definePageMeta({
     transform: rotate(360deg);
   }
 }
-.exposition__keys {
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: $white;
-  font-size: 1rem;
-  z-index: 100;
-  padding: 1rem;
-  & span {
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-}
-.exposition__wrapper {
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.555);
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: none;
-  & span {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    border: 1px solid $white;
-    width: 2rem;
-    height: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    padding: 1rem;
-    color: $white;
-    font-size: 2rem;
-    cursor: pointer;
-  }
-  &.-show {
-    display: flex;
-  }
-}
-.exposition__cursor {
-  position: absolute;
-  z-index: 10;
-  bottom: 1rem;
-  left: 1rem;
-  display: grid;
-  grid-template:
-    "left up right"
-    "left down right";
-  @media (min-width: 1500px) {
-    display: none;
-  }
-  .exposition__keyArrow {
-    display: grid;
-    box-sizing: border-box;
-    place-items: flex-end;
-    svg {
-      border: 3px solid white;
-      box-sizing: border-box;
-      padding: 0.75rem;
-      width: 50px;
-      height: 50px;
-    }
-    &.-left {
-      grid-area: left;
-      svg {
-        transform: rotate(180deg);
-      }
-    }
-    &.-right {
-      grid-area: right;
-    }
-    &.-up {
-      grid-area: up;
-      svg {
-        transform: rotate(-90deg);
-      }
-    }
-    &.-down {
-      grid-area: down;
-      svg {
-        transform: rotate(90deg);
-      }
-    }
-  }
-}
-.exposition__image {
-  width: 80vw;
-  height: 80vh;
-  object-fit: cover;
-  z-index: 150;
-}
+
 .canvas {
   display: none;
   width: 100vw;
@@ -693,6 +590,101 @@ definePageMeta({
   visibility: visible;
   @media (orientation: portrait) {
     visibility: hidden;
+  }
+  &__image {
+    width: 80vw;
+    height: 80vh;
+    object-fit: contain;
+    z-index: 150;
+  }
+  &__cursor {
+    position: absolute;
+    z-index: 10;
+    bottom: 1rem;
+    left: 1rem;
+    display: grid;
+    grid-template:
+      "left up right"
+      "left down right";
+    @media (min-width: 1500px) {
+      display: none;
+    }
+    .exposition__keyArrow {
+      display: grid;
+      box-sizing: border-box;
+      place-items: flex-end;
+      svg {
+        border: 3px solid white;
+        box-sizing: border-box;
+        padding: 0.75rem;
+        width: 50px;
+        height: 50px;
+      }
+      &.-left {
+        grid-area: left;
+        svg {
+          transform: rotate(180deg);
+        }
+      }
+      &.-right {
+        grid-area: right;
+      }
+      &.-up {
+        grid-area: up;
+        svg {
+          transform: rotate(-90deg);
+        }
+      }
+      &.-down {
+        grid-area: down;
+        svg {
+          transform: rotate(90deg);
+        }
+      }
+    }
+  }
+  &__keys {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: $white;
+    font-size: 1rem;
+    z-index: 100;
+    padding: 1rem;
+    & span {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+  }
+  &__wrapper {
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.555);
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    & span {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      border: 1px solid $white;
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      padding: 1rem;
+      color: $white;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+    &.-show {
+      display: flex;
+    }
   }
 }
 .expoWarning {
