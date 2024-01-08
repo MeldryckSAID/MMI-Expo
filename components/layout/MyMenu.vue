@@ -1,4 +1,5 @@
 <template>
+  
   <MyIcon
     class="open-menu"
     aria-controls="menu"
@@ -50,7 +51,7 @@ const toggleMenu = () => {
 .menu-container {
   position: fixed;
   inset: 0;
-  transform: translateX(-100%);
+  transform: translateX(100%);
   transition: transform 1000ms ease;
   z-index: 90;
   background-color: $g-gray2;

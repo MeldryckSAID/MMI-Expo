@@ -3,18 +3,19 @@
 <template>
   <header>
     <div class="header__content">
-      <MyMenu />
+      <nuxt-link to="/exposition"
+        ><MyIcon class="virtuel" name="visite"
+      /></nuxt-link>
 
       <nuxt-link to="/" class="link"> <MyLogo name="logo" /> </nuxt-link>
 
-      <MyIcon class="virtuel" name="visite" />
+      <MyMenu />
     </div>
   </header>
 </template>
 
 <style lang="scss">
 .header__content {
-  
   padding-inline: 10%;
   padding-bottom: 1%;
   padding-top: 1%;
