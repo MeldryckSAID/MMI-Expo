@@ -1,6 +1,16 @@
 <template>
   <MyOutro>Galerie photo</MyOutro>
   <div class="container">
+    <div class="background-date">2023-2024</div>
+    <div class="presentation">
+      <MyTitle font="arc" el="h2" size="medium"
+        >Exposition 2023-2024, 1ère édition
+      </MyTitle>
+      <p class="text">
+        Fringz, Loup Lobato, Telio.arts, Sacha Wicky, s_comic_s, Eden Bourezg,
+        Logan Martinez, Aline Rose, Chloé Bizet, Matys Ouvrard et Luca Thomesse,
+      </p>
+    </div>
     <ul class="galery">
       <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
       <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
@@ -26,25 +36,85 @@
       <li><img src="/gallery/lights.jpg" alt="lights" /></li>
       <li><img src="/gallery/porte.jpg" alt="porte" /></li>
       <li><img src="/gallery/store.jpg" alt="store" /></li>
+      <li><img src="/gallery/1.png" alt="store" /></li>
+      <li><img src="/gallery/2.png" alt="Bamboos" /></li>
+      <li><img src="/gallery/3.png" alt="Castle" /></li>
+      <li><img src="/gallery/4.png" alt="Fuji" /></li>
+      <li><img src="/gallery/5.png" alt="lights" /></li>
+      <li><img src="/gallery/6.png" alt="porte" /></li>
+      <li><img src="/gallery/7.png" alt="store" /></li>
+      <li><img src="/gallery/8.png" alt="Bamboos" /></li>
+      <li><img src="/gallery/9.png" alt="Castle" /></li>
+      <li><img src="/gallery/10.png" alt="Fuji" /></li>
+      <li><img src="/gallery/11.png" alt="lights" /></li>
+      <li><img src="/gallery/12.png" alt="porte" /></li>
+      <li><img src="/gallery/13.png" alt="store" /></li>
+      <li><img src="/gallery/14.png" alt="store" /></li>
+      <li><img src="/gallery/15.png" alt="store" /></li>
+      <li><img src="/gallery/16.png" alt="store" /></li>
+      <li><img src="/gallery/17.png" alt="store" /></li>
+      <li><img src="/gallery/18.png" alt="store" /></li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="background-date">2022-2023</div>
+    <div class="presentation">
+      <MyTitle class="reversed" font="arc" el="h2" size="medium"
+        >Exposition 2022-2023, édition 0
+      </MyTitle>
+      <p class="reversed text">
+        Fringz, Loup Lobato, Telio.arts, Sacha Wicky, s_comic_s, Eden Bourezg,
+        Logan Martinez, Aline Rose, Chloé Bizet, Matys Ouvrard et Luca Thomesse,
+      </p>
+    </div>
+    <ul class="galery">
+      <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
+      <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
+      <li><img src="/gallery/fuji.jpg" alt="Fuji" /></li>
+      <li><img src="/gallery/lights.jpg" alt="lights" /></li>
+      <li><img src="/gallery/porte.jpg" alt="porte" /></li>
+      <li><img src="/gallery/store.jpg" alt="store" /></li>
+      <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
+      <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
+      <li><img src="/gallery/fuji.jpg" alt="Fuji" /></li>
+      <li><img src="/gallery/lights.jpg" alt="lights" /></li>
+      <li><img src="/gallery/porte.jpg" alt="porte" /></li>
+      <li><img src="/gallery/store.jpg" alt="store" /></li>
+      <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
+      <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
+      <li><img src="/gallery/fuji.jpg" alt="Fuji" /></li>
+      <li><img src="/gallery/lights.jpg" alt="lights" /></li>
+      <li><img src="/gallery/porte.jpg" alt="porte" /></li>
+      <li><img src="/gallery/store.jpg" alt="store" /></li>
+      <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
+      <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
+      <li><img src="/gallery/fuji.jpg" alt="Fuji" /></li>
+      <li><img src="/gallery/lights.jpg" alt="lights" /></li>
+      <li><img src="/gallery/porte.jpg" alt="porte" /></li>
+      <li><img src="/gallery/store.jpg" alt="store" /></li>
+      <li><img src="/gallery/1.png" alt="store" /></li>
+      <li><img src="/gallery/2.png" alt="Bamboos" /></li>
+      <li><img src="/gallery/3.png" alt="Castle" /></li>
+      <li><img src="/gallery/4.png" alt="Fuji" /></li>
+      <li><img src="/gallery/5.png" alt="lights" /></li>
+      <li><img src="/gallery/6.png" alt="porte" /></li>
+      <li><img src="/gallery/7.png" alt="store" /></li>
+      <li><img src="/gallery/8.png" alt="Bamboos" /></li>
+      <li><img src="/gallery/9.png" alt="Castle" /></li>
+      <li><img src="/gallery/10.png" alt="Fuji" /></li>
+      <li><img src="/gallery/11.png" alt="lights" /></li>
+      <li><img src="/gallery/12.png" alt="porte" /></li>
+      <li><img src="/gallery/13.png" alt="store" /></li>
+      <li><img src="/gallery/14.png" alt="store" /></li>
+      <li><img src="/gallery/15.png" alt="store" /></li>
+      <li><img src="/gallery/16.png" alt="store" /></li>
+      <li><img src="/gallery/17.png" alt="store" /></li>
+      <li><img src="/gallery/18.png" alt="store" /></li>
     </ul>
   </div>
 </template>
 
-<script>
-export default {
-  // Vous pouvez ajouter ici toute logique spécifique à Vue ou Nuxt si nécessaire
-  head() {
-    return {
-      title: "CSS - Bac à Sable", // Titre de la page
-      meta: [
-        { charset: "utf-8" },
-        { name: "viewport", content: "width=device-width, initial-scale=1" },
-        // D'autres méta tags si nécessaire
-      ],
-    };
-  },
-};
-</script>
+<script></script>
 
 <style lang="scss" scoped>
 *,
@@ -59,7 +129,14 @@ body {
   padding: 140px 0;
 }
 
+.presentation .text {
+  padding: 2%;
+}
+.reversed {
+  text-align: end;
+}
 .container {
+  position: relative;
   padding: 5%;
 }
 .galery {
@@ -84,5 +161,23 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.background-date {
+  padding-top: 8%;
+  position: absolute;
+  top: -150px;
+  font-size: 280px;
+  color: $g-gray2;
+  z-index: -1;
+  pointer-events: none;
+  font-family: $okine;
+  font-weight: 900;
+}
+
+@media (max-width: 425px) {
+  .background-date {
+   display: none;
+  }
 }
 </style>
