@@ -20,7 +20,7 @@ import { parseURL, withoutBase, joinURL, getQuery, withQuery } from 'file://C:/M
 import { createStorage, prefixStorage } from 'file://C:/MMI_COURS/MMI3/Projet/expositionProjet/node_modules/unstorage/dist/index.mjs';
 import unstorage_47drivers_47fs from 'file://C:/MMI_COURS/MMI3/Projet/expositionProjet/node_modules/unstorage/drivers/fs.mjs';
 import { toRouteMatcher, createRouter } from 'file://C:/MMI_COURS/MMI3/Projet/expositionProjet/node_modules/radix3/dist/index.mjs';
-import { version, unref } from 'file://C:/MMI_COURS/MMI3/Projet/expositionProjet/node_modules/vue/index.mjs';
+import { version, unref } from 'file://C:/MMI_COURS/MMI3/Projet/expositionProjet/node_modules/vue/dist/vue.cjs.js';
 import { createServerHead as createServerHead$1 } from 'file://C:/MMI_COURS/MMI3/Projet/expositionProjet/node_modules/unhead/dist/index.mjs';
 import { defineHeadPlugin } from 'file://C:/MMI_COURS/MMI3/Projet/expositionProjet/node_modules/@unhead/shared/dist/index.mjs';
 

@@ -22,7 +22,7 @@
       <MyLinks @click.stop="toggleMenu" :isReversed="true" to="/MyGalerie"
         >Galeris Photos</MyLinks
       >
-      <MyLinks @click.stop="toggleMenu" to="/MyVisite"
+      <MyLinks @click.stop="toggleMenu" to="/exposition"
         >VISITE VIRTUELLE
       </MyLinks>
     </div>

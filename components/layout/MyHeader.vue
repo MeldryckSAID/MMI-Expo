@@ -14,6 +14,7 @@
 
 <style lang="scss">
 .header__content {
+  
   padding-inline: 10%;
   padding-bottom: 1%;
   padding-top: 1%;
