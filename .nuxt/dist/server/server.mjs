@@ -1,1 +1,0 @@
-export { default } from "file:///C:/MMI_COURS/MMI3/Projet/expositionProjet/node_modules/@nuxt/vite-builder/dist/runtime/vite-node.mjs"
