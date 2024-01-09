@@ -1,4 +1,4 @@
-<!-- <script setup></script>
+<script setup></script>
 
 <template>
   <div class="tcontainer">
@@ -53,7 +53,7 @@ body {
 ::-webkit-scrollbar {
   display: none;
 }
-</style> -->
+</style>
 
 <!-- <script setup></script>
 
@@ -110,7 +110,7 @@ body {
 }
 </style> -->
 
-<template>
+<!-- <template>
   <div class="outer-container">
     <div class="inner-container">
       <div class="blocHorizontal">
@@ -161,5 +161,5 @@ body {
 ::-webkit-scrollbar {
   display: none;
 }
-</style>
+</style> -->
 
