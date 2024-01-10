@@ -560,7 +560,7 @@ definePageMeta({
     height: 100px;
     margin: -50px 0 0 -50px;
     border-radius: 50%;
-    border: 4px solid $white;
+    border: 4px solid $w-white;
     border-top-color: transparent;
     animation: spin 1s linear infinite;
   }
@@ -647,7 +647,7 @@ definePageMeta({
     position: absolute;
     top: 0;
     left: 0;
-    color: $white;
+    color: $w-white;
     font-size: 1rem;
     z-index: 100;
     padding: 1rem;
@@ -674,7 +674,7 @@ definePageMeta({
       position: absolute;
       top: 1rem;
       right: 1rem;
-      border: 1px solid $white;
+      border: 1px solid $w-white;
       width: 2rem;
       height: 2rem;
       display: flex;
@@ -682,7 +682,7 @@ definePageMeta({
       align-items: center;
       border-radius: 50%;
       padding: 1rem;
-      color: $white;
+      color: $w-white;
       font-size: 2rem;
       cursor: pointer;
     }
