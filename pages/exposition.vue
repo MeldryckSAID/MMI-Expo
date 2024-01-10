@@ -560,7 +560,7 @@ definePageMeta({
     height: 100px;
     margin: -50px 0 0 -50px;
     border-radius: 50%;
-    border: 4px solid $white;
+    border: 4px solid $w-white;
     border-top-color: transparent;
     animation: spin 1s linear infinite;
   }
