@@ -1,13 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  routeRules: {
+    "/exposition": { ssr: false },
+  },
   components: [
     {
       path: "~/components",
       pathPrefix: false,
     },
   ],
-  
   css: ["@/scss/main.scss"],
   vite: {
     css: {
