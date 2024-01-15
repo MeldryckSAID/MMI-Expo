@@ -22,6 +22,33 @@ import {
   Vector2,
 } from "three";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
+const { client } = usePrismic();
+
+const { data: artistes } = await useAsyncData("artistes", () =>
+  client.getAllByType("artistes")
+);
+
+let listArt = [];
+type art = {
+  url: string;
+  artName: string;
+  desc: string;
+  artisteName: string;
+};
+artistes.value?.forEach((artiste) => {
+  // console.log(artiste.data.art[0].art__img.url);
+  let url = artiste.data.art[0].art__img.url;
+  let artName = artiste.data.art[0].art__name[0].text;
+  let desc = artiste.data.description[0].text;
+  let artisteName = artiste.data.name[0].text;
+  let data: art = {
+    url,
+    artName,
+    desc,
+    artisteName,
+  };
+  listArt.push(data);
+});
 
 const canvas = ref(undefined);
 
@@ -34,8 +61,6 @@ let characterBox: Box3;
 let canMove = ref(true);
 
 let listIntersect: Mesh[] = [];
-
-let listArt = ["stockholm.jpg", "image1.avif", "image2.webp"];
 
 let isLoaded = ref(false);
 
@@ -166,12 +191,13 @@ const setup = () => {
     //add an image on the wall
     const imageGeometry = new BoxGeometry(16 / 2, 9 / 2, 0.25);
     const imageMaterial = new MeshBasicMaterial({
-      map: new TextureLoader().load("/" + art),
+      map: new TextureLoader().load(art.url),
+      // contain the image without stretching it
     });
     const image = new Mesh(imageGeometry, imageMaterial);
     image.position.set(0, 0, -0.6);
     wallImage.add(image);
-    wallImage.name = art;
+    wallImage.name = art.url;
 
     scene.add(wallImage);
     listIntersect.push(wallImage);
@@ -359,6 +385,11 @@ const keyupHandler = (e: KeyboardEvent) => {
 const raycaster = new Raycaster();
 const mouse = new Vector2();
 let src = ref("");
+let art = ref({
+  artName: "",
+  artisteName: "",
+  desc: "",
+});
 
 const onClick = (e: MouseEvent) => {
   mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
@@ -370,6 +401,11 @@ const onClick = (e: MouseEvent) => {
     const intersects = raycaster.intersectObjects(listIntersect);
     if (intersects.length > 0) {
       src.value = intersects[0].object.parent?.name || "";
+      art.value = listArt.find((art) => art.url === src.value) || {
+        artName: "",
+        artisteName: "",
+        desc: "",
+      };
       canMove.value = false;
       raycaster.layers.disableAll();
     }
@@ -435,6 +471,18 @@ definePageMeta({
     <div class="exposition__wrapper" :class="{ '-show': src }">
       <span @click="hideImg()">X</span>
       <img :src="src" aria-hidden class="exposition__image" />
+      <div class="exposition__data">
+        <h2>
+          Artiste : <i>{{ art.artisteName }}</i>
+        </h2>
+        <h3>
+          Nom art : <i>{{ art.artName }}</i>
+        </h3>
+        <p>
+          Description :
+          <i>{{ art.desc }}</i>
+        </p>
+      </div>
     </div>
     <div class="exposition__cursor">
       <div
@@ -598,7 +646,7 @@ definePageMeta({
     z-index: 150;
   }
   &__cursor {
-    position: absolute;
+    position: fixed;
     z-index: 10;
     bottom: 1rem;
     left: 1rem;
@@ -643,6 +691,23 @@ definePageMeta({
       }
     }
   }
+  &__data {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    i {
+      font-style: normal;
+    }
+    h2 {
+      font-size: 2rem;
+    }
+    p{
+      max-width: 90%;
+    }
+  }
   &__keys {
     position: absolute;
     top: 0;
@@ -662,7 +727,7 @@ definePageMeta({
   }
   &__wrapper {
     position: absolute;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     background: rgba(0, 0, 0, 0.555);
     top: 0;
@@ -670,6 +735,11 @@ definePageMeta({
     width: 100vw;
     height: 100vh;
     display: none;
+    & img {
+      width: 60%;
+      height: 100%;
+      object-fit: contain;
+    }
     & span {
       position: absolute;
       top: 1rem;
