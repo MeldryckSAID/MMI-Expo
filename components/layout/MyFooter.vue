@@ -5,7 +5,7 @@
     <div class="footer__content">
       <div class="section">
         <div class="section1">
-          <nuxt-link to="/MyMention" class="link"> Mention Légales </nuxt-link>
+          <nuxt-link to="/mentions-legales" class="link"> Mention Légales </nuxt-link>
           <div class="social">
             <MyIcon name="letter" />
             <MyIcon name="insta" />
