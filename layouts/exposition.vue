@@ -12,7 +12,7 @@
   }
   &__link{
     user-select: none;
-    position: absolute;
+    position: fixed;
     bottom: 1rem;
     right: 1rem;
     color: white;
