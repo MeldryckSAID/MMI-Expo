@@ -1,115 +1,27 @@
+<script setup>
+const { client } = usePrismic();
+const { data: expo } = await useAsyncData("galerie", () =>
+  client.getAllByType("exposition")
+);
+
+
+</script>
 <template>
   <MyOutro>Galerie photo</MyOutro>
-  <div class="container">
-    <div class="background-date">2023-2024</div>
+  <div class="container" v-for="(exposition, i) in expo" :key="i">
+    <div class="background-date">{{exposition.data.year[0].text}}</div>
     <div class="presentation">
       <MyTitle font="arc" el="h2" size="medium"
-        >Exposition 2023-2024, 1ère édition
+        >{{ exposition.data.title[0].text }}
       </MyTitle>
       <p class="text">
-        Fringz, Loup Lobato, Telio.arts, Sacha Wicky, s_comic_s, Eden Bourezg,
-        Logan Martinez, Aline Rose, Chloé Bizet, Matys Ouvrard et Luca Thomesse,
+        {{ exposition.data.exposant[0].text }}
       </p>
     </div>
     <ul class="galery">
-      <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
-      <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
-      <li><img src="/gallery/fuji.jpg" alt="Fuji" /></li>
-      <li><img src="/gallery/lights.jpg" alt="lights" /></li>
-      <li><img src="/gallery/porte.jpg" alt="porte" /></li>
-      <li><img src="/gallery/store.jpg" alt="store" /></li>
-      <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
-      <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
-      <li><img src="/gallery/fuji.jpg" alt="Fuji" /></li>
-      <li><img src="/gallery/lights.jpg" alt="lights" /></li>
-      <li><img src="/gallery/porte.jpg" alt="porte" /></li>
-      <li><img src="/gallery/store.jpg" alt="store" /></li>
-      <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
-      <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
-      <li><img src="/gallery/fuji.jpg" alt="Fuji" /></li>
-      <li><img src="/gallery/lights.jpg" alt="lights" /></li>
-      <li><img src="/gallery/porte.jpg" alt="porte" /></li>
-      <li><img src="/gallery/store.jpg" alt="store" /></li>
-      <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
-      <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
-      <li><img src="/gallery/fuji.jpg" alt="Fuji" /></li>
-      <li><img src="/gallery/lights.jpg" alt="lights" /></li>
-      <li><img src="/gallery/porte.jpg" alt="porte" /></li>
-      <li><img src="/gallery/store.jpg" alt="store" /></li>
-      <li><img src="/gallery/1.png" alt="store" /></li>
-      <li><img src="/gallery/2.png" alt="Bamboos" /></li>
-      <li><img src="/gallery/3.png" alt="Castle" /></li>
-      <li><img src="/gallery/4.png" alt="Fuji" /></li>
-      <li><img src="/gallery/5.png" alt="lights" /></li>
-      <li><img src="/gallery/6.png" alt="porte" /></li>
-      <li><img src="/gallery/7.png" alt="store" /></li>
-      <li><img src="/gallery/8.png" alt="Bamboos" /></li>
-      <li><img src="/gallery/9.png" alt="Castle" /></li>
-      <li><img src="/gallery/10.png" alt="Fuji" /></li>
-      <li><img src="/gallery/11.png" alt="lights" /></li>
-      <li><img src="/gallery/12.png" alt="porte" /></li>
-      <li><img src="/gallery/13.png" alt="store" /></li>
-      <li><img src="/gallery/14.png" alt="store" /></li>
-      <li><img src="/gallery/15.png" alt="store" /></li>
-      <li><img src="/gallery/16.png" alt="store" /></li>
-      <li><img src="/gallery/17.png" alt="store" /></li>
-      <li><img src="/gallery/18.png" alt="store" /></li>
-    </ul>
-  </div>
-  <div class="container">
-    <div class="background-date">2022-2023</div>
-    <div class="presentation">
-      <MyTitle class="reversed" font="arc" el="h2" size="medium"
-        >Exposition 2022-2023, édition 0
-      </MyTitle>
-      <p class="reversed text">
-        Fringz, Loup Lobato, Telio.arts, Sacha Wicky, s_comic_s, Eden Bourezg,
-        Logan Martinez, Aline Rose, Chloé Bizet, Matys Ouvrard et Luca Thomesse,
-      </p>
-    </div>
-    <ul class="galery">
-      <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
-      <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
-      <li><img src="/gallery/fuji.jpg" alt="Fuji" /></li>
-      <li><img src="/gallery/lights.jpg" alt="lights" /></li>
-      <li><img src="/gallery/porte.jpg" alt="porte" /></li>
-      <li><img src="/gallery/store.jpg" alt="store" /></li>
-      <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
-      <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
-      <li><img src="/gallery/fuji.jpg" alt="Fuji" /></li>
-      <li><img src="/gallery/lights.jpg" alt="lights" /></li>
-      <li><img src="/gallery/porte.jpg" alt="porte" /></li>
-      <li><img src="/gallery/store.jpg" alt="store" /></li>
-      <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
-      <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
-      <li><img src="/gallery/fuji.jpg" alt="Fuji" /></li>
-      <li><img src="/gallery/lights.jpg" alt="lights" /></li>
-      <li><img src="/gallery/porte.jpg" alt="porte" /></li>
-      <li><img src="/gallery/store.jpg" alt="store" /></li>
-      <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
-      <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
-      <li><img src="/gallery/fuji.jpg" alt="Fuji" /></li>
-      <li><img src="/gallery/lights.jpg" alt="lights" /></li>
-      <li><img src="/gallery/porte.jpg" alt="porte" /></li>
-      <li><img src="/gallery/store.jpg" alt="store" /></li>
-      <li><img src="/gallery/1.png" alt="store" /></li>
-      <li><img src="/gallery/2.png" alt="Bamboos" /></li>
-      <li><img src="/gallery/3.png" alt="Castle" /></li>
-      <li><img src="/gallery/4.png" alt="Fuji" /></li>
-      <li><img src="/gallery/5.png" alt="lights" /></li>
-      <li><img src="/gallery/6.png" alt="porte" /></li>
-      <li><img src="/gallery/7.png" alt="store" /></li>
-      <li><img src="/gallery/8.png" alt="Bamboos" /></li>
-      <li><img src="/gallery/9.png" alt="Castle" /></li>
-      <li><img src="/gallery/10.png" alt="Fuji" /></li>
-      <li><img src="/gallery/11.png" alt="lights" /></li>
-      <li><img src="/gallery/12.png" alt="porte" /></li>
-      <li><img src="/gallery/13.png" alt="store" /></li>
-      <li><img src="/gallery/14.png" alt="store" /></li>
-      <li><img src="/gallery/15.png" alt="store" /></li>
-      <li><img src="/gallery/16.png" alt="store" /></li>
-      <li><img src="/gallery/17.png" alt="store" /></li>
-      <li><img src="/gallery/18.png" alt="store" /></li>
+      <li v-for="(img, index) in exposition.data.images" :key="index">
+        <NuxtImg format="avif" :src="img.img.url" :alt="img.img.alt" />
+      </li>
     </ul>
   </div>
 </template>
@@ -166,8 +78,12 @@ body {
 .background-date {
   padding-top: 8%;
   position: absolute;
+  overflow-x: hidden;
+  max-width: 100vw;
   top: -150px;
-  font-size: 280px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20vw;
   color: $g-gray2;
   z-index: -1;
   pointer-events: none;
@@ -177,7 +93,7 @@ body {
 
 @media (max-width: 425px) {
   .background-date {
-   display: none;
+    display: none;
   }
 }
 </style>
