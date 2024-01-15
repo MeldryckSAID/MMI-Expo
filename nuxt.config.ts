@@ -30,6 +30,10 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
+  runtimeConfig: {
+    mail: process.env.NUXT_MAIL,
+    psw: process.env.NUXT_PSW,
+  },
   css: ["@/scss/main.scss"],
   vite: {
     css: {

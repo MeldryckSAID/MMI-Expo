@@ -1,3 +1,36 @@
+<script setup>
+const router = useRouter();
+const mail = reactive({
+  name: "",
+  surname: "",
+  email: "",
+  message: "",
+});
+const mailsent = ref(false);
+const body = computed(() => {
+  return JSON.stringify(mail);
+});
+const sendMail = async () => {
+  if (
+    mail.name === "" ||
+    mail.surname === "" ||
+    mail.email === "" ||
+    mail.message === ""
+  ) {
+    alert("Please fill all the fields");
+  } else {
+    mailsent.value = true;
+    await useFetch("/api/sendmail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: body,
+    });
+    router.push("/merci");
+  }
+};
+</script>
 <template>
   <form class="form">
     <label for="nom" class="form__label -nom">
@@ -7,6 +40,7 @@
         placeholder="Nom"
         class="form__input"
         required
+        v-model="mail.name"
       />
     </label>
     <label for="prenom" class="form__label -prenom">
@@ -16,6 +50,7 @@
         placeholder="Prénom"
         class="form__input"
         required
+        v-model="mail.surname"
       />
     </label>
     <label for="email" class="form__label -email">
@@ -25,6 +60,7 @@
         placeholder="Email"
         class="form__input"
         required
+        v-model="mail.email"
       />
     </label>
     <textarea
@@ -32,13 +68,16 @@
       placeholder="Votre message"
       class="form__input -textarea"
       required
+      v-model="mail.message"
     ></textarea>
     <label for="checkbox" class="form__label -checkbox">
       <input type="checkbox" name="checkbox" class="form__checkbox" required />
       J'accepte la politique de confidentialité. Veuillez accepter la politique
       de confidentialité
     </label>
-    <button type="submit" class="form__submit">Envoyer</button>
+    <button :disabled="mailsent" type="submit" class="form__submit" @click.prevent="sendMail()">
+      Envoyer
+    </button>
   </form>
 </template>
 
@@ -98,6 +137,11 @@
     background: #000;
     color: #e9e9eb;
     cursor: pointer;
+    &:disabled {
+      background: #e9e9eb;
+      color: #000;
+      cursor: not-allowed;
+    }
   }
 }
 </style>
