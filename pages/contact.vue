@@ -17,12 +17,15 @@
 
 <style lang="scss" scoped>
 .contact-container {
+  padding-inline: rem(50);
   margin-top: 10%;
+  margin-bottom: 10%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   justify-items: center;
   align-items: center;
+  
 }
 .line {
   width: 4px;
@@ -39,7 +42,7 @@
 
 @media (max-width: 1024px) {
   .contact-container {
-    margin-top: 10%;
+    margin-top: 5%;
     display: flex;
     flex-direction: column;
     justify-items: center;
