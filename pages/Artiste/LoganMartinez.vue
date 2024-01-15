@@ -4,9 +4,8 @@
   <div class="container">
     <!-- <pre>{{ home.data }}</pre> -->
     <!-- <pre>{{ home.data.logan }}</pre> -->
-    <!-- <pre>{{ home.data.copenhague }}</pre> -->
+    <!-- <pre>{{ home.data.collection }}</pre> -->
     <LoganPresentation :present="home.data.logan" />
-    <LoganCollection :copenhague="home.data.copenhague" />
 
     <div class="background-date">Logan</div>
     <div class="presentation">
@@ -20,11 +19,7 @@
       </p>
     </div>
     <ul class="galery" ref="gallery">
-      <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
-      <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
-      <li><img src="/gallery/fuji.jpg" alt="Fuji" /></li>
-      <li><img src="/gallery/lights.jpg" alt="lights" /></li>
-      <li><img src="/gallery/porte.jpg" alt="porte" /></li>
+      <LoganCollection :collection="home.data.collection6" />
     </ul>
   </div>
 </template>

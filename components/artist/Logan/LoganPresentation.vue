@@ -1,6 +1,6 @@
 <template>
   <div v-for="item in present">
-    <img :src="item.logan_pp.url" :alt="item.logan_pp.url.alt" />
+    <img :src="item.logan_pp.url" :alt="item.logan_pp.alt" />
     <PrismicRichText :field="item.logan_presentation" />
   </div>
 </template>
