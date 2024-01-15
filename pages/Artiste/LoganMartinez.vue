@@ -2,9 +2,12 @@
   <MyOutro>Logan Martinez</MyOutro>
 
   <div class="container">
-    <pre>{{ home.data }}</pre>
-    <pre>{{ home.data.logan }}</pre>
-  
+    <!-- <pre>{{ home.data }}</pre> -->
+    <!-- <pre>{{ home.data.logan }}</pre> -->
+    <!-- <pre>{{ home.data.copenhague }}</pre> -->
+    <LoganPresentation :present="home.data.logan" />
+    <LoganCollection :copenhague="home.data.copenhague" />
+
     <div class="background-date">Logan</div>
     <div class="presentation">
       <MyTitle class="reversed" font="arc" el="h2" size="medium"
