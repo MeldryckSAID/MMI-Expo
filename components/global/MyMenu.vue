@@ -1,5 +1,4 @@
 <template>
-  
   <MyIcon
     class="open-menu"
     aria-controls="menu"
@@ -8,24 +7,26 @@
     :class="[menuOuvert ? 'hidden' : '']"
     name="open"
   />
-
   <!-- Menu hamburger déroulé -->
+
   <div class="menu-container" :class="[menuOuvert ? 'open' : '']">
     <div class="menu-header">
       <MyIcon name="close" class="close-menu" @click.stop="toggleMenu" />
     </div>
-    <div class="menu-links">
-      <MyLinks @click.stop="toggleMenu" to="/">Home</MyLinks>
-      <MyLinks @click.stop="toggleMenu" :isReversed="true" to="/MyContact"
-        >Contact</MyLinks
-      >
-      <MyLinks @click.stop="toggleMenu" to="/MyAbout">À propos</MyLinks>
-      <MyLinks @click.stop="toggleMenu" :isReversed="true" to="/MyGalerie"
-        >Galeris Photos</MyLinks
-      >
-      <MyLinks @click.stop="toggleMenu" to="/exposition"
-        >VISITE VIRTUELLE
-      </MyLinks>
+    <div class="menu-container-links">
+      <div class="menu-container-links-link">
+        <MyLinks @click.stop="toggleMenu" to="/">Home</MyLinks>
+        <MyLinks @click.stop="toggleMenu" :isReversed="true" to="/MyContact"
+          >Contact</MyLinks
+        >
+        <MyLinks @click.stop="toggleMenu" to="/MyAbout">À propos</MyLinks>
+        <MyLinks @click.stop="toggleMenu" :isReversed="true" to="/MyGalerie"
+          >Galeris Photos</MyLinks
+        >
+        <MyLinks @click.stop="toggleMenu" to="/exposition"
+          >VISITE VIRTUELLE
+        </MyLinks>
+      </div>
     </div>
   </div>
 </template>
@@ -56,6 +57,17 @@ const toggleMenu = () => {
   z-index: 90;
   background-color: $g-gray2;
   color: white;
+  &-links {
+    display: flex;
+    justify-content: center;
+    margin-top: 10rem;
+    &-link {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
 }
 
 /* Displayed state */
@@ -74,12 +86,6 @@ const toggleMenu = () => {
   font-weight: bold;
   font-size: $menupc;
   text-align: left;
-}
-.menu-links {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 1rem;
 }
 
 @media (max-width: 425px) {
