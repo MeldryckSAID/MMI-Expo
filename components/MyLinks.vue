@@ -1,7 +1,7 @@
 <template>
   <nuxt-link :to="to" v-if="to" class="links" :class="{ reversed: isReversed }">
     <slot></slot>
-    <MyIcon name="line" />
+  
   </nuxt-link>
 
   <button v-else class="links" :class="{ reversed: isReversed }">
