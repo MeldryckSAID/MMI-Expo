@@ -1,7 +1,7 @@
 <template>
-  <div v-for="item in present">
-    <img :src="item.logan_pp.url" :alt="item.logan_pp.alt" />
+  <div class="presentation" v-for="item in present">
     <PrismicRichText :field="item.logan_presentation" />
+    <img :src="item.logan_pp.url" :alt="item.logan_pp.alt" />
   </div>
 </template>
 
@@ -10,3 +10,16 @@ const props = defineProps({
   present: Array,
 });
 </script>
+
+<style lang="scss" scoped>
+.presentation {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom:20px;
+  img {
+    width: 30%;
+    height: auto;
+  }
+}
+</style>

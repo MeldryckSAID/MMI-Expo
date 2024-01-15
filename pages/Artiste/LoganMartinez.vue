@@ -4,23 +4,12 @@
   <div class="container">
     <!-- <pre>{{ home.data }}</pre> -->
     <!-- <pre>{{ home.data.logan }}</pre> -->
-    <!-- <pre>{{ home.data.collection }}</pre> -->
+    <!-- <pre>{{ home.data.collection6 }}</pre> -->
     <LoganPresentation :present="home.data.logan" />
 
     <div class="background-date">Logan</div>
-    <div class="presentation">
-      <MyTitle class="reversed" font="arc" el="h2" size="medium"
-        >Logan Martinez
-      </MyTitle>
-      <p class="reversed text">
-        Logan Martinez, artiste de 19 ans passionné de design graphique, son
-        travail est principalement orienté vers la création d’identité visuelle
-        ou de création graphique explorant le thème du brutalisme.
-      </p>
-    </div>
-    <ul class="galery" ref="gallery">
-      <LoganCollection :collection="home.data.collection6" />
-    </ul>
+
+    <LoganCollection :collection="home.data.collection6" />
   </div>
 </template>
 
