@@ -16,7 +16,6 @@
   }
   &__page {
     width: 100vw;
-    margin: rem(50) auto;
     max-width: rem(1400);
     min-height: 100vh;
   }
