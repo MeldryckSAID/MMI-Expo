@@ -5,3 +5,7 @@ $baseFontSize: 16;
 @function rem($pixels) {
     @return math.div($pixels, $baseFontSize) * 1rem;
 }
+
+@function random($min, $max) {
+    @return math.random() * ($max - $min) + $min;
+}
