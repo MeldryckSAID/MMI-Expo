@@ -36,18 +36,23 @@ type art = {
   artisteName: string;
 };
 artistes.value?.forEach((artiste) => {
-  // console.log(artiste.data.art[0].art__img.url);
-  let url = artiste.data.art[0].art__img.url;
-  let artName = artiste.data.art[0].art__name[0].text;
   let desc = artiste.data.description[0].text;
   let artisteName = artiste.data.name[0].text;
-  let data: art = {
-    url,
-    artName,
-    desc,
-    artisteName,
-  };
-  listArt.push(data);
+
+  artiste.data.art.forEach((art) => {
+    console.log(art);
+    
+    let url = art.art__img.url;
+    let artName = art.art__name[0].text;
+
+    let data: art = {
+      url,
+      artName,
+      desc,
+      artisteName,
+    };
+    listArt.push(data);
+  });
 });
 
 const canvas = ref(undefined);
@@ -698,13 +703,14 @@ definePageMeta({
     justify-content: center;
     width: 50%;
     height: 100%;
+    overflow: scroll;
     i {
       font-style: normal;
     }
     h2 {
       font-size: 2rem;
     }
-    p{
+    p {
       max-width: 90%;
     }
   }
@@ -735,7 +741,9 @@ definePageMeta({
     width: 100vw;
     height: 100vh;
     display: none;
+    gap: 2rem;
     & img {
+      margin-left: 1rem;
       width: 60%;
       height: 100%;
       object-fit: contain;
