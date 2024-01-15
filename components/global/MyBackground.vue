@@ -1,5 +1,7 @@
 <template>
+  <!-- <div class="back"></div> -->
   <div class="background">
+    <!-- <span></span>
     <span></span>
     <span></span>
     <span></span>
@@ -40,11 +42,17 @@
     <span></span>
     <span></span>
     <span></span>
-    <span></span>
-    <span></span>
+    <span></span> -->
   </div>
 </template>
 <style lang="scss" setup>
+.back {
+  background-color: aqua;
+  // background-image: url("/public/background/back.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 @keyframes move {
   100% {
     transform: translate3d(0, 0, 1px) rotate(360deg);
@@ -59,7 +67,11 @@
   max-height: auto;
   top: 0;
   left: 0;
-  background: #f6f4f4;
+  // background: #f6f4f4;
+  background-image: url("/public/background/back.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   overflow: hidden;
   z-index: -20;
 }
