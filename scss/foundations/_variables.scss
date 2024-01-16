@@ -3,6 +3,10 @@
 @import "./normalize";
 
 @font-face {
+  font-family: "OKINER";
+  src: url("../../public/font/okine/MADEOkineSansPERSONALUSE-Regular.otf") format("truetype");
+}
+@font-face {
   font-family: "ROASHE";
   src: url("../../public/font/Roashe.ttf") format("truetype");
 }
@@ -18,7 +22,7 @@ $r-red: #820410;
 
 //font
 
-$okine: "okine", serif;
+$okine: "OKINER";
 $arc: "Archivo Black", sans-serif;
 $roashe: "ROASHE";
 
