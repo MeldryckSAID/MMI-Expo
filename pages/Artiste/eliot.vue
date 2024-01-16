@@ -1,7 +1,8 @@
 <template>
   <MyOutro
-    >Sami Ghorzi <br> / <br />
-    s_comic_s</MyOutro
+    >Eliot GROS <br />
+    / <br />
+    telio.arts</MyOutro
   >
 
   <div class="container">
@@ -9,18 +10,18 @@
     <!-- <pre>{{ home.data.logan }}</pre> -->
     <!-- <pre>{{ home.data.collection6 }}</pre> -->
 
-    <samiPresentation :present="home.data.sami" />
+    <eliotPresentation :present="home.data.eliot" />
 
-    <div class="background-date">Sami Ghorzi</div>
+    <div class="background-date">Eliot Ghorzi</div>
 
-    <samiCollection :collection="home.data.collection" />
+    <eliotCollection :collection="home.data.collection" />
   </div>
 </template>
 
 <script setup>
 const { client } = usePrismic();
 const { data: home } = await useAsyncData("home", () =>
-  client.getSingle("artiste_sami")
+  client.getSingle("artist_eliot")
 );
 </script>
 

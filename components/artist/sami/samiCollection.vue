@@ -32,6 +32,13 @@
       <li v-for="item in collection" :key="item.id">
         <img
           class="copenhague"
+          :src="item.oeuvre5.url"
+          :alt="item.oeuvre5.alt"
+        />
+      </li>
+      <li v-for="item in collection" :key="item.id">
+        <img
+          class="copenhague"
           :src="item.oeuvre6.url"
           :alt="item.oeuvre6.alt"
         />
