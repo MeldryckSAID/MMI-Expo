@@ -86,7 +86,7 @@ const sendMail = async () => {
   display: grid;
   grid-template-areas: "nom" "prenom" "email " "message" "checkbox" "submit";
   gap: 1rem;
-  width: 100%;
+  width: 90vw;
   max-width: 600px;
   margin: 0 auto;
   @media screen and (min-width: 768px) {

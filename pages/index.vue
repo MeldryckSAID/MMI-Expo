@@ -23,12 +23,11 @@ const scrollWheel = (e) => {
     scrollContainer.value.scrollLeft += e.deltaY;
   }
 };
-
 onMounted(() => {
   scrollContainer.value.addEventListener("wheel", scrollWheel, true);
 });
 onUnmounted(() => {
-  scrollContainer.value.removeEventListener("wheel", scrollWheel, true);
+  scrollContainer.value?.removeEventListener("wheel", scrollWheel, true);
 });
 </script>
 <template>
@@ -65,10 +64,16 @@ onUnmounted(() => {
   padding-inline: 3rem;
   box-sizing: border-box;
   display: flex;
-  overflow-x: hidden;
+  overflow-x: scroll;
+  @media screen and (min-width: 1025px) {
+    overflow-x: hidden;
+  }
   gap: 30px;
   width: 100vw;
   height: 80vh;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   &__link {
     display: block;
     flex: none;
