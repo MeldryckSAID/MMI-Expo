@@ -11,6 +11,7 @@
         Logan Martinez, Aline Rose, Chloé Bizet, Matys Ouvrard et Luca Thomesse,
       </p>
     </div>
+    <button id="removeFilters">Toutes les Collections</button>
     <button id="filterAline">Collection Aline</button>
     <button id="filterChloe">Collection Chloe</button>
     <button id="filtereliot">Collection Eliot</button>
@@ -19,25 +20,25 @@
     <button id="filtervideo">Collection Video</button>
     <button id="filtersami">Collection Sami</button>
 
-    <div id="alineCollection" class="collection hidden">
+    <div id="alineCollection" class="collection">
       <alineCollection :collection="aline.data.collection" />
     </div>
-    <div id="loupCollection" class="collection hidden">
+    <div id="loupCollection" class="collection">
       <LouCollection :collection="loup.data.collection" />
     </div>
-    <div id="chloeCollection" class="collection hidden">
+    <div id="chloeCollection" class="collection">
       <clhoeCollection :collection="clhoe.data.collection" />
     </div>
-    <div id="eliotCollection" class="collection hidden">
+    <div id="eliotCollection" class="collection">
       <eliotCollection :collection="eliot.data.collection" />
     </div>
-    <div id="sachaCollection" class="collection hidden">
+    <div id="sachaCollection" class="collection">
       <sachaCollection :collection="sacha.data.collection" />
     </div>
-    <div id="SachaVideo" class="collection hidden">
+    <div id="SachaVideo" class="collection">
       <SachaVideo :video="sacha.data.video" />
     </div>
-    <div id="samiCollection" class="collection hidden">
+    <div id="samiCollection" class="collection">
       <samiCollection :collection="sami.data.collection" />
     </div>
   </div>
@@ -68,6 +69,10 @@ const { data: sami } = await useAsyncData("sami", () =>
 );
 
 onMounted(() => {
+  document
+    .getElementById("removeFilters")
+    .addEventListener("click", showAllCollections);
+
   document.getElementById("filterAline").addEventListener("click", function () {
     filterCollections("alineCollection");
   });
@@ -90,11 +95,16 @@ onMounted(() => {
     filterCollections("samiCollection");
   });
 
+  function showAllCollections() {
+    document.querySelectorAll(".collection").forEach((el) => {
+      el.classList.remove("hidden");
+    });
+  }
+
   function filterCollections(collectionId) {
-    document.querySelectorAll(".collection").forEach(function (el) {
+    document.querySelectorAll(".collection").forEach((el) => {
       el.classList.add("hidden");
     });
-
     document.getElementById(collectionId).classList.remove("hidden");
   }
 });
