@@ -1,18 +1,29 @@
 <template>
   <div class="tcontainer">
     <div class="tblocHorizontal">
-      <img class="tslide" src="/img/a.png" alt="" />
-      <img class="tslide" src="/img/b.png" alt="" />
-      <img class="tslide" src="/img/b.png" alt="" />
-      <img class="tslide" src="/img/c.png" alt="" />
-      <img class="tslide" src="/img/c.png" alt="" />
-      <img class="tslide" src="/img/d.png" alt="" />
-      <img class="tslide" src="/img/d.png" alt="" />
-      <img class="tslide" src="/img/e.png" alt="" />
-      <img class="tslide" src="/img/e.png" alt="" />
+      <nuxt-link class="tslide" to="/Artiste/aline">
+        <img src="/artiste/aline_pp.png" alt=""
+      /></nuxt-link>
+      <nuxt-link class="tslide" to="/Artiste/eliot">
+        <img src="/artiste/telio_pp.png" alt="" />
+      </nuxt-link>
+      <nuxt-link class="tslide" to="/Artiste/LoganMartinez">
+        <img src="/artiste/logan_pp.png" alt=""
+      /></nuxt-link>
+      <nuxt-link class="tslide" to="/Artiste/Loup">
+        <img src="/artiste/Loup_pp.png" alt="" />
+      </nuxt-link>
+      <nuxt-link class="tslide" to="/Artiste/sacha">
+        <img src="/artiste/sacha_pp.png" alt="" />
+      </nuxt-link>
+      <nuxt-link class="tslide" to="/Artiste/sami">
+        <img src="/artiste/sami_pp.png" alt="" />
+      </nuxt-link>
+      <nuxt-link class="tslide" to="/Artiste/cloe">
+        <img src="/artiste/cloe_pp.png" alt="" />
+      </nuxt-link>
     </div>
   </div>
-  
 </template>
 
 <script setup>
@@ -47,11 +58,17 @@ onUnmounted(() => {
 .tcontainer {
   .tblocHorizontal {
     display: flex;
+    gap: 40px;
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
     &::-webkit-scrollbar {
       display: none;
+    }
+    img {
+      width: 100%;
+      height: fit-content;
+      filter: drop-shadow(-18.52px 0px 23.15px rgba(0, 0, 0, 0.2));
     }
   }
 
