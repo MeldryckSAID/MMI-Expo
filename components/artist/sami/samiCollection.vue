@@ -113,13 +113,7 @@
           :alt="item.oeuvre16.alt"
         />
       </li>
-      <li v-for="item in collection" :key="item.id">
-        <img
-          class="copenhague"
-          :src="item.oeuvre17.url"
-          :alt="item.oeuvre17.alt"
-        />
-      </li>
+     
     </ul>
   </div>
 </template>

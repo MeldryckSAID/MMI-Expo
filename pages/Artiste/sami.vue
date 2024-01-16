@@ -1,6 +1,7 @@
 <template>
   <MyOutro
-    >Sami Ghorzi <br> / <br />
+    >Sami Ghorzi <br />
+    / <br />
     s_comic_s</MyOutro
   >
 

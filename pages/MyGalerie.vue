@@ -11,7 +11,14 @@
         Logan Martinez, Aline Rose, Chloé Bizet, Matys Ouvrard et Luca Thomesse,
       </p>
     </div>
-    <ul class="galery">
+    <alineCollection :collection="aline.data.collection" />
+    <clhoeCollection :collection="clhoe.data.collection" />
+    <eliotCollection :collection="eliot.data.collection" />
+    <LouCollection :collection="loup.data.collection" />
+    <sachaCollection :collection="sacha.data.collection" />
+    <SachaVideo :video="sacha.data.video" />
+    <samiCollection :collection="sami.data.collection" />
+    <!-- <ul class="galery">
       <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
       <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
       <li><img src="/gallery/fuji.jpg" alt="Fuji" /></li>
@@ -54,67 +61,34 @@
       <li><img src="/gallery/16.png" alt="store" /></li>
       <li><img src="/gallery/17.png" alt="store" /></li>
       <li><img src="/gallery/18.png" alt="store" /></li>
-    </ul>
-  </div>
-  <div class="container">
-    <div class="background-date">2022-2023</div>
-    <div class="presentation">
-      <MyTitle class="reversed" font="arc" el="h2" size="medium"
-        >Exposition 2022-2023, édition 0
-      </MyTitle>
-      <p class="reversed text">
-        Fringz, Loup Lobato, Telio.arts, Sacha Wicky, s_comic_s, Eden Bourezg,
-        Logan Martinez, Aline Rose, Chloé Bizet, Matys Ouvrard et Luca Thomesse,
-      </p>
-    </div>
-    <ul class="galery">
-      <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
-      <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
-      <li><img src="/gallery/fuji.jpg" alt="Fuji" /></li>
-      <li><img src="/gallery/lights.jpg" alt="lights" /></li>
-      <li><img src="/gallery/porte.jpg" alt="porte" /></li>
-      <li><img src="/gallery/store.jpg" alt="store" /></li>
-      <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
-      <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
-      <li><img src="/gallery/fuji.jpg" alt="Fuji" /></li>
-      <li><img src="/gallery/lights.jpg" alt="lights" /></li>
-      <li><img src="/gallery/porte.jpg" alt="porte" /></li>
-      <li><img src="/gallery/store.jpg" alt="store" /></li>
-      <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
-      <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
-      <li><img src="/gallery/fuji.jpg" alt="Fuji" /></li>
-      <li><img src="/gallery/lights.jpg" alt="lights" /></li>
-      <li><img src="/gallery/porte.jpg" alt="porte" /></li>
-      <li><img src="/gallery/store.jpg" alt="store" /></li>
-      <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
-      <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
-      <li><img src="/gallery/fuji.jpg" alt="Fuji" /></li>
-      <li><img src="/gallery/lights.jpg" alt="lights" /></li>
-      <li><img src="/gallery/porte.jpg" alt="porte" /></li>
-      <li><img src="/gallery/store.jpg" alt="store" /></li>
-      <li><img src="/gallery/1.png" alt="store" /></li>
-      <li><img src="/gallery/2.png" alt="Bamboos" /></li>
-      <li><img src="/gallery/3.png" alt="Castle" /></li>
-      <li><img src="/gallery/4.png" alt="Fuji" /></li>
-      <li><img src="/gallery/5.png" alt="lights" /></li>
-      <li><img src="/gallery/6.png" alt="porte" /></li>
-      <li><img src="/gallery/7.png" alt="store" /></li>
-      <li><img src="/gallery/8.png" alt="Bamboos" /></li>
-      <li><img src="/gallery/9.png" alt="Castle" /></li>
-      <li><img src="/gallery/10.png" alt="Fuji" /></li>
-      <li><img src="/gallery/11.png" alt="lights" /></li>
-      <li><img src="/gallery/12.png" alt="porte" /></li>
-      <li><img src="/gallery/13.png" alt="store" /></li>
-      <li><img src="/gallery/14.png" alt="store" /></li>
-      <li><img src="/gallery/15.png" alt="store" /></li>
-      <li><img src="/gallery/16.png" alt="store" /></li>
-      <li><img src="/gallery/17.png" alt="store" /></li>
-      <li><img src="/gallery/18.png" alt="store" /></li>
-    </ul>
+    </ul> -->
   </div>
 </template>
 
-<script></script>
+<script setup>
+const { client } = usePrismic();
+const { data: sacha } = await useAsyncData("sacha", () =>
+  client.getSingle("artiste_sacha")
+);
+const { data: eliot } = await useAsyncData("eliot", () =>
+  client.getSingle("artist_eliot")
+);
+const { data: aline } = await useAsyncData("aline", () =>
+  client.getSingle("artist_aline")
+);
+const { data: clhoe } = await useAsyncData("clhoe", () =>
+  client.getSingle("artiste_clhoe")
+);
+const { data: logan } = await useAsyncData("logan", () =>
+  client.getSingle("artiste_logan")
+);
+const { data: loup } = await useAsyncData("loup", () =>
+  client.getSingle("artiste_loup")
+);
+const { data: sami } = await useAsyncData("sami", () =>
+  client.getSingle("artiste_sami")
+);
+</script>
 
 <style lang="scss" scoped>
 *,
@@ -177,7 +151,7 @@ body {
 
 @media (max-width: 425px) {
   .background-date {
-   display: none;
+    display: none;
   }
 }
 </style>
