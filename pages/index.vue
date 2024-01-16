@@ -2,25 +2,25 @@
   <div class="tcontainer">
     <div class="tblocHorizontal">
       <nuxt-link class="tslide" to="/Artiste/aline">
-        <img src="/artiste/aline_pp.png" alt=""
+        <img src="/artiste/aline_pp.webp" alt=""
       /></nuxt-link>
       <nuxt-link class="tslide" to="/Artiste/eliot">
-        <img src="/artiste/telio_pp.png" alt="" />
+        <img src="/artiste/telio_pp.webp" alt="" />
       </nuxt-link>
       <nuxt-link class="tslide" to="/Artiste/LoganMartinez">
-        <img src="/artiste/logan_pp.png" alt=""
+        <img src="/artiste/logan_pp.webp" alt=""
       /></nuxt-link>
       <nuxt-link class="tslide" to="/Artiste/Loup">
-        <img src="/artiste/Loup_pp.png" alt="" />
+        <img src="/artiste/Loup_pp.webp" alt="" />
       </nuxt-link>
       <nuxt-link class="tslide" to="/Artiste/sacha">
-        <img src="/artiste/sacha_pp.png" alt="" />
+        <img src="/artiste/sacha_pp.webp" alt="" />
       </nuxt-link>
       <nuxt-link class="tslide" to="/Artiste/sami">
-        <img src="/artiste/sami_pp.png" alt="" />
+        <img src="/artiste/sami_pp.webp" alt="" />
       </nuxt-link>
       <nuxt-link class="tslide" to="/Artiste/cloe">
-        <img src="/artiste/cloe_pp.png" alt="" />
+        <img src="/artiste/cloe_pp.webp" alt="" />
       </nuxt-link>
     </div>
   </div>
@@ -74,6 +74,7 @@ onUnmounted(() => {
 
   .tslide {
     flex: none;
+    width: fit-content;
   }
 }
 </style>
