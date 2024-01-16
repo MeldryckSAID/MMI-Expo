@@ -31,7 +31,7 @@ const data = reactive([
 ])
 </script>
 <template>
-  <div class="avatar-conatainer">
+  <div class="avatar__grid">
     <div class="avatar" v-for="(item, index) in data" :key="index">
       <MyAvatar
         :photo="item.photo"
@@ -42,42 +42,15 @@ const data = reactive([
   </div>
 </template>
 <style lang="scss" scoped>
-.avatar-conatainer {
+.avatar__grid {
+  max-width: 1400px;
+  margin-top: 175px;
+  margin-bottom: 50px;
+  width: 100vw;
   display: grid;
-  grid-template-columns: repeat(3, 4fr);
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  row-gap: 175px;
+  column-gap: 50px;
   justify-items: center;
-  .avatar {
-    padding: 15%;
-  }
-}
-
-@media (max-width: 768px) {
-  .avatar-conatainer {
-    display: grid;
-    grid-template-columns: repeat(2, 5fr);
-
-    gap: 20px;
-    justify-items: center;
-
-    .avatar {
-      padding: 15%;
-    }
-  }
-}
-@media (max-width: 424px) {
-  .avatar-conatainer {
-    // display: grid;
-    // grid-template-columns: repeat(2, 5fr);
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-items: center;
-
-    .avatar {
-      padding: 15%;
-    }
-  }
 }
 </style>
-<script setup></script>
