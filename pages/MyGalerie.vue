@@ -193,7 +193,8 @@ body {
       <p class="text">
         Pour notre premiere éditions nous avons l'iminse honneur de vous
         présenter nos etudiants qui ont bien voulu se lancer voici les oeuvres
-        de : Fringz, <br />
+        de : <br />
+        Fringz, <br />
         Loup Lobato,<br />
         Telio.arts,<br />
         Sacha Wicky,<br />
@@ -208,12 +209,14 @@ body {
       <select id="collectionFilter">
         <option value="all">Toutes les Collections</option>
         <option value="matCollection">Collection Matthieu</option>
+        <option value="edenCollection">Collection Eden</option>
+        <option value="edenVideo">Collection Eden Video</option>
         <option value="alineCollection">Collection Aline</option>
         <option value="chloeCollection">Collection Chloe</option>
         <option value="eliotCollection">Collection Eliot</option>
         <option value="loupCollection">Collection Loup</option>
         <option value="sachaCollection">Collection Sacha</option>
-        <option value="SachaVideo">Collection Video</option>
+        <option value="SachaVideo">Collection Sacha Video</option>
         <option value="samiCollection">Collection Sami</option>
       </select>
     </div>
@@ -232,6 +235,12 @@ body {
     </div>
     <div id="eliotCollection" class="collection">
       <eliotCollection :collection="eliot.data.collection" />
+    </div>
+    <div id="edenCollection" class="collection">
+      <edenCollection :collection="eden.data.collection" />
+    </div>
+    <div id="edenVideo" class="collection">
+      <edenVideo :video="eden.data.video" />
     </div>
     <div id="sachaCollection" class="collection">
       <sachaCollection :collection="sacha.data.collection" />
@@ -270,6 +279,9 @@ const { data: sami } = await useAsyncData("sami", () =>
 );
 const { data: mat } = await useAsyncData("mat", () =>
   client.getSingle("artiste_matthieu")
+);
+const { data: eden } = await useAsyncData("eden", () =>
+  client.getSingle("artiste_eden")
 );
 
 onMounted(() => {

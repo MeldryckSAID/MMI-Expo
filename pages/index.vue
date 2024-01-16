@@ -5,6 +5,9 @@
       <nuxt-link class="tslide" to="/Artiste/Matthieu">
         <img src="/artiste/FRINGZ_pp.webp" alt=""
       /></nuxt-link>
+      <nuxt-link class="tslide" to="/Artiste/eden">
+        <img src="/artiste/eden_pp.webp" alt=""
+      /></nuxt-link>
       <nuxt-link class="tslide" to="/Artiste/aline">
         <img src="/artiste/aline_pp.webp" alt=""
       /></nuxt-link>
@@ -33,6 +36,7 @@
 <script setup>
 import { onMounted, onUnmounted } from "vue";
 
+const images = ref([]);
 const handleMouseWheel = (event) => {
   const scrollContainer = document.querySelector(".tblocHorizontal");
   if (scrollContainer) {
@@ -56,6 +60,14 @@ onUnmounted(() => {
     tblocHorizontal.removeEventListener("wheel", handleMouseWheel);
   }
 });
+
+onMounted(() => {
+  images.value = document.querySelectorAll(".tblocHorizontal img");
+  images.value.forEach((image) => {
+    const randomVerticalOffset = Math.floor(Math.random() * 500) - 100; // Génère un nombre entre -25 et 25
+    image.style.transform = `translateY(${randomVerticalOffset}px)`;
+  });
+});
 </script>
 
 <style scoped>
@@ -70,7 +82,7 @@ onUnmounted(() => {
       display: none;
     }
     img {
-      width: 100%;
+      width: 450px;
       height: fit-content;
       filter: drop-shadow(-18.52px 0px 23.15px rgba(0, 0, 0, 0.2));
     }
