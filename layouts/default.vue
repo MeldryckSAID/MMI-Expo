@@ -19,6 +19,7 @@
     display: grid;
     justify-content: center;
     min-height: 100vh;
+    overflow-x: hidden;
   }
 }
 </style>

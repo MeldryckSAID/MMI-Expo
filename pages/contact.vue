@@ -37,7 +37,8 @@
   font-family: $okine;
   line-height: 120%;
   font-weight: 400;
-  width: 423px;
+  max-width: 423px;
+  width: 90%;
 }
 
 @media (max-width: 1024px) {
