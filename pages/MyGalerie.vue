@@ -11,57 +11,35 @@
         Logan Martinez, Aline Rose, Chloé Bizet, Matys Ouvrard et Luca Thomesse,
       </p>
     </div>
-    <alineCollection :collection="aline.data.collection" />
-    <clhoeCollection :collection="clhoe.data.collection" />
-    <eliotCollection :collection="eliot.data.collection" />
-    <LouCollection :collection="loup.data.collection" />
-    <sachaCollection :collection="sacha.data.collection" />
-    <SachaVideo :video="sacha.data.video" />
-    <samiCollection :collection="sami.data.collection" />
-    <!-- <ul class="galery">
-      <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
-      <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
-      <li><img src="/gallery/fuji.jpg" alt="Fuji" /></li>
-      <li><img src="/gallery/lights.jpg" alt="lights" /></li>
-      <li><img src="/gallery/porte.jpg" alt="porte" /></li>
-      <li><img src="/gallery/store.jpg" alt="store" /></li>
-      <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
-      <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
-      <li><img src="/gallery/fuji.jpg" alt="Fuji" /></li>
-      <li><img src="/gallery/lights.jpg" alt="lights" /></li>
-      <li><img src="/gallery/porte.jpg" alt="porte" /></li>
-      <li><img src="/gallery/store.jpg" alt="store" /></li>
-      <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
-      <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
-      <li><img src="/gallery/fuji.jpg" alt="Fuji" /></li>
-      <li><img src="/gallery/lights.jpg" alt="lights" /></li>
-      <li><img src="/gallery/porte.jpg" alt="porte" /></li>
-      <li><img src="/gallery/store.jpg" alt="store" /></li>
-      <li><img src="/gallery/bamboos.jpg" alt="Bamboos" /></li>
-      <li><img src="/gallery/castle.jpg" alt="Castle" /></li>
-      <li><img src="/gallery/fuji.jpg" alt="Fuji" /></li>
-      <li><img src="/gallery/lights.jpg" alt="lights" /></li>
-      <li><img src="/gallery/porte.jpg" alt="porte" /></li>
-      <li><img src="/gallery/store.jpg" alt="store" /></li>
-      <li><img src="/gallery/1.png" alt="store" /></li>
-      <li><img src="/gallery/2.png" alt="Bamboos" /></li>
-      <li><img src="/gallery/3.png" alt="Castle" /></li>
-      <li><img src="/gallery/4.png" alt="Fuji" /></li>
-      <li><img src="/gallery/5.png" alt="lights" /></li>
-      <li><img src="/gallery/6.png" alt="porte" /></li>
-      <li><img src="/gallery/7.png" alt="store" /></li>
-      <li><img src="/gallery/8.png" alt="Bamboos" /></li>
-      <li><img src="/gallery/9.png" alt="Castle" /></li>
-      <li><img src="/gallery/10.png" alt="Fuji" /></li>
-      <li><img src="/gallery/11.png" alt="lights" /></li>
-      <li><img src="/gallery/12.png" alt="porte" /></li>
-      <li><img src="/gallery/13.png" alt="store" /></li>
-      <li><img src="/gallery/14.png" alt="store" /></li>
-      <li><img src="/gallery/15.png" alt="store" /></li>
-      <li><img src="/gallery/16.png" alt="store" /></li>
-      <li><img src="/gallery/17.png" alt="store" /></li>
-      <li><img src="/gallery/18.png" alt="store" /></li>
-    </ul> -->
+    <button id="filterAline">Collection Aline</button>
+    <button id="filterChloe">Collection Chloe</button>
+    <button id="filtereliot">Collection Eliot</button>
+    <button id="filterloup">Collection Loup</button>
+    <button id="filtersacha">Collection Sacha</button>
+    <button id="filtervideo">Collection Video</button>
+    <button id="filtersami">Collection Sami</button>
+
+    <div id="alineCollection" class="collection hidden">
+      <alineCollection :collection="aline.data.collection" />
+    </div>
+    <div id="loupCollection" class="collection hidden">
+      <LouCollection :collection="loup.data.collection" />
+    </div>
+    <div id="chloeCollection" class="collection hidden">
+      <clhoeCollection :collection="clhoe.data.collection" />
+    </div>
+    <div id="eliotCollection" class="collection hidden">
+      <eliotCollection :collection="eliot.data.collection" />
+    </div>
+    <div id="sachaCollection" class="collection hidden">
+      <sachaCollection :collection="sacha.data.collection" />
+    </div>
+    <div id="SachaVideo" class="collection hidden">
+      <SachaVideo :video="sacha.data.video" />
+    </div>
+    <div id="samiCollection" class="collection hidden">
+      <samiCollection :collection="sami.data.collection" />
+    </div>
   </div>
 </template>
 
@@ -88,6 +66,38 @@ const { data: loup } = await useAsyncData("loup", () =>
 const { data: sami } = await useAsyncData("sami", () =>
   client.getSingle("artiste_sami")
 );
+
+onMounted(() => {
+  document.getElementById("filterAline").addEventListener("click", function () {
+    filterCollections("alineCollection");
+  });
+  document.getElementById("filterChloe").addEventListener("click", function () {
+    filterCollections("chloeCollection");
+  });
+  document.getElementById("filtereliot").addEventListener("click", function () {
+    filterCollections("eliotCollection");
+  });
+  document.getElementById("filtersacha").addEventListener("click", function () {
+    filterCollections("sachaCollection");
+  });
+  document.getElementById("filtervideo").addEventListener("click", function () {
+    filterCollections("SachaVideo");
+  });
+  document.getElementById("filterloup").addEventListener("click", function () {
+    filterCollections("loupCollection");
+  });
+  document.getElementById("filtersami").addEventListener("click", function () {
+    filterCollections("samiCollection");
+  });
+
+  function filterCollections(collectionId) {
+    document.querySelectorAll(".collection").forEach(function (el) {
+      el.classList.add("hidden");
+    });
+
+    document.getElementById(collectionId).classList.remove("hidden");
+  }
+});
 </script>
 
 <style lang="scss" scoped>
@@ -97,6 +107,9 @@ const { data: sami } = await useAsyncData("sami", () =>
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+.hidden {
+  display: none;
 }
 
 body {
