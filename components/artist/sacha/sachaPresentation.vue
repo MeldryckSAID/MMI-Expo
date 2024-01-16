@@ -1,7 +1,7 @@
 <template>
   <div class="presentation" v-for="item in present">
-    <PrismicRichText :field="item.eliot_presentation" />
-    <img :src="item.eliot_pp.url" :alt="item.eliot_pp.alt" />
+    <PrismicRichText :field="item.sacha_presentation" />
+    <img :src="item.sacha_pp.url" :alt="item.sacha_pp.alt" />
   </div>
 </template>
 
