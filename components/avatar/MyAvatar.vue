@@ -1,82 +1,31 @@
 <template>
-  <div class="parent">
-    <div class="profil">
-      <img class="image-container" :src="photo" alt="" />
-    </div>
-    <div class="information">
+  <div class="card">
+    <img class="card__img" :src="photo" :alt="'photo de ' + name" />
+    <div class="card__info">
       <MyTitle font="okine" el="h5" size="medium">{{ name }}</MyTitle>
-      <p class="text">{{ pole }}</p>
+      <p class="card__text">{{ pole }}</p>
     </div>
   </div>
 </template>
-<style lang="scss" scoped>
-.parent {
+<style lang="scss">
+.card {
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   align-items: center;
-  position: relative;
-  .profil {
-    position: absolute;
-    z-index: 3;
-    top: -120px;
-    .image-container {
-      width: 100%;
-      height: 100%;
-      width: 242px;
-      height: 242px;
-      flex-shrink: 0;
-      border-radius: 69px;
-    }
+  * {
+    text-align: center;
   }
-  .information {
-    width: 322px;
-    height: 210px;
-    border-radius: 47px;
-    background-color: $g-gray2;
-
-    z-index: 2;
-    color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    .text {
-      color: black;
-      font-family: $okine;
-      font-size: 15px;
-    }
-  }
-}
-@media (max-width: 1024px) {
-  .profil {
-    position: absolute;
-    z-index: 3;
-    top: -120px;
-
-    .image-container {
-      width: 100%;
-      height: 100%;
-      width: 120px;
-      height: 110px;
-      flex-shrink: 0;
-      border-radius: 69px;
-    }
-  }
-  .information {
-    width: 150px;
-    height: 110px;
-    border-radius: 47px;
-    z-index: 2;
-    color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    .text {
-      color: black;
-      font-family: $okine;
-      font-size: 15px;
-    }
+  width: 300px;
+  height: 210px;
+  border-radius: 45px;
+  background: #e9e9eb;
+  &__img {
+    --size: 240px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 100% ;
+    object-fit: cover;
   }
 }
 </style>

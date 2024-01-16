@@ -1,240 +1,147 @@
+<script setup>
+const router = useRouter();
+const mail = reactive({
+  name: "",
+  surname: "",
+  email: "",
+  message: "",
+});
+const mailsent = ref(false);
+const body = computed(() => {
+  return JSON.stringify(mail);
+});
+const sendMail = async () => {
+  if (
+    mail.name === "" ||
+    mail.surname === "" ||
+    mail.email === "" ||
+    mail.message === ""
+  ) {
+    alert("Please fill all the fields");
+  } else {
+    mailsent.value = true;
+    await useFetch("/api/sendmail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: body,
+    });
+    router.push("/merci");
+  }
+};
+</script>
 <template>
-  <div>
-    <form>
-      <div class="message">
-        <div class="grid-container">
-          <div>
-            <input
-              type="text"
-              name="nom"
-              :placeholder="isInputFilled(input1) ? '' : 'Nom'"
-              id="input1"
-              v-model="input1"
-              class="form_input_information"
-              @focus="addShadow"
-              @blur="removeShadow"
-            />
-          </div>
-          <div>
-            <input
-              class="form_input_information"
-              type="text"
-              name="Prénom"
-              :placeholder="isInputFilled(input2) ? '' : 'Prénom'"
-              id="input2"
-              v-model="input2"
-              @focus="addShadow"
-              @blur="removeShadow"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="message">
-        <input
-          class="form_input"
-          type="email"
-          name="email"
-          :placeholder="isInputFilled(input3) ? '' : 'E-mail'"
-          id="input3"
-          v-model="input3"
-          @focus="addShadow"
-          @blur="removeShadow"
-        />
-      </div>
-      <div class="message">
-        <textarea
-          :placeholder="isInputFilled(input3) ? '' : ' message:'"
-          class="myTextArea"
-          id="textarea"
-          name="message"
-          v-model="textareaContent"
-        ></textarea>
-      </div>
-      <div class="form__button">
-        <button class="buttof" libelle="Send" type="submit">
-          <Mybutton>Envoyez</Mybutton>
-        </button>
-      </div>
-    </form>
-  </div>
+  <form class="form">
+    <label for="nom" class="form__label -nom">
+      <input
+        type="text"
+        name="nom"
+        placeholder="Nom"
+        class="form__input"
+        required
+        v-model="mail.name"
+      />
+    </label>
+    <label for="prenom" class="form__label -prenom">
+      <input
+        type="text"
+        name="prenom"
+        placeholder="Prénom"
+        class="form__input"
+        required
+        v-model="mail.surname"
+      />
+    </label>
+    <label for="email" class="form__label -email">
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        class="form__input"
+        required
+        v-model="mail.email"
+      />
+    </label>
+    <textarea
+      name="message"
+      placeholder="Votre message"
+      class="form__input -textarea"
+      required
+      v-model="mail.message"
+    ></textarea>
+    <label for="checkbox" class="form__label -checkbox">
+      <input type="checkbox" name="checkbox" class="form__checkbox" required />
+      J'accepte la politique de confidentialité. Veuillez accepter la politique
+      de confidentialité
+    </label>
+    <button :disabled="mailsent" type="submit" class="form__submit" @click.prevent="sendMail()">
+      Envoyer
+    </button>
+  </form>
 </template>
 
 <style lang="scss">
-.grid-container {
+.form {
   display: grid;
-  grid-template-columns: repeat(2, 2fr);
-  gap: 20px;
-  justify-items: center;
-}
-.form_input {
-  width: 488px;
-  height: 44px;
-  margin-bottom: 1.5rem;
-  padding-left: 1.5rem;
-  border: 0.5px solid $b-black;
-  border-radius: 5px;
-  text-align: justify;
-  text-align: start;
-  font-family: $okine;
-  font-size: 20px;
-  background-color: $g-gray2;
-
-  &::placeholder {
-    text-align: start;
-    font-family: $okine;
-    font-size: 20px;
-    font-weight: 800;
+  grid-template-areas: "nom" "prenom" "email " "message" "checkbox" "submit";
+  gap: 1rem;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  @media screen and (min-width: 768px) {
+    grid-template-areas: "nom prenom" "email email" "message message" "checkbox checkbox" "submit submit";
   }
-}
-.form_input_information {
-  width: 220px;
-  height: 44px;
-  margin-bottom: 1.5rem;
-  padding-left: 1.5rem;
-  border: 0.5px solid $b-black;
-  border-radius: 5px;
-  text-align: justify;
-  text-align: start;
-  font-family: $okine;
-  font-size: 20px;
-  background-color: $g-gray2;
-
-  &::placeholder {
-    text-align: start;
-    font-family: $okine;
-    font-size: 20px;
-    font-weight: 800;
-  }
-}
-
-.message {
-  display: flex;
-  justify-content: center;
-  margin: 20px;
-}
-.myTextArea {
-  width: 488px;
-  height: 218.161px;
-  padding-left: 1.5rem;
-  font-family: $okine;
-  font-size: 14px;
-  font-weight: 500;
-  flex-shrink: 0;
-  border: 2px solid $b-black;
-  border-radius: 10px;
-  background-color: $g-gray2;
-  &::placeholder {
-    text-align: start;
-    font-family: $okine;
-    font-style: normal;
-    font-size: 20px;
-    font-weight: 500;
-  }
-}
-
-.form__button {
-  display: flex;
-  justify-content: center;
-  .buttof {
-    border: none;
-  }
-}
-
-@media (max-width: 425px) {
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(2, 2fr);
-    gap: 20px;
-    justify-items: center;
-  }
-  .form_input {
-    width: 328px;
-    height: 44px;
-    margin-bottom: 1.5rem;
-    padding-left: 1.5rem;
-    border: 0.5px solid $b-black;
-    border-radius: 5px;
-    text-align: justify;
-    text-align: start;
-    font-family: $okine;
-    font-size: 20px;
-    background-color: $g-gray2;
-
-    &::placeholder {
-      text-align: start;
-      font-family: $okine;
-      font-size: 20px;
-      font-weight: 800;
-    }
-  }
-  .form_input_information {
-    width: 140px;
-    height: 44px;
-    margin-bottom: 1.5rem;
-    padding-left: 1.5rem;
-    border: 0.5px solid $b-black;
-    border-radius: 5px;
-    text-align: justify;
-    text-align: start;
-    font-family: $okine;
-    font-size: 20px;
-    background-color: $g-gray2;
-
-    &::placeholder {
-      text-align: start;
-      font-family: $okine;
-      font-size: 20px;
-      font-weight: 800;
-    }
-  }
-
-  .message {
+  &__label {
     display: flex;
-    justify-content: center;
-    margin: 20px;
-  }
-  .myTextArea {
-    width: 328px;
-    height: 218px;
-
-    font-family: $okine;
-    font-size: 14px;
-    font-weight: 500;
-    flex-shrink: 0;
-    border: 2px solid $b-black;
-    border-radius: 10px;
-    background-color: $g-gray2;
-    &::placeholder {
-      text-align: start;
-      font-family: $okine;
-      font-style: normal;
-      font-size: 20px;
-      font-weight: 500;
+    flex-direction: column;
+    gap: 0.5rem;
+    &.-nom {
+      grid-area: nom;
+    }
+    &.-prenom {
+      grid-area: prenom;
+    }
+    &.-email {
+      grid-area: email;
+    }
+    &.-checkbox {
+      grid-area: checkbox;
+      display: flex;
+      flex-direction: row;
     }
   }
-
-  .form__button {
-    display: flex;
-    justify-content: center;
-    .buttof {
-      border: none;
+  &__input {
+    padding: 0.5rem;
+    border: 1px solid #000;
+    background: #e9e9eb;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  &__input.-textarea {
+    grid-area: message;
+    resize: none;
+    height: 200px;
+  }
+  &__checkbox {
+    width: 20px;
+    height: 20px;
+  }
+  &__submit {
+    grid-area: submit;
+    place-self: center;
+    width: 190px;
+    height: 49px;
+    padding: 0.5rem;
+    border: 1px solid #000;
+    background: #000;
+    color: #e9e9eb;
+    cursor: pointer;
+    &:disabled {
+      background: #e9e9eb;
+      color: #000;
+      cursor: not-allowed;
     }
   }
 }
 </style>
-
-<script setup>
-import { ref } from "vue";
-
-const selectedOption = ref("option");
-
-const isInputFilled = (input) => {
-  return input !== "";
-};
-
-const input1 = ref("");
-const input2 = ref("");
-const input3 = ref("");
-const input5 = ref("");
-const textareaContent = ref("");
-</script>

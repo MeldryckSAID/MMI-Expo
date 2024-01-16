@@ -1,114 +1,57 @@
+<script setup>
+const data = reactive([
+  {
+    name: "Ilkay Men",
+    pole: "Communication & Design",
+    photo: "/img/Nicky_Larson.webp",
+  },
+  {
+    name: "Théo Pasquarelli",
+    pole: "Communication & Design",
+    photo: "/img/Nicky_Larson.webp",
+  },
+  {
+    name: "Meldryck Saïd",
+    pole: "Développement & communication",
+    photo: "/img/Nicky_Larson.webp",
+  },
+  
+  {
+    name: "Quentin Heinis",
+    pole: "Développement",
+    photo: "/img/Nicky_Larson.webp",
+  },
+  {
+    name: "Yanis Richard",
+    pole: "Développement",
+    photo: "/img/Nicky_Larson.webp",
+  },
+
+
+])
+</script>
 <template>
-  <div class="avatar-conatainer">
-    <div class="avatar">
+  <div class="avatar__grid">
+    <div class="avatar" v-for="(item, index) in data" :key="index">
       <MyAvatar
-        photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
-      />
-    </div>
-    <div class="avatar">
-      <MyAvatar
-        photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
-      />
-    </div>
-    <div class="avatar">
-      <MyAvatar
-        photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
-      />
-    </div>
-    <div class="avatar">
-      <MyAvatar
-        photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
-      />
-    </div>
-    <div class="avatar">
-      <MyAvatar
-        photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
-      />
-    </div>
-    <div class="avatar">
-      <MyAvatar
-        photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
-      />
-    </div>
-    <div class="avatar">
-      <MyAvatar
-        photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
-      />
-    </div>
-    <div class="avatar">
-      <MyAvatar
-        photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
-      />
-    </div>
-    <div class="avatar">
-      <MyAvatar
-        photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
-      />
-    </div>
-    <div class="avatar">
-      <MyAvatar
-        photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
+        :photo="item.photo"
+        :name="item.name"
+        :pole="item.pole"
       />
     </div>
   </div>
 </template>
 <style lang="scss" scoped>
-.avatar-conatainer {
+.avatar__grid {
+  margin-inline: auto;
+  max-width: 1400px;
+  margin-top: 175px;
+  margin-bottom: 50px;
+  width: 100vw;
   display: grid;
-  grid-template-columns: repeat(3, 4fr);
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  row-gap: 175px;
+  column-gap: 50px;
   justify-items: center;
-  .avatar {
-    padding: 15%;
-  }
-}
-
-@media (max-width: 768px) {
-  .avatar-conatainer {
-    display: grid;
-    grid-template-columns: repeat(2, 5fr);
-
-    gap: 20px;
-    justify-items: center;
-
-    .avatar {
-      padding: 15%;
-    }
-  }
-}
-@media (max-width: 424px) {
-  .avatar-conatainer {
-    // display: grid;
-    // grid-template-columns: repeat(2, 5fr);
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-items: center;
-
-    .avatar {
-      padding: 15%;
-    }
-  }
 }
 </style>
-<script setup></script>

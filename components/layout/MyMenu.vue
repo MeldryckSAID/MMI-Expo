@@ -16,11 +16,11 @@
     </div>
     <div class="menu-links">
       <MyLinks @click.stop="toggleMenu" to="/">Home</MyLinks>
-      <MyLinks @click.stop="toggleMenu" :isReversed="true" to="/MyContact"
+      <MyLinks @click.stop="toggleMenu" :isReversed="true" to="/contact"
         >Contact</MyLinks
       >
-      <MyLinks @click.stop="toggleMenu" to="/MyAbout">À propos</MyLinks>
-      <MyLinks @click.stop="toggleMenu" :isReversed="true" to="/MyGalerie"
+      <MyLinks @click.stop="toggleMenu" to="/about">À propos</MyLinks>
+      <MyLinks @click.stop="toggleMenu" :isReversed="true" to="/galerie"
         >Galeris Photos</MyLinks
       >
       <MyLinks @click.stop="toggleMenu" to="/exposition"
@@ -56,6 +56,7 @@ const toggleMenu = () => {
   z-index: 90;
   background-color: $g-gray2;
   color: white;
+  padding: 1rem;
 }
 
 /* Displayed state */

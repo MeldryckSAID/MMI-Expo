@@ -44,57 +44,31 @@
     </div>
   </div>
 
-  <MyEquipe class="menber" />
+  <MyEquipe />
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .about-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-direction: column;
+  padding-inline: rem(50);
+  margin-top: 10%;
+  margin-bottom: 10%;
   gap: 20px;
   justify-items: center;
-}
-.menber {
-  margin-top: 10%;
-}
-.equipe {
-  margin-top: 40%;
-}
-.line {
-  margin-top: 20%;
-  width: 4px;
-  height: 356px;
-  background-color: $b-black;
-}
-.text {
-  font-size: $text2pc;
-  font-family: $okine;
-  line-height: 120%;
-  font-weight: 400;
-  width: 423px;
-  .name {
-    color: $r-red;
-  }
-}
-
-@media (max-width: 425px) {
-  .about-container {
-    display: flex;
-    flex-direction: column;
-    padding: 2%;
-  }
+  align-items: center;
   .line {
+    width: 4px;
+    height: 356px;
+    background-color: $b-black;
     display: none;
   }
-  .equipe {
-    margin-top: 10%;
-  }
-  .text {
-    width: 374px;
-  }
-  .Titlle {
-    display: flex;
-    justify-content: center;
+  @media screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    .line {
+      display: block;
+    }
   }
 }
 </style>
