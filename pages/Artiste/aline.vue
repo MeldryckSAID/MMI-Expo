@@ -1,27 +1,23 @@
 <template>
-  <MyOutro
-    >Eliot GROS <br />
-    / <br />
-    telio.arts</MyOutro
-  >
+  <MyOutro>Aline ROSE</MyOutro>
 
   <div class="container">
     <!-- <pre>{{ home.data }}</pre> -->
     <!-- <pre>{{ home.data.logan }}</pre> -->
     <!-- <pre>{{ home.data.collection6 }}</pre> -->
 
-    <eliotPresentation :present="home.data.eliot" />
+    <alinePresentation :present="home.data.aline" />
 
-    <div class="background-date">Eliot GROS</div>
+    <div class="background-date">Aline ROSE</div>
 
-    <eliotCollection :collection="home.data.collection" />
+    <alineCollection :collection="home.data.collection" />
   </div>
 </template>
 
 <script setup>
 const { client } = usePrismic();
 const { data: home } = await useAsyncData("home", () =>
-  client.getSingle("artist_eliot")
+  client.getSingle("artist_aline")
 );
 </script>
 
