@@ -31,8 +31,7 @@ const data = reactive([
 const { client } = usePrismic();
 const { data: team } = await useAsyncData("team", () =>
   client.getSingle("team")
-);
-console.log(team.value.data.member);
+)
 </script>
 <template>
   <div class="avatar__grid">

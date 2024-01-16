@@ -4,7 +4,6 @@ const { client } = usePrismic();
 const { data: home } = await useAsyncData("Home", () =>
   client.getSingle("home")
 );
-console.log(home.value.data.slider);
 
 const scrollContainer = ref(null);
 
