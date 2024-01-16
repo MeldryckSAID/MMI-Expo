@@ -12,6 +12,7 @@
       <img class="tslide" src="/img/e.png" alt="" />
     </div>
   </div>
+  
 </template>
 
 <script setup>

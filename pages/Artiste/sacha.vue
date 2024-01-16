@@ -11,6 +11,7 @@
     <div class="background-date">Sacha WICKY</div>
 
     <sachaCollection :collection="home.data.collection" />
+    <SachaVideo :video="home.data.video" />
   </div>
 </template>
 
