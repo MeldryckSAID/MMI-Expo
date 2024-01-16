@@ -10,64 +10,64 @@
     <div class="avatar">
       <MyAvatar
         photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
+        name="Théo Pasquarelli"
         pole="Communication & Design"
       />
     </div>
     <div class="avatar">
       <MyAvatar
         photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
+        name="Valentin Tholomier"
+        pole="Communication"
       />
     </div>
     <div class="avatar">
       <MyAvatar
         photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
+        name="Benoît Fasel"
+        pole="Communication"
       />
     </div>
     <div class="avatar">
       <MyAvatar
         photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
+        name="Jules Houbron"
+        pole="Design"
       />
     </div>
     <div class="avatar">
       <MyAvatar
         photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
+        name="Maël Grosjean"
+        pole=" Design"
       />
     </div>
     <div class="avatar">
       <MyAvatar
         photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
+        name="Noah Lafourcade"
+        pole="Design"
       />
     </div>
     <div class="avatar">
       <MyAvatar
         photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
+        name="Meldryck Saïd"
+        pole="Communication & Developpement"
       />
     </div>
     <div class="avatar">
       <MyAvatar
         photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
+        name="Quentin Heinis"
+        pole="Developpement"
       />
     </div>
     <div class="avatar">
       <MyAvatar
         photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
+        name="Yanis Richard"
+        pole="Developpement"
       />
     </div>
   </div>
