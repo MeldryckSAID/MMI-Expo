@@ -39,22 +39,6 @@ onUnmounted(() => {
     >
       <NuxtImg :src="item.slider__img.url" :alt="item.slider__alt[0].text" />
     </NuxtLink>
-    <NuxtLink
-      v-for="(item, i) in home.data.slider"
-      :key="i"
-      :to="`/artiste/${item.slider__link[0].text}`"
-      class="scrollContainer__link"
-    >
-      <NuxtImg :src="item.slider__img.url" :alt="item.slider__alt[0].text" />
-    </NuxtLink>
-    <NuxtLink
-      v-for="(item, i) in home.data.slider"
-      :key="i"
-      :to="`/artiste/${item.slider__link[0].text}`"
-      class="scrollContainer__link"
-    >
-      <NuxtImg :src="item.slider__img.url" :alt="item.slider__alt[0].text" />
-    </NuxtLink>
   </div>
 </template>
 
