@@ -1,6 +1,10 @@
 <template>
   <div class="tcontainer">
     <div class="tblocHorizontal">
+      <img src="/artiste/info.webp" alt="" />
+      <nuxt-link class="tslide" to="/Artiste/Matthieu">
+        <img src="/artiste/FRINGZ_pp.webp" alt=""
+      /></nuxt-link>
       <nuxt-link class="tslide" to="/Artiste/aline">
         <img src="/artiste/aline_pp.webp" alt=""
       /></nuxt-link>

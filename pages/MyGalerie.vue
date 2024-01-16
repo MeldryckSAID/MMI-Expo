@@ -207,6 +207,7 @@ body {
     <div class="select-container">
       <select id="collectionFilter">
         <option value="all">Toutes les Collections</option>
+        <option value="matCollection">Collection Matthieu</option>
         <option value="alineCollection">Collection Aline</option>
         <option value="chloeCollection">Collection Chloe</option>
         <option value="eliotCollection">Collection Eliot</option>
@@ -217,6 +218,9 @@ body {
       </select>
     </div>
 
+    <div id="matCollection" class="collection">
+      <matCollection :collection="mat.data.collection" />
+    </div>
     <div id="alineCollection" class="collection">
       <alineCollection :collection="aline.data.collection" />
     </div>
@@ -263,6 +267,9 @@ const { data: loup } = await useAsyncData("loup", () =>
 );
 const { data: sami } = await useAsyncData("sami", () =>
   client.getSingle("artiste_sami")
+);
+const { data: mat } = await useAsyncData("mat", () =>
+  client.getSingle("artiste_matthieu")
 );
 
 onMounted(() => {
