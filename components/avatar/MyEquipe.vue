@@ -15,7 +15,7 @@ const data = reactive([
     pole: "Développement & communication",
     photo: "/img/Nicky_Larson.webp",
   },
-  
+
   {
     name: "Quentin Heinis",
     pole: "Développement",
@@ -26,17 +26,21 @@ const data = reactive([
     pole: "Développement",
     photo: "/img/Nicky_Larson.webp",
   },
+]);
 
-
-])
+const { client } = usePrismic();
+const { data: team } = await useAsyncData("team", () =>
+  client.getSingle("team")
+);
+console.log(team.value.data.member);
 </script>
 <template>
   <div class="avatar__grid">
-    <div class="avatar" v-for="(item, index) in data" :key="index">
+    <div class="avatar" v-for="(item, index) in team.data.member" :key="index">
       <MyAvatar
-        :photo="item.photo"
-        :name="item.name"
-        :pole="item.pole"
+        :photo="item.img?.url"
+        :name="item.nom[0]?.text"
+        :pole="item.fonction[0]?.text"
       />
     </div>
   </div>
