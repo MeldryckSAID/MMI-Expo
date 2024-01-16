@@ -49,6 +49,7 @@
 
 <style lang="scss" scoped>
 .about-container {
+  max-width: 1400px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;

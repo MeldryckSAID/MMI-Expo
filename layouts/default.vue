@@ -16,7 +16,8 @@
   }
   &__page {
     width: 100vw;
-    max-width: rem(1400);
+    display: grid;
+    justify-content: center;
     min-height: 100vh;
   }
 }

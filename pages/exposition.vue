@@ -36,11 +36,11 @@ type art = {
   artisteName: string;
 };
 artistes.value?.forEach((artiste) => {
+  
   let desc = artiste.data.description[0].text;
   let artisteName = artiste.data.name[0].text;
 
   artiste.data.art.forEach((art) => {
-    console.log(art);
     
     let url = art.art__img.url;
     let artName = art.art__name[0].text;
@@ -310,7 +310,7 @@ fbxLoader.load(
     fbxLoader.load(
       "/fbx/animations/Walking.fbx",
       (walkAnim) => {
-        console.log("loaded walking");
+        // console.log("loaded walking");
 
         const animationAction = mixer.clipAction(
           (walkAnim as Object3D).animations[0]
@@ -320,7 +320,7 @@ fbxLoader.load(
         fbxLoader.load(
           "/fbx/animations/Idle.fbx",
           (idleAnim) => {
-            console.log("loaded Idle");
+            // console.log("loaded Idle");
 
             const animationAction = mixer.clipAction(
               (idleAnim as Object3D).animations[0]

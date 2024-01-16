@@ -1,73 +1,42 @@
+<script setup>
+const data = reactive([
+  {
+    name: "Ilkay Men",
+    pole: "Communication & Design",
+    photo: "/img/Nicky_Larson.webp",
+  },
+  {
+    name: "Théo Pasquarelli",
+    pole: "Communication & Design",
+    photo: "/img/Nicky_Larson.webp",
+  },
+  {
+    name: "Meldryck Saïd",
+    pole: "Développement & communication",
+    photo: "/img/Nicky_Larson.webp",
+  },
+  
+  {
+    name: "Quentin Heinis",
+    pole: "Développement",
+    photo: "/img/Nicky_Larson.webp",
+  },
+  {
+    name: "Yanis Richard",
+    pole: "Développement",
+    photo: "/img/Nicky_Larson.webp",
+  },
+
+
+])
+</script>
 <template>
   <div class="avatar-conatainer">
-    <div class="avatar">
+    <div class="avatar" v-for="(item, index) in data" :key="index">
       <MyAvatar
-        photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
-      />
-    </div>
-    <div class="avatar">
-      <MyAvatar
-        photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
-      />
-    </div>
-    <div class="avatar">
-      <MyAvatar
-        photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
-      />
-    </div>
-    <div class="avatar">
-      <MyAvatar
-        photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
-      />
-    </div>
-    <div class="avatar">
-      <MyAvatar
-        photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
-      />
-    </div>
-    <div class="avatar">
-      <MyAvatar
-        photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
-      />
-    </div>
-    <div class="avatar">
-      <MyAvatar
-        photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
-      />
-    </div>
-    <div class="avatar">
-      <MyAvatar
-        photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
-      />
-    </div>
-    <div class="avatar">
-      <MyAvatar
-        photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
-      />
-    </div>
-    <div class="avatar">
-      <MyAvatar
-        photo="/img/Nicky_Larson.webp"
-        name="Ilkay Men"
-        pole="Communication & Design"
+        :photo="item.photo"
+        :name="item.name"
+        :pole="item.pole"
       />
     </div>
   </div>
