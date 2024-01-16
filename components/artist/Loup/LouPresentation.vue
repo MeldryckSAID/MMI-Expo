@@ -18,7 +18,7 @@ const props = defineProps({
   gap: 30px;
   margin-bottom:20px;
   img {
-    width: 30%;
+    width: 20%;
     height: auto;
   }
 }
