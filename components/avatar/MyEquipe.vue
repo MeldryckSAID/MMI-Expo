@@ -43,6 +43,7 @@ const data = reactive([
 </template>
 <style lang="scss" scoped>
 .avatar__grid {
+  margin-inline: auto;
   max-width: 1400px;
   margin-top: 175px;
   margin-bottom: 50px;
