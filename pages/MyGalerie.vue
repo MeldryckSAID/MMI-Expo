@@ -183,7 +183,7 @@ body {
 
 <!-- filtre select -->
 <template>
-  <MyOutro>Archive photo</MyOutro>
+  <MyOutro>Archives photo</MyOutro>
   <div class="container">
     <div class="background-date">2023-2024</div>
     <div class="presentation">

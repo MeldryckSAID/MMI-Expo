@@ -21,7 +21,7 @@
         >
         <MyLinks @click.stop="toggleMenu" to="/MyAbout">À propos</MyLinks>
         <MyLinks @click.stop="toggleMenu" :isReversed="true" to="/MyGalerie"
-          >Archive photo</MyLinks
+          >Archives photo</MyLinks
         >
         <MyLinks @click.stop="toggleMenu" to="/exposition"
           >VISITE VIRTUELLE
