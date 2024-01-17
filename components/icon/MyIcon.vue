@@ -7,6 +7,9 @@ import visite from "../components/icon/icons/IconVisite.vue";
 import insta from "../components/icon/icons/IconInsta.vue";
 import letter from "../components/icon/icons/IconLetter.vue";
 import line from "../components/icon/icons/IconLine.vue";
+import Next from "../components/icon/icons/IconNext.vue";
+import Previous from "../components/icon/icons/IconPrevious.vue";
+import Close from "../components/icon/icons/IconClose.vue";
 
 const props = defineProps({
   name: String,
@@ -29,6 +32,12 @@ const getIcon = computed(() => {
       return insta;
     case "line":
       return line;
+    case "next":
+      return Next;
+    case "previous":
+      return Previous;
+    case "close":
+      return Close;
 
     default:
       return open;
