@@ -19,6 +19,7 @@ const className = computed(() => ({
   //color
 
   " -sprimary": props.color === "primary",
+  " -white": props.color === "white",
 
   //font
   " -okine": props.font === "okine",
@@ -55,6 +56,9 @@ const className = computed(() => ({
 
   &.-sprimary {
     color: $b-black;
+  }
+  &.-white {
+    color: $w-white;
   }
   &.-okine {
     font-family: $okine;

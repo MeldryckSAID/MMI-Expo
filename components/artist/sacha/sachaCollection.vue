@@ -14,7 +14,7 @@
           class="copenhague"
           :src="item.oeuvre2.url"
           :alt="item.oeuvre2.alt"
-           @click="showDetails(item.oeuvre2, index)"
+          @click="showDetails(item.oeuvre2, index)"
         />
       </li>
       <li v-for="item in collection" :key="item.id">
@@ -22,7 +22,7 @@
           class="copenhague"
           :src="item.oeuvre3.url"
           :alt="item.oeuvre3.alt"
-           @click="showDetails(item.oeuvre3, index)"
+          @click="showDetails(item.oeuvre3, index)"
         />
       </li>
       <li v-for="item in collection" :key="item.id">
@@ -30,7 +30,7 @@
           class="copenhague"
           :src="item.oeuvre4.url"
           :alt="item.oeuvre4.alt"
-           @click="showDetails(item.oeuvre4, index)"
+          @click="showDetails(item.oeuvre4, index)"
         />
       </li>
       <li v-for="item in collection" :key="item.id">
@@ -38,7 +38,7 @@
           class="copenhague"
           :src="item.oeuvre5.url"
           :alt="item.oeuvre5.alt"
-           @click="showDetails(item.oeuvre5, index)"
+          @click="showDetails(item.oeuvre5, index)"
         />
       </li>
       <li v-for="item in collection" :key="item.id">
@@ -46,7 +46,7 @@
           class="copenhague"
           :src="item.oeuvre6.url"
           :alt="item.oeuvre6.alt"
-           @click="showDetails(item.oeuvre6, index)"
+          @click="showDetails(item.oeuvre6, index)"
         />
       </li>
       <li v-for="item in collection" :key="item.id">
@@ -54,7 +54,7 @@
           class="copenhague"
           :src="item.oeuvre7.url"
           :alt="item.oeuvre7.alt"
-           @click="showDetails(item.oeuvre7, index)"
+          @click="showDetails(item.oeuvre7, index)"
         />
       </li>
       <li v-for="item in collection" :key="item.id">
@@ -62,7 +62,7 @@
           class="copenhague"
           :src="item.oeuvre8.url"
           :alt="item.oeuvre8.alt"
-           @click="showDetails(item.oeuvre8, index)"
+          @click="showDetails(item.oeuvre8, index)"
         />
       </li>
       <li v-for="item in collection" :key="item.id">
@@ -70,7 +70,7 @@
           class="copenhague"
           :src="item.oeuvre9.url"
           :alt="item.oeuvre9.alt"
-           @click="showDetails(item.oeuvre9, index)"
+          @click="showDetails(item.oeuvre9, index)"
         />
       </li>
       <li v-for="item in collection" :key="item.id">
@@ -78,7 +78,7 @@
           class="copenhague"
           :src="item.oeuvre10.url"
           :alt="item.oeuvre10.alt"
-           @click="showDetails(item.oeuvre10, index)"
+          @click="showDetails(item.oeuvre10, index)"
         />
       </li>
       <li v-for="item in collection" :key="item.id">
@@ -86,7 +86,7 @@
           class="copenhague"
           :src="item.oeuvre11.url"
           :alt="item.oeuvre11.alt"
-           @click="showDetails(item.oeuvre11, index)"
+          @click="showDetails(item.oeuvre11, index)"
         />
       </li>
       <li v-for="item in collection" :key="item.id">
@@ -94,7 +94,7 @@
           class="copenhague"
           :src="item.oeuvre12.url"
           :alt="item.oeuvre12.alt"
-           @click="showDetails(item.oeuvre5, index)"
+          @click="showDetails(item.oeuvre5, index)"
         />
       </li>
     </ul>
@@ -114,7 +114,7 @@
           <!-- <MyIcon @click="showNextImage" name="next" /> -->
         </div>
         <div class="image-details-container-info">
-          <h2>{{ selectedImage.title }}</h2>
+          <MyTitle el="h2">{{ selectedImage.title }}</MyTitle>
           <p>{{ selectedImage.description }}</p>
         </div>
       </div>
@@ -197,8 +197,8 @@ const hideDetails = () => {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
+  background: rgba(246, 246, 244, 0.8);
+  color: $b-black;
   padding: 20px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   z-index: 1000;
@@ -219,7 +219,7 @@ const hideDetails = () => {
     justify-content: flex-end;
     &-item {
       display: flex;
-      background-color: white;
+    
       padding: 20px;
       border-radius: 100%;
     }
@@ -255,17 +255,48 @@ const hideDetails = () => {
       }
 
       p {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         line-height: 1.5;
+        font-family: $okine;
       }
     }
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 425px) {
   .image-details {
-    width: 90vw;
+    img {
+      max-width: 90%;
+      max-height: 70%;
+    }
+
+    &-close {
+      justify-content: start;
+      padding: 10px;
+      background-color: aqua;
+
+      &-item {
+        padding: 15px;
+      }
+    }
+
+    &-container {
+      &-navigation {
+        height: auto;
+        gap: 10px;
+      }
+
+      &-info {
+        h2 {
+          font-size: 1.5rem;
+        }
+
+        p {
+          font-size: 0.625rem;
+          background-color: aqua;
+        }
+      }
+    }
   }
 }
 </style>
-

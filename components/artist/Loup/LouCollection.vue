@@ -132,8 +132,8 @@ const hideDetails = () => {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
+  background: rgba(255, 255, 255, 0.8);
+  color: $b-black;
   padding: 20px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   z-index: 1000;
@@ -154,7 +154,7 @@ const hideDetails = () => {
     justify-content: flex-end;
     &-item {
       display: flex;
-      background-color: white;
+    
       padding: 20px;
       border-radius: 100%;
     }
@@ -190,16 +190,48 @@ const hideDetails = () => {
       }
 
       p {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         line-height: 1.5;
+        font-family: $okine;
       }
     }
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 425px) {
   .image-details {
-    width: 90vw;
+    img {
+      max-width: 90%;
+      max-height: 70%;
+    }
+
+    &-close {
+      justify-content: start;
+      padding: 10px;
+      background-color: aqua;
+
+      &-item {
+        padding: 15px;
+      }
+    }
+
+    &-container {
+      &-navigation {
+        height: auto;
+        gap: 10px;
+      }
+
+      &-info {
+        h2 {
+          font-size: 1.5rem;
+        }
+
+        p {
+          font-size: 0.625rem;
+          background-color: aqua;
+        }
+      }
+    }
   }
 }
 </style>
