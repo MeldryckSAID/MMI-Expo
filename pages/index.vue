@@ -149,6 +149,9 @@ onMounted(() => {
 <template>
   <div class="tcontainer">
     <div class="tblocHorizontal">
+      <div class="imageContainer" v-for="index in 1" :key="index">
+        <img src="/artiste/info.webp" alt="" />
+      </div>
       <div class="imageContainer" v-for="artiste in artistes" :key="artiste.id">
         <nuxt-link class="tslide" :to="`/Artiste/${artiste.name}`">
           <img :src="artiste.image" alt="" />
@@ -164,6 +167,7 @@ const tblocHorizontal = ref(null);
 const artistes = ref([
   // Remplissez avec vos données d'artiste
   // Ajoutez d'autres artistes ici
+
   { id: 1, name: "MatthieuHoareau", image: "/artiste/FRINGZ_pp.webp" },
   { id: 2, name: "SachaWicky", image: "/artiste/sacha_pp.webp" },
   { id: 3, name: "LoganMartinez", image: "/artiste/logan_pp.webp" },
@@ -189,27 +193,32 @@ onMounted(() => {
       passive: false,
     });
   }
-
   const imageContainers = document.querySelectorAll(
     ".tblocHorizontal .imageContainer"
   );
   imageContainers.forEach((container) => {
+    const randomVerticalOffset = Math.floor(Math.random() * 300) - 20;
+    container.style.transform = `translateY(${randomVerticalOffset}px)`;
+
     const image = container.querySelector("img");
-    image.onload = () => {
+    const createLine = () => {
       const imageHeight = image.clientHeight;
-      const lineLength = imageHeight * 0.5;
+      const lineLength = imageHeight * 0.9;
       const line = container.appendChild(document.createElement("div"));
       line.style.position = "absolute";
       line.style.left = "50%";
       line.style.top = "0";
       line.style.height = `${lineLength}px`;
-      line.style.width = "2px";
+      line.style.width = "5px";
       line.style.backgroundColor = "#000";
       line.style.zIndex = "-1";
     };
 
-    const randomVerticalOffset = Math.floor(Math.random() * 500) - 100;
-    container.style.transform = `translateY(${randomVerticalOffset}px)`;
+    if (image.complete) {
+      createLine();
+    } else {
+      image.onload = createLine;
+    }
   });
 });
 
@@ -222,7 +231,6 @@ onUnmounted(() => {
 
 <style scoped>
 .tcontainer {
-  background-color: aqua;
   .tblocHorizontal {
     display: flex;
     gap: 40px;
@@ -236,8 +244,10 @@ onUnmounted(() => {
       position: relative;
       display: flex;
       align-items: center;
+     
       img {
         width: 450px;
+    
         height: fit-content;
         filter: drop-shadow(-18.52px 0px 23.15px rgba(0, 0, 0, 0.2));
       }
