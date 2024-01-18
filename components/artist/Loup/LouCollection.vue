@@ -34,7 +34,7 @@
         />
       </li>
     </ul>
-
+    
     <div class="image-details" v-if="selectedImage">
       <div class="image-details-close">
         <MyIcon
@@ -50,7 +50,7 @@
           <!-- <MyIcon @click="showNextImage" name="next" /> -->
         </div>
         <div class="image-details-container-info">
-          <MyTitle el="h2">{{ selectedImage.title }}</MyTitle>
+          <h2>{{ selectedImage.title }}</h2>
           <p>{{ selectedImage.description }}</p>
         </div>
       </div>
