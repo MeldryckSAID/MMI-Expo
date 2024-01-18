@@ -51,12 +51,12 @@
       </li>
     </ul>
 
-    <div class="image-details" v-if="selectedImage">
+   <div class="image-details" v-if="selectedImage">
       <div class="image-details-close">
         <MyIcon
           class="image-details-close-item"
           @click="hideDetails()"
-          name="close"
+          name="x"
         />
       </div>
       <div class="image-details-container">
@@ -66,7 +66,7 @@
           <!-- <MyIcon @click="showNextImage" name="next" /> -->
         </div>
         <div class="image-details-container-info">
-          <h2>{{ selectedImage.title }}</h2>
+          <MyTitle el="h2">{{ selectedImage.title }}</MyTitle>
           <p>{{ selectedImage.description }}</p>
         </div>
       </div>
@@ -149,8 +149,8 @@ const hideDetails = () => {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(255, 255, 255, 0.8);
-  color: $b-black;
+  background: rgba(0, 0, 0, 0.8);
+  color: $w-white;
   padding: 20px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   z-index: 1000;
@@ -171,7 +171,7 @@ const hideDetails = () => {
     justify-content: flex-end;
     &-item {
       display: flex;
-    
+
       padding: 20px;
       border-radius: 100%;
     }
@@ -188,9 +188,11 @@ const hideDetails = () => {
       width: fit-content;
       display: flex;
       justify-content: space-around;
-      height: 700px;
+      height: 400px;
       gap: 30px;
       align-items: center;
+
+      height: 500px;
     }
     img {
       max-width: 100%;
@@ -215,17 +217,19 @@ const hideDetails = () => {
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 435px) {
   .image-details {
+    display: grid;
+
     img {
       max-width: 90%;
       max-height: 70%;
     }
 
     &-close {
+      width: 310px;
       justify-content: start;
       padding: 10px;
-      background-color: aqua;
 
       &-item {
         padding: 15px;
@@ -234,10 +238,15 @@ const hideDetails = () => {
 
     &-container {
       &-navigation {
-        height: auto;
-        gap: 10px;
-      }
+        width: fit-content;
+        display: flex;
+        justify-content: space-around;
+        height: 400px;
+        gap: 30px;
+        align-items: center;
 
+        height: 500px;
+      }
       &-info {
         h2 {
           font-size: 1.5rem;
@@ -245,7 +254,8 @@ const hideDetails = () => {
 
         p {
           font-size: 0.625rem;
-          background-color: aqua;
+
+          width: 310px;
         }
       }
     }
