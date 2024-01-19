@@ -17,7 +17,6 @@ const randomData = computed(() => {
   }
   return randomData;
 });
-console.log(randomData.value);
 
 const scrollContainer = ref(null);
 
