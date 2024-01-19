@@ -5,6 +5,20 @@ const { data: home } = await useAsyncData("Home", () =>
   client.getSingle("home")
 );
 
+//random the data order
+const randomData = computed(() => {
+  let data = [...home.value.data.slider];
+  let randomData = [];
+  for (let i = 0; i < data.length; i++) {
+    let random = Math.floor(Math.random() * data.length);
+    randomData.push(data[random]);
+    data.splice(random, 1);
+    i--;
+  }
+  return randomData;
+});
+console.log(randomData.value);
+
 const scrollContainer = ref(null);
 
 const scrollWheel = (e) => {
@@ -32,7 +46,7 @@ onUnmounted(() => {
 <template>
   <div ref="scrollContainer" class="scrollContainer">
     <NuxtLink
-      v-for="(item, i) in home.data.slider"
+      v-for="(item, i) in randomData"
       :key="i"
       :to="`/artiste/${item.slider__link[0].text}`"
       class="scrollContainer__link"
