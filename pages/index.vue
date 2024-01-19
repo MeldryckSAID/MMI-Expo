@@ -61,6 +61,7 @@ onUnmounted(() => {
     display: block;
     flex: none;
     width: 250px;
+    height: fit-content;
     position: relative;
     &::after {
       content: "";
@@ -71,7 +72,7 @@ onUnmounted(() => {
       left: 50%;
       z-index: -1;
     }
-    @for $i from 1 through 10 {
+    @for $i from 1 through 15 {
       &:nth-child(#{$i}) {
         img {
           padding-top: random(50px, 200px);
