@@ -61,6 +61,7 @@ onUnmounted(() => {
     display: block;
     flex: none;
     width: 250px;
+    height: fit-content;
     position: relative;
     &::after {
       content: "";
