@@ -10,6 +10,13 @@ const { data: artiste } = await useAsyncData("Artiste", () => {
     throw createError({ statusCode: 404, message: "Page not found" });
   }
 });
+useSeoMeta({
+  title: `MMI Exposition | ${artiste.value.data.name[0].text}`,
+  ogTitle: `MMI Exposition | ${artiste.value.data.name[0].text}`,
+  description: "Retrouvez l'exposition MMI en ligne ou en vrai",
+  ogDescription: "Retrouvez l'exposition MMI en ligne ou en vrai",
+  ogImage: "/favicon.png",
+});
 </script>
 
 <template>
@@ -24,8 +31,8 @@ const { data: artiste } = await useAsyncData("Artiste", () => {
       <h1 class="p-artiste__title">
         {{ artiste.data.name[0].text }}
         <span>{{ artiste.data.type[0].text }}</span>
-        <MyIconBis name="Losange" position="topLeft" size="medium"/>
-        <MyIconBis name="LosangeBis" position="bottomRight" size="small"/>
+        <MyIconBis name="Losange" position="topLeft" size="medium" />
+        <MyIconBis name="LosangeBis" position="bottomRight" size="small" />
       </h1>
       <p>{{ artiste.data.description[0].text }}</p>
     </div>
@@ -62,8 +69,8 @@ const { data: artiste } = await useAsyncData("Artiste", () => {
       "title"
       "img"
       "text";
-      row-gap: 2rem;
-      column-gap: 5rem;
+    row-gap: 2rem;
+    column-gap: 5rem;
     place-items: center;
     @include large-up {
       place-items: start;
