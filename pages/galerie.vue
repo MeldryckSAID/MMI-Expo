@@ -3,13 +3,16 @@ const { client } = usePrismic();
 const { data: expo } = await useAsyncData("galerie", () =>
   client.getAllByType("exposition")
 );
-
-
 </script>
 <template>
-  <MyOutro>Galerie photo</MyOutro>
+  <MyOutro
+    ><span class="relative"
+      >Archives photo
+      <MyIconBis name="Losange" position="topRight" size="medium" />
+      <MyIconBis name="LosangeBis" position="bottomLeft" size="small" /> </span
+  ></MyOutro>
   <div class="container" v-for="(exposition, i) in expo" :key="i">
-    <div class="background-date">{{exposition.data.year[0].text}}</div>
+    <div class="background-date">{{ exposition.data.year[0].text }}</div>
     <div class="presentation">
       <MyTitle font="arc" el="h2" size="medium"
         >{{ exposition.data.title[0].text }}
@@ -18,7 +21,12 @@ const { data: expo } = await useAsyncData("galerie", () =>
         {{ exposition.data.exposant[0].text }}
       </p>
     </div>
-    <ul class="galery">
+    <ul class="galery relative">
+      <li>
+        <MyIconBis name="Losange" position="topLeft" size="small" />
+        <MyIconBis name="BottomLeft" position="bottomLeft" size="big" />
+        <MyIconBis name="TopRight" position="topRight" size="medium" />
+      </li>
       <li v-for="(img, index) in exposition.data.images" :key="index">
         <NuxtImg format="avif" :src="img.img.url" :alt="img.img.alt" />
       </li>
