@@ -56,6 +56,9 @@ const getIcon = computed(() => {
   &.-big {
     width: 50px;
   }
+  &.-giga {
+    width: 100px;
+  }
   &.-topLeft {
     left: 0;
     top: 0;
