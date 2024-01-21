@@ -10,6 +10,7 @@ const props = defineProps({
   name: String,
   position: String,
   size: String,
+  rotate: Boolean,
 });
 
 const getIcon = computed(() => {
@@ -31,7 +32,7 @@ const getIcon = computed(() => {
 </script>
 
 <template>
-  <i :class="`iconBis -${position} -${size}`">
+  <i :class="`iconBis -${position} -${size} ${rotate ? '-rotate' : ''}`">
     <component :is="getIcon" />
   </i>
 </template>
@@ -45,18 +46,29 @@ const getIcon = computed(() => {
     width: 100%;
     height: 100%;
   }
+
   &.-small {
     width: 20px;
   }
   &.-medium {
     width: 30px;
   }
+  &.-big {
+    width: 50px;
+  }
   &.-topLeft {
     left: 0;
     top: 0;
     transform: translate(-35%, -50%);
-    &.-medium {
+    &.-medium,
+    &.-small {
       transform: translate(-100%, -50%);
+      &.-rotate {
+        transform: translate(-100%, -50%) scaleX(-1);
+      }
+    }
+    &.-rotate {
+      transform: translate(-35%, -50%) scaleX(-1);
     }
   }
   &.-left {
@@ -77,6 +89,9 @@ const getIcon = computed(() => {
     right: 0;
     bottom: 0;
     transform: translate(100%, 80%);
+    &.-rotate {
+      transform: translate(80%, 80%) scaleX(-1);
+    }
   }
 }
 </style>

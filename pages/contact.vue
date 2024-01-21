@@ -1,10 +1,20 @@
 <script setup></script>
 
 <template>
-  <MyOutro>Contact</MyOutro>
+  <MyOutro>
+    <span class="relative">
+      Contact
+      <MyIconBis name="Losange" position="topRight" size="medium" />
+      <MyIconBis name="LosangeBis" position="bottomLeft" size="small" />
+    </span>
+  </MyOutro>
   <div class="contact-container">
     <div class="come-on">
-      <MyTitle font="arc" el="h2" size="large">N’hésitez pas !</MyTitle>
+      <MyTitle font="arc" el="h2" size="large"
+        ><span class="relative">N’hésitez pas !
+          <MyIconBis name="TopRight" position="topLeft" size="medium" :rotate="true"/>
+        </span></MyTitle
+      >
       <p class="text">
         Pour toute requête ou demande remplissez le formulaire ci-dessous.
       </p>
@@ -25,7 +35,6 @@
   gap: 20px;
   justify-items: center;
   align-items: center;
-  
 }
 .line {
   width: 4px;
