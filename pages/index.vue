@@ -44,6 +44,9 @@ onUnmounted(() => {
 </script>
 <template>
   <div ref="scrollContainer" class="scrollContainer">
+    <div class="scrollContainer__link">
+      <NuxtImg src="/img/info.png" alt="" />
+    </div>
     <NuxtLink
       v-for="(item, i) in randomData"
       :key="i"
