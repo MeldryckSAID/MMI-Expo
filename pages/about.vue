@@ -1,13 +1,20 @@
 <script setup></script>
 
 <template>
-  <MyOutro>À Propos</MyOutro>
+  <MyOutro
+    ><span class="relative">
+      À Propos
+      <MyIconBis name="Losange" position="topLeft" size="medium" />
+      <MyIconBis name="LosangeBis" position="bottomRight" size="small" /> </span
+  ></MyOutro>
   <div class="about-container">
     <div class="who">
       <MyTitle class="Titlle" font="arc" el="h2" size="large"
         >Qui sommes nous ?
       </MyTitle>
-      <p class="text">
+      <p class="text relative">
+        <MyIconBis name="Losange" position="topRight" size="medium" />
+        <MyIconBis name="LosangeBis" position="bottomLeft" size="small" />
         Étudiants en 2ème et 3ème année de MMI, notre objectif commun est de
         permettre à tout nos étudiants de montrer au grand public leurs talents
         créative ! <br />
@@ -23,7 +30,8 @@
       <MyTitle class="Titlle" font="arc" el="h2" size="large"
         >L’équipe -
       </MyTitle>
-      <p class="text">
+      <p class="text relative">
+        <MyIconBis name="LosangeBis" position="topRight" size="small" />
         Notre équipe se décompose en trois domaines distincts. Nous retrouvons
         <span class="name">Ilkay Men</span> ,
         <span class="name">Valentin Tholomier</span>,
@@ -62,6 +70,9 @@
     height: 356px;
     background-color: $b-black;
     display: none;
+  }
+  .name {
+    color: #820410;
   }
   @media screen and (min-width: 768px) {
     display: grid;

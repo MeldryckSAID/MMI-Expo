@@ -93,5 +93,13 @@ const getIcon = computed(() => {
       transform: translate(80%, 80%) scaleX(-1);
     }
   }
+  &.-topCenter{
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    &.-rotate {
+      transform: translate(-50%, -100%)  rotate(55deg);
+    }
+  }
 }
 </style>
