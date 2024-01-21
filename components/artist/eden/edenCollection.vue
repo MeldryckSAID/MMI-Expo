@@ -6,7 +6,7 @@
           class="copenhague"
           :src="item.oeuvre1.url"
           :alt="item.oeuvre1.alt"
-          @click="showDetails(item.oeuvre1, index)"
+           @click="showDetails(item.oeuvre1, index)"
         />
       </li>
       <li v-for="item in collection" :key="item.id">
@@ -14,7 +14,7 @@
           class="copenhague"
           :src="item.oeuvre2.url"
           :alt="item.oeuvre2.alt"
-          @click="showDetails(item.oeuvre2, index)"
+           @click="showDetails(item.oeuvre2, index)"
         />
       </li>
       <li v-for="item in collection" :key="item.id">
@@ -22,7 +22,7 @@
           class="copenhague"
           :src="item.oeuvre3.url"
           :alt="item.oeuvre3.alt"
-          @click="showDetails(item.oeuvre3, index)"
+           @click="showDetails(item.oeuvre3, index)"
         />
       </li>
       <li v-for="item in collection" :key="item.id">
@@ -30,7 +30,7 @@
           class="copenhague"
           :src="item.oeuvre4.url"
           :alt="item.oeuvre4.alt"
-          @click="showDetails(item.oeuvre4, index)"
+           @click="showDetails(item.oeuvre4, index)"
         />
       </li>
       <li v-for="item in collection" :key="item.id">
@@ -38,7 +38,7 @@
           class="copenhague"
           :src="item.oeuvre5.url"
           :alt="item.oeuvre5.alt"
-          @click="showDetails(item.oeuvre5, index)"
+           @click="showDetails(item.oeuvre5, index)"
         />
       </li>
       <li v-for="item in collection" :key="item.id">
@@ -46,68 +46,12 @@
           class="copenhague"
           :src="item.oeuvre6.url"
           :alt="item.oeuvre6.alt"
-          @click="showDetails(item.oeuvre6, index)"
-        />
-      </li>
-      <li v-for="item in collection" :key="item.id">
-        <img
-          class="copenhague"
-          :src="item.oeuvre7.url"
-          :alt="item.oeuvre7.alt"
-          @click="showDetails(item.oeuvre7, index)"
-        />
-      </li>
-      <li v-for="item in collection" :key="item.id">
-        <img
-          class="copenhague"
-          :src="item.oeuvre8.url"
-          :alt="item.oeuvre8.alt"
-          @click="showDetails(item.oeuvre8, index)"
-        />
-      </li>
-      <li v-for="item in collection" :key="item.id">
-        <img
-          class="copenhague"
-          :src="item.oeuvre9.url"
-          :alt="item.oeuvre9.alt"
-          @click="showDetails(item.oeuvre9, index)"
-        />
-      </li>
-      <li v-for="item in collection" :key="item.id">
-        <img
-          class="copenhague"
-          :src="item.oeuvre10.url"
-          :alt="item.oeuvre10.alt"
-          @click="showDetails(item.oeuvre10, index)"
-        />
-      </li>
-      <li v-for="item in collection" :key="item.id">
-        <img
-          class="copenhague"
-          :src="item.oeuvre11.url"
-          :alt="item.oeuvre11.alt"
-          @click="showDetails(item.oeuvre11, index)"
-        />
-      </li>
-      <li v-for="item in collection" :key="item.id">
-        <img
-          class="copenhague"
-          :src="item.oeuvre12.url"
-          :alt="item.oeuvre12.alt"
-          @click="showDetails(item.oeuvre12, index)"
-        />
-      </li>
-      <li v-for="item in collection" :key="item.id">
-        <img
-          class="copenhague"
-          :src="item.oeuvre13.url"
-          :alt="item.oeuvre13.alt"
-          @click="showDetails(item.oeuvre13, index)"
+           @click="showDetails(item.oeuvre6, index)"
         />
       </li>
     </ul>
 
-    <div class="image-details" v-if="selectedImage">
+   <div class="image-details" v-if="selectedImage">
       <div class="image-details-close">
         <MyIcon
           class="image-details-close-item"
@@ -169,6 +113,7 @@ const hideDetails = () => {
   selectedImage.value = null;
 };
 </script>
+
 <style lang="scss" scoped>
 .galery {
   max-width: 1100px;
@@ -197,7 +142,6 @@ const hideDetails = () => {
     object-fit: cover;
   }
 }
-
 .image-details {
   position: fixed;
   top: 0;

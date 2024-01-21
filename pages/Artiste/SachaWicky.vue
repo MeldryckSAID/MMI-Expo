@@ -1,15 +1,30 @@
 <template>
-  <MyOutro>Sacha WICKY</MyOutro>
+  <MyOutroA>
+    <template #title>
+      <div class="artiste">
+        Sacha WICKY
+        <div class="artiste-resaux">
+          <Myacon name="tt" link="https://lien-vers-tt.com" />
+          <Myacon name="Insta" link="https://lien-vers-insta.com" />
+          <Myacon name="web" link="https://lien-vers-web.com" />
+          <Myacon name="x" link="https://lien-vers-x.com" />
+        </div>
+      </div>
+    </template>
+    <template v-slot:content>
+      <div>
+        <sachaPresentation :present="home.data.sacha" />
+      </div>
+    </template>
+  </MyOutroA>
 
   <div class="container">
-    <!-- <pre>{{ home.data }}</pre> -->
-    <!-- <pre>{{ home.data.logan }}</pre> -->
-    <!-- <pre>{{ home.data.collection6 }}</pre> -->
-
-    <sachaPresentation :present="home.data.sacha" />
-
     <div class="background-date">Sacha WICKY</div>
-
+    <div class="icon">
+      <MyIcon class="icon-click" name="Click" />
+      <MyIcon class="icon-piou" name="PiouPiou" />
+      <MyIcon class="icon-piouB" name="PiouPiouBas" />
+    </div>
     <sachaCollection :collection="home.data.collection" />
     <SachaVideo :video="home.data.video" />
   </div>
@@ -23,6 +38,24 @@ const { data: home } = await useAsyncData("home", () =>
 </script>
 
 <style lang="scss" scoped>
+.icon {
+  &-click {
+    left: 30px;
+    top: -70px;
+    position: absolute;
+  }
+  &-piou {
+    position: absolute;
+    top: 10px;
+    right: 90px;
+  }
+  &-piouB {
+    position: absolute;
+    bottom: -230px;
+    left: -70px;
+  }
+}
+
 *,
 ::before,
 ::after {
@@ -34,7 +67,16 @@ const { data: home } = await useAsyncData("home", () =>
 body {
   padding: 140px 0;
 }
+.artiste {
+  display: flex;
+  gap: 60px;
+  align-items: center;
 
+  &-resaux {
+    display: flex;
+    flex-direction: column;
+  }
+}
 .presentation .text {
   padding: 2%;
 }
@@ -44,6 +86,7 @@ body {
 .container {
   position: relative;
   padding: 5%;
+  margin-bottom: 25%;
 }
 .galery {
   max-width: 1100px;

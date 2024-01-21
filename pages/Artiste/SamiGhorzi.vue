@@ -1,19 +1,33 @@
 <template>
-  <MyOutro
-    >Sami Ghorzi <br />
-    / <br />
-    s_comic_s</MyOutro
-  >
-
+  <MyOutroA>
+    <template #title>
+      <div class="artiste">
+        <div>
+          Sami Ghorzi <br />
+          / <br />
+          s_comic_s
+        </div>
+        <div class="artiste-resaux">
+          <Myacon name="tt" link="https://lien-vers-tt.com" />
+          <Myacon name="Insta" link="https://lien-vers-insta.com" />
+          <Myacon name="web" link="https://lien-vers-web.com" />
+          <Myacon name="x" link="https://lien-vers-x.com" />
+        </div>
+      </div>
+    </template>
+    <template v-slot:content>
+      <div>
+        <samiPresentation :present="home.data.sami" />
+      </div>
+    </template>
+  </MyOutroA>
   <div class="container">
-    <!-- <pre>{{ home.data }}</pre> -->
-    <!-- <pre>{{ home.data.logan }}</pre> -->
-    <!-- <pre>{{ home.data.collection6 }}</pre> -->
-
-    <samiPresentation :present="home.data.sami" />
-
     <div class="background-date">Sami Ghorzi</div>
-
+    <div class="icon">
+      <MyIcon class="icon-click" name="Click" />
+      <MyIcon class="icon-piou" name="PiouPiou" />
+      <MyIcon class="icon-piouB" name="PiouPiouBas" />
+    </div>
     <samiCollection :collection="home.data.collection" />
   </div>
 </template>
@@ -33,6 +47,33 @@ const { data: home } = await useAsyncData("home", () =>
   margin: 0;
   padding: 0;
 }
+.artiste {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+
+  &-resaux {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.icon {
+  &-click {
+    left: 30px;
+    top: -70px;
+    position: absolute;
+  }
+  &-piou {
+    position: absolute;
+    top: 10px;
+    right: 90px;
+  }
+  &-piouB {
+    position: absolute;
+    bottom: -230px;
+    left: -70px;
+  }
+}
 
 body {
   padding: 140px 0;
@@ -47,6 +88,8 @@ body {
 .container {
   position: relative;
   padding: 5%;
+  margin-top: 10%;
+  margin-bottom: 20%;
 }
 .galery {
   max-width: 1100px;

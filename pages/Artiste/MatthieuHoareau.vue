@@ -1,19 +1,35 @@
 <template>
-  <MyOutro
-    >Matthieu HOAREAU <br />
-    / <br />
-    FRINGZ</MyOutro
-  >
+  <MyOutroA>
+    <template #title>
+      <div class="artiste">
+        <div>
+          Matthieu HOAREAU <br />
+          / <br />
+          FRINGZ
+        </div>
+        <div class="artiste-resaux">
+          <Myacon name="tt" link="https://lien-vers-tt.com" />
+          <Myacon name="Insta" link="https://lien-vers-insta.com" />
+          <Myacon name="web" link="https://lien-vers-web.com" />
+          <Myacon name="x" link="https://lien-vers-x.com" />
+        </div>
+      </div>
+    </template>
+    <template v-slot:content>
+      <div>
+        <matPresentation :present="home.data.mat" />
+      </div>
+    </template>
+  </MyOutroA>
 
   <div class="container">
-    <!-- <pre>{{ home.data }}</pre> -->
-    <!-- <pre>{{ home.data.logan }}</pre> -->
-    <!-- <pre>{{ home.data.collection6 }}</pre> -->
-
-    <matPresentation :present="home.data.mat" />
-
-    <div class="background-date">Matthieu HOAREAU</div>
-
+    <!-- <div class="background-date">Matthieu HOAREAU</div> -->
+    <div class="background-date">FRINGZ</div>
+    <div class="icon">
+      <MyIcon class="icon-click" name="Click" />
+      <MyIcon class="icon-piou" name="PiouPiou" />
+      <MyIcon class="icon-piouB" name="PiouPiouBas" />
+    </div>
     <matCollection :collection="home.data.collection" />
   </div>
 </template>
@@ -34,6 +50,35 @@ const { data: home } = await useAsyncData("home", () =>
   padding: 0;
 }
 
+.icon {
+  &-click {
+    left: 30px;
+    top: -70px;
+    position: absolute;
+  }
+  &-piou {
+    position: absolute;
+    top: 10px;
+    right: 90px;
+  }
+  &-piouB {
+    position: absolute;
+    bottom: -230px;
+    left: -70px;
+  }
+}
+
+.artiste {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+
+  &-resaux {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 body {
   padding: 140px 0;
 }
@@ -47,6 +92,8 @@ body {
 .container {
   position: relative;
   padding: 5%;
+  margin-top: 10%;
+  margin-bottom: 20%;
 }
 .galery {
   max-width: 1100px;

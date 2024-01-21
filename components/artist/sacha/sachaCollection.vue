@@ -1,4 +1,5 @@
 <template>
+ 
   <div>
     <ul class="galery">
       <!-- <li v-for="item in collection" :key="item.id">

@@ -1,27 +1,29 @@
-
 <template>
-  <div class="tcontainer">
-    <div class="tblocHorizontal">
-      <div class="imageContainer" v-for="index in 1" :key="index">
-        <img src="/artiste/info.webp" alt="" />
-      </div>
-      <div class="imageContainer" v-for="artiste in artistes" :key="artiste.id">
-        <nuxt-link class="tslide" :to="`/Artiste/${artiste.name}`">
-          <img :src="artiste.image" alt="" />
-        </nuxt-link>
-      </div>
+  <div ref="Container" class="Container">
+    <div
+      v-for="(artiste, index) in artistes"
+      :key="artiste.id"
+      class="Container__link"
+    >
+      <!-- Condition pour vérifier si l'élément est le premier -->
+      <img v-if="index === 0" :src="artiste.image" :alt="artiste.name" />
+      <NuxtLink v-else :to="`/Artiste/${artiste.name}`">
+        <img :src="artiste.image" :alt="artiste.name" />
+      </NuxtLink>
     </div>
   </div>
+
 </template>
 
 <script setup>
 import { onMounted, onUnmounted, ref } from "vue";
-const tblocHorizontal = ref(null);
-const artistes = ref([
-  // Remplissez avec vos données d'artiste
-  // Ajoutez d'autres artistes ici
+const Container = ref(null);
 
-  { id: 1, name: "MatthieuHoareau", image: "/artiste/FRINGZ_pp.webp" },
+// Données fusionnées des artistes
+const artistes = ref([
+  //  données artiste
+  { id: 0, image: "/artiste/info.webp" },
+  { id: 2, name: "MatthieuHoareau", image: "/artiste/FRINGZ_pp.webp" },
   { id: 2, name: "SachaWicky", image: "/artiste/sacha_pp.webp" },
   { id: 3, name: "LoganMartinez", image: "/artiste/logan_pp.webp" },
   { id: 4, name: "EdenBourezg", image: "/artiste/eden_pp.webp" },
@@ -33,82 +35,82 @@ const artistes = ref([
 ]);
 
 const handleMouseWheel = (event) => {
-  if (tblocHorizontal.value) {
+  let wheeldown = event.deltaY > 0;
+  let isRight =
+    Container.value.scrollLeft + Container.value.clientWidth >=
+    Container.value.scrollWidth;
+  let isLeft = Container.value.scrollLeft === 0;
+  if (!isRight && wheeldown) {
     event.preventDefault();
-    tblocHorizontal.value.scrollLeft += event.deltaY;
+    Container.value.scrollLeft += event.deltaY;
+  }
+  if (!isLeft && !wheeldown) {
+    event.preventDefault();
+    Container.value.scrollLeft += event.deltaY;
   }
 };
 
-onMounted(() => {
-  tblocHorizontal.value = document.querySelector(".tblocHorizontal");
-  if (tblocHorizontal.value) {
-    tblocHorizontal.value.addEventListener("wheel", handleMouseWheel, {
-      passive: false,
-    });
-  }
-  const imageContainers = document.querySelectorAll(
-    ".tblocHorizontal .imageContainer"
-  );
-  imageContainers.forEach((container) => {
-    const randomVerticalOffset = Math.floor(Math.random() * 300) - 20;
-    container.style.transform = `translateY(${randomVerticalOffset}px)`;
-
-    const image = container.querySelector("img");
-    const createLine = () => {
-      const imageHeight = image.clientHeight;
-      const lineLength = imageHeight * 0.9;
-      const line = container.appendChild(document.createElement("div"));
-      line.style.position = "absolute";
-      line.style.left = "50%";
-      line.style.top = "0";
-      line.style.height = `${lineLength}px`;
-      line.style.width = "5px";
-      line.style.backgroundColor = "#000";
-      line.style.zIndex = "-1";
-    };
-
-    if (image.complete) {
-      createLine();
-    } else {
-      image.onload = createLine;
-    }
+const randomizeImagePosition = () => {
+  const images = document.querySelectorAll(".Container__link img");
+  images.forEach((img) => {
+    const maxOffset = 200; // Ajustez en fonction de la hauteur disponible
+    const randomVerticalOffset = Math.random() * maxOffset - maxOffset / 2;
+    img.style.transform = `translateY(${randomVerticalOffset}px)`;
   });
-});
+};
 
+onMounted(() => {
+  Container.value.addEventListener("wheel", handleMouseWheel, true);
+  randomizeImagePosition();
+});
 onUnmounted(() => {
-  if (tblocHorizontal.value) {
-    tblocHorizontal.value.removeEventListener("wheel", handleMouseWheel);
-  }
+  Container.value?.removeEventListener("wheel", handleMouseWheel, true);
 });
 </script>
 
-<style scoped>
-.tcontainer {
-  .tblocHorizontal {
-    display: flex;
-    gap: 40px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    .imageContainer {
-      position: relative;
-      display: flex;
-      align-items: center;
-     
-      img {
-        width: 450px;
-    
-        height: fit-content;
-        filter: drop-shadow(-18.52px 0px 23.15px rgba(0, 0, 0, 0.2));
-      }
-    }
+<style lang="scss">
+.Container {
+  position: absolute;
+  top: 0px;
+  right: 0;
+  width: 90%;
+  height: 1100px;
+  display: flex;
+  z-index: 1;
+  gap: 40px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
   }
-  .tslide {
+
+  &__link {
+    position: relative;
+    display: flex;
+    align-items: center;
     flex: none;
     width: fit-content;
+
+    img {
+      width: 450px;
+      height: fit-content;
+      filter: drop-shadow(-18.52px 0px 23.15px rgba(0, 0, 0, 0.2));
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 123px;
+      z-index: -1;
+      height: 40%;
+      width: 5px;
+      background-color: black;
+      transform: translateX(-50%);
+    }
   }
 }
 </style>

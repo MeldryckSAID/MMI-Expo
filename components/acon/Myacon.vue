@@ -1,8 +1,11 @@
 <script setup>
 import { computed } from "vue";
 
-import close from "../components/acon/acons/IconMenuClose.vue";
-import open from "../components/acon/acons/IconMenuOpen.vue";
+import Insta from "../components/acon/acons/AconInsta.vue";
+import X from "../components/acon/acons/AconX.vue";
+import Web from "../components/acon/acons/AconWebsite.vue";
+import TikTok from "../components/acon/acons/AconTt.vue";
+import Line from "../components/acon/acons/AconLine.vue";
 
 const props = defineProps({
   name: String,
@@ -10,16 +13,23 @@ const props = defineProps({
   stroke: String,
   size: String,
   fill: String,
+  link: String,
 });
 const getIcon = computed(() => {
   switch (props.name) {
-    case "open":
-      return open;
-    case "close":
-      return close;
+    case "X":
+      return X;
+    case "Insta":
+      return Insta;
+    case "web":
+      return Web;
+    case "tt":
+      return TikTok;
+    case "line":
+      return Line;
 
     default:
-      return open;
+      return X;
   }
 });
 
@@ -42,9 +52,11 @@ const className = computed(() => ({
 </script>
 
 <template>
-  <i :class="className" class="icon">
-    <component :is="getIcon" />
-  </i>
+  <a :href="link">
+    <i :class="className" class="icon">
+      <component :is="getIcon" />
+    </i>
+  </a>
 </template>
 
 <style lang="scss" scoped>

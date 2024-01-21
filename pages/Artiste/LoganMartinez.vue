@@ -1,14 +1,30 @@
 <template>
-  <MyOutro>Logan Martinez</MyOutro>
+  <MyOutroA>
+    <template #title>
+      <div class="artiste">
+        Logan Martinez
+        <div class="artiste-resaux">
+          <Myacon name="tt" link="https://lien-vers-tt.com" />
+          <Myacon name="Insta" link="https://lien-vers-insta.com" />
+          <Myacon name="web" link="https://lien-vers-web.com" />
+          <Myacon name="x" link="https://lien-vers-x.com" />
+        </div>
+      </div>
+    </template>
+    <template v-slot:content>
+      <div>
+        <LoganPresentation :present="home.data.logan" />
+      </div>
+    </template>
+  </MyOutroA>
 
   <div class="container">
-    <!-- <pre>{{ home.data }}</pre> -->
-    <!-- <pre>{{ home.data.logan }}</pre> -->
-    <!-- <pre>{{ home.data.collection6 }}</pre> -->
-    <LoganPresentation :present="home.data.logan" />
-
-    <div class="background-date">Logan</div>
-
+    <div class="background-date">Logan Martinez</div>
+    <div class="icon">
+      <MyIcon class="icon-click" name="Click" />
+      <MyIcon class="icon-piou" name="PiouPiou" />
+      <MyIcon class="icon-piouB" name="PiouPiouBas" />
+    </div>
     <LoganCollection :collection="home.data.collection6" />
   </div>
 </template>
@@ -18,39 +34,6 @@ const { client } = usePrismic();
 const { data: home } = await useAsyncData("home", () =>
   client.getSingle("artiste_logan")
 );
-
-// import { onMounted, ref } from "vue";
-
-// const gallery = ref(null);
-
-// const openLightbox = (src) => {
-//   Code pour ouvrir la lightbox
-//   let lightbox = document.createElement("div");
-//   lightbox.id = "lightbox";
-//   lightbox.innerHTML = `<img src="${src}" style="width: 100%">`;
-//   document.body.appendChild(lightbox);
-
-//   Fermer la lightbox en cliquant à l'extérieur de l'image
-//   lightbox.addEventListener("click", () => {
-//     lightbox.remove();
-//   });
-// };
-
-// onMounted(() => {
-//   const images = gallery.value.querySelectorAll("img");
-//   images.forEach((img, index, array) => {
-//     img.addEventListener("click", () => {
-//       openLightbox(img.src);
-//     });
-
-//     img.addEventListener("keydown", (e) => {
-//       if (e.key === "ArrowRight") {
-//         let nextIndex = (index + 1) % array.length;
-//         openLightbox(array[nextIndex].src);
-//       }
-//     });
-//   });
-// });
 </script>
 
 <style lang="scss" scoped>
@@ -65,9 +48,36 @@ const { data: home } = await useAsyncData("home", () =>
 body {
   padding: 140px 0;
 }
+.icon {
+  &-click {
+    left: 30px;
+    top: -70px;
+    position: absolute;
+  }
+  &-piou {
+    position: absolute;
+    top: 10px;
+    right: 90px;
+  }
+  &-piouB {
+    position: absolute;
+    bottom: -230px;
+    left: -70px;
+  }
+}
 
 .presentation .text {
   padding: 2%;
+}
+.artiste {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+
+  &-resaux {
+    display: flex;
+    flex-direction: column;
+  }
 }
 .reversed {
   text-align: end;
@@ -75,6 +85,8 @@ body {
 .container {
   position: relative;
   padding: 5%;
+  margin-top: 5%;
+  margin-bottom: 20%;
 }
 .galery {
   max-width: 1100px;

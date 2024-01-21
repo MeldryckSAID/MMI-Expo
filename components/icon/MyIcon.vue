@@ -11,6 +11,13 @@ import Next from "../components/icon/icons/IconNext.vue";
 import Previous from "../components/icon/icons/IconPrevious.vue";
 import x from "../components/icon/icons/IconClose.vue";
 
+import Click from "../components/icon/icons/IconClick.vue";
+import Diamant from "../components/icon/icons/IconDiamant.vue";
+import Fleche from "../components/icon/icons/IconFleche.vue";
+import Sparkle from "../components/icon/icons/IconSparkle.vue";
+import PiouPiou from "../components/icon/icons/IconPiouPiou.vue";
+import PiouPiouBas from "../components/icon/icons/IconPiouPiouBas.vue";
+
 const props = defineProps({
   name: String,
   color: String,
@@ -38,6 +45,19 @@ const getIcon = computed(() => {
       return Previous;
     case "x":
       return x;
+
+    case "Click":
+      return Click;
+    case "Diamant":
+      return Diamant;
+    case "Fleche":
+      return Fleche;
+    case "Sparkle":
+      return Sparkle;
+    case "PiouPiou":
+      return PiouPiou;
+    case "PiouPiouBas":
+      return PiouPiouBas;
 
     default:
       return open;
