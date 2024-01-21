@@ -1,4 +1,12 @@
-<script setup></script>
+<script setup>
+useSeoMeta({
+  title: "MMI Exposition | A propos",
+  ogTitle: "MMI Exposition | A propos",
+  description: "Retrouvez qui est derrière la mise en oeuvre de l'exposition",
+  ogDescription: "Retrouvez qui est derrière la mise en oeuvre de l'exposition",
+  ogImage: "/favicon.png",
+});
+</script>
 
 <template>
   <MyOutro

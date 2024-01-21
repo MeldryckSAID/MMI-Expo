@@ -41,6 +41,13 @@ onMounted(() => {
 onUnmounted(() => {
   scrollContainer.value?.removeEventListener("wheel", scrollWheel, true);
 });
+useSeoMeta({
+  title: "MMI Exposition",
+  ogTitle: "MMI Exposition",
+  description: "Retrouvez l'exposition MMI en ligne ou en vrai",
+  ogDescription: "Retrouvez l'exposition MMI en ligne ou en vrai",
+  ogImage: "/favicon.png",
+});
 </script>
 <template>
   <div ref="scrollContainer" class="scrollContainer">

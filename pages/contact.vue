@@ -1,4 +1,12 @@
-<script setup></script>
+<script setup>
+useSeoMeta({
+  title: "MMI Exposition | Contact",
+  ogTitle: "MMI Exposition | Contact",
+  description: "Contactez les développeurs ou organisateur de MMI Exposition",
+  ogDescription: "Contactez les développeurs ou organisateur de MMI Exposition",
+  ogImage: "/favicon.png",
+});
+</script>
 
 <template>
   <MyOutro>

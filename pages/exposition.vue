@@ -468,6 +468,13 @@ onUnmounted(() => {
 definePageMeta({
   layout: "exposition",
 });
+useSeoMeta({
+  title: "MMI Exposition | exposition virtuelle",
+  ogTitle: "MMI Exposition | exposition virtuelle",
+  description: "Retrouvez l'exposition MMI en ligne",
+  ogDescription: "Retrouvez l'exposition MMI en ligne",
+  ogImage: "/favicon.png",
+});
 </script>
 
 <template>

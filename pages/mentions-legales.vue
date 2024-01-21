@@ -1,4 +1,12 @@
-<script setup></script>
+<script setup>
+useSeoMeta({
+  title: "MMI Exposition | Mentions Légales",
+  ogTitle: "MMI Exposition | Mentions Légales",
+  description: "Mentions légales du site MMI Exposition",
+  ogDescription: "Mentions légales du site MMI Exposition",
+  ogImage: "/favicon.png",
+});
+</script>
 
 <template>
   <MyOutro>Mention Légales</MyOutro>

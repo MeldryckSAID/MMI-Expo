@@ -3,6 +3,13 @@ const { client } = usePrismic();
 const { data: expo } = await useAsyncData("galerie", () =>
   client.getAllByType("exposition")
 );
+useSeoMeta({
+  title: "MMI Exposition | Archives Photo",
+  ogTitle: "MMI Exposition | Archives Photo",
+  description: "Retrouvez toutes les images des expositions passées et en cours",
+  ogDescription: "Retrouvez toutes les images des expositions passées et en cours",
+  ogImage: "/favicon.png",
+});
 </script>
 <template>
   <MyOutro
@@ -33,9 +40,6 @@ const { data: expo } = await useAsyncData("galerie", () =>
     </ul>
   </div>
 </template>
-
-<script></script>
-
 <style lang="scss" scoped>
 *,
 ::before,
