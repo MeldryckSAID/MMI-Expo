@@ -9,6 +9,7 @@ import LosangeBis from "./icons/MyLosangeBis.vue";
 const props = defineProps({
   name: String,
   position: String,
+  size: String,
 });
 
 const getIcon = computed(() => {
@@ -30,18 +31,52 @@ const getIcon = computed(() => {
 </script>
 
 <template>
-  <i :class="`iconBis -${position}`">
+  <i :class="`iconBis -${position} -${size}`">
     <component :is="getIcon" />
   </i>
 </template>
 
 <style lang="scss">
 .iconBis {
+  position: absolute;
   display: flex;
   width: 50px;
-  svg{
+  svg {
     width: 100%;
     height: 100%;
+  }
+  &.-small {
+    width: 20px;
+  }
+  &.-medium {
+    width: 30px;
+  }
+  &.-topLeft {
+    left: 0;
+    top: 0;
+    transform: translate(-35%, -50%);
+    &.-medium {
+      transform: translate(-100%, -50%);
+    }
+  }
+  &.-left {
+    left: -75px;
+    transform: translateX(-50%);
+  }
+  &.-topRight {
+    right: 0;
+    top: 0;
+    transform: translate(60%, -80%);
+  }
+  &.-bottomLeft {
+    left: 0;
+    bottom: 0;
+    transform: translate(-60%, 80%);
+  }
+  &.-bottomRight {
+    right: 0;
+    bottom: 0;
+    transform: translate(100%, 80%);
   }
 }
 </style>
