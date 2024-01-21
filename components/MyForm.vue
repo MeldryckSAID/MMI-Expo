@@ -53,7 +53,8 @@ const sendMail = async () => {
         v-model="mail.surname"
       />
     </label>
-    <label for="email" class="form__label -email">
+    <label for="email" class="form__label -email relative">
+      <MyIconBis name="LosangeBis" position="topLeft" size="small" />
       <input
         type="email"
         name="email"
@@ -70,12 +71,19 @@ const sendMail = async () => {
       required
       v-model="mail.message"
     ></textarea>
-    <label for="checkbox" class="form__label -checkbox">
+    <label for="checkbox" class="form__label -checkbox relative">
+      <MyIconBis name="BottomLeft" position="bottomRight" size="big" :rotate="true"/>
+      <MyIconBis name="Arrow" position="bottomLeft" size="big" />
       <input type="checkbox" name="checkbox" class="form__checkbox" required />
       J'accepte la politique de confidentialité. Veuillez accepter la politique
       de confidentialité
     </label>
-    <button :disabled="mailsent" type="submit" class="form__submit" @click.prevent="sendMail()">
+    <button
+      :disabled="mailsent"
+      type="submit"
+      class="form__submit"
+      @click.prevent="sendMail()"
+    >
       Envoyer
     </button>
   </form>

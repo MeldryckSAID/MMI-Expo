@@ -1,10 +1,20 @@
+<script setup>
+useSeoMeta({
+  title: "MMI Exposition | Merci",
+  ogTitle: "MMI Exposition | Merci",
+  description: "Merci d'avoir contacté les développeurs et organisateur de MMI Exposition",
+  ogDescription: "Merci d'avoir contacté les développeurs et organisateur de MMI Exposition",
+  ogImage: "/favicon.png",
+});
+</script>
+
 <template>
   <div class="p-merci">
     <h1>Votre message a bien été envoyé</h1>
     <nuxt-link class="link" to="/">Retourner à l'accueil</nuxt-link>
   </div>
 </template>
-<style lang="scss" >
+<style lang="scss">
 .p-merci {
   display: flex;
   flex-direction: column;
@@ -12,7 +22,7 @@
   align-items: center;
   height: 80vh;
   gap: 2rem;
-  h1{
+  h1 {
     padding: 1rem;
     text-align: center;
   }

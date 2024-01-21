@@ -10,11 +10,19 @@ const { data: artiste } = await useAsyncData("Artiste", () => {
     throw createError({ statusCode: 404, message: "Page not found" });
   }
 });
+useSeoMeta({
+  title: `MMI Exposition | ${artiste.value.data.name[0].text}`,
+  ogTitle: `MMI Exposition | ${artiste.value.data.name[0].text}`,
+  description: "Retrouvez l'exposition MMI en ligne ou en vrai",
+  ogDescription: "Retrouvez l'exposition MMI en ligne ou en vrai",
+  ogImage: "/favicon.png",
+});
 </script>
 
 <template>
   <div class="p-artiste">
     <div class="p-artiste__intro">
+      <MyIconBis name="Arrow" position="left" />
       <NuxtImg
         :src="artiste.data.presentation__img.url"
         :alt="'image de ' + artiste.data.name[0].text"
@@ -23,12 +31,17 @@ const { data: artiste } = await useAsyncData("Artiste", () => {
       <h1 class="p-artiste__title">
         {{ artiste.data.name[0].text }}
         <span>{{ artiste.data.type[0].text }}</span>
+        <MyIconBis name="Losange" position="topLeft" size="medium" />
+        <MyIconBis name="LosangeBis" position="bottomRight" size="small" />
       </h1>
       <p>{{ artiste.data.description[0].text }}</p>
     </div>
     <img src="/img/Rectangle.png" aria-hidden class="p-artiste__imgdeco" />
 
     <div class="p-artiste__grid">
+      <MyIconBis name="Click" position="topLeft" />
+      <MyIconBis name="TopRight" position="topRight" />
+      <MyIconBis name="BottomLeft" position="bottomLeft" />
       <div v-for="(img, i) in artiste.data.artiste__art" :key="i">
         <NuxtImg
           format="avif"
@@ -49,13 +62,15 @@ const { data: artiste } = await useAsyncData("Artiste", () => {
   flex-direction: column;
   align-items: center;
   &__intro {
+    position: relative;
     display: grid;
     max-width: 90%;
     grid-template-areas:
       "title"
       "img"
       "text";
-    gap: 2rem;
+    row-gap: 2rem;
+    column-gap: 5rem;
     place-items: center;
     @include large-up {
       place-items: start;
@@ -75,6 +90,7 @@ const { data: artiste } = await useAsyncData("Artiste", () => {
     padding: 1rem;
   }
   &__title {
+    position: relative;
     grid-area: title;
     display: flex;
     width: fit-content;
@@ -98,11 +114,12 @@ const { data: artiste } = await useAsyncData("Artiste", () => {
     width: 100%;
   }
   &__grid {
+    position: relative;
     max-width: 90%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1rem;
-    margin: 2rem 0;
+    margin: 3rem 0;
     img {
       width: 100%;
       object-fit: cover;

@@ -31,10 +31,14 @@ const data = reactive([
 const { client } = usePrismic();
 const { data: team } = await useAsyncData("team", () =>
   client.getSingle("team")
-)
+);
 </script>
 <template>
-  <div class="avatar__grid">
+  <div class="avatar__grid relative">
+    <MyIconBis name="TopRight" position="topRight" :rotate="true" />
+    <MyIconBis name="Arrow" position="topCenter" :rotate="true" />
+    <MyIconBis name="BottomLeft" position="bottomLeft" />
+
     <div class="avatar" v-for="(item, index) in team.data.member" :key="index">
       <MyAvatar
         :photo="item.img?.url"
@@ -47,8 +51,9 @@ const { data: team } = await useAsyncData("team", () =>
 <style lang="scss" scoped>
 .avatar__grid {
   margin-inline: auto;
-  max-width: 1400px;
-  margin-top: 175px;
+  max-width: min(90%, 1400px);
+  padding-top: 150px;
+  margin-top: 25px;
   margin-bottom: 50px;
   width: 100vw;
   display: grid;

@@ -41,9 +41,19 @@ onMounted(() => {
 onUnmounted(() => {
   scrollContainer.value?.removeEventListener("wheel", scrollWheel, true);
 });
+useSeoMeta({
+  title: "MMI Exposition",
+  ogTitle: "MMI Exposition",
+  description: "Retrouvez l'exposition MMI en ligne ou en vrai",
+  ogDescription: "Retrouvez l'exposition MMI en ligne ou en vrai",
+  ogImage: "/favicon.png",
+});
 </script>
 <template>
   <div ref="scrollContainer" class="scrollContainer">
+    <div class="scrollContainer__link">
+      <NuxtImg src="/img/info.png" alt="" />
+    </div>
     <NuxtLink
       v-for="(item, i) in randomData"
       :key="i"

@@ -20,8 +20,8 @@
         >Contact</MyLinks
       >
       <MyLinks @click.stop="toggleMenu" to="/about">À propos</MyLinks>
-      <MyLinks @click.stop="toggleMenu" :isReversed="true" to="/galerie"
-        >Galeris Photos</MyLinks
+      <MyLinks @click.stop="toggleMenu" :isReversed="true" to="/archives"
+        >Archives Photos</MyLinks
       >
       <MyLinks @click.stop="toggleMenu" to="/exposition"
         >VISITE VIRTUELLE
