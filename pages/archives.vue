@@ -1,13 +1,58 @@
 <script setup>
 const { client } = usePrismic();
-const { data: expo } = await useAsyncData("galerie", () =>
-  client.getAllByType("exposition")
+const { data: artistes } = await useAsyncData("artistes", () =>
+  client.getAllByType("artistes")
 );
+
+const exposition = ref([]);
+
+artistes.value.forEach((artiste) => {
+  let imgList = [];
+  artiste.data.artiste__art.forEach((art) => {
+    let img = art.art__img.url;
+    let alt = art.art__img.alt;
+    imgList.push({ img: img, alt: alt });
+  });
+  let data = {
+    name: artiste.data.name[0].text,
+    images: imgList,
+  };
+  let index = exposition.value.findIndex((expo) => {
+    return expo.year == artiste.data.year[0].text;
+  });
+  if (index == -1) {
+    exposition.value.push({
+      year: artiste.data.year[0].text,
+      data: [data],
+    });
+  } else {
+    exposition.value[index].data.push(data);
+  }
+});
+
+exposition.value.sort((a, b) => {
+  return a.year - b.year;
+});
+
+let selectedYear = ref();
+
+const filteredByYear = computed(() => {
+  if (selectedYear.value) {
+    return exposition.value.filter((expo) => {
+      return expo.year == selectedYear.value;
+    });
+  } else {
+    return exposition.value;
+  }
+});
+
 useSeoMeta({
   title: "MMI Exposition | Archives Photo",
   ogTitle: "MMI Exposition | Archives Photo",
-  description: "Retrouvez toutes les images des expositions passées et en cours",
-  ogDescription: "Retrouvez toutes les images des expositions passées et en cours",
+  description:
+    "Retrouvez toutes les images des expositions passées et en cours",
+  ogDescription:
+    "Retrouvez toutes les images des expositions passées et en cours",
   ogImage: "/favicon.png",
 });
 </script>
@@ -18,41 +63,61 @@ useSeoMeta({
       <MyIconBis name="Losange" position="topRight" size="medium" />
       <MyIconBis name="LosangeBis" position="bottomLeft" size="small" /> </span
   ></MyOutro>
-  <div class="container" v-for="(exposition, i) in expo" :key="i">
-    <div class="background-date">{{ exposition.data.year[0].text }}</div>
+  <select>
+    <option value="" disabled selected>Année</option>
+    <option value="" @click="selectedYear = ''">Toutes</option>
+    <option
+      v-for="(expo, i) in exposition"
+      :key="i"
+      :value="expo.year"
+      @click="selectedYear = expo.year"
+    >
+      {{ expo.year }}
+    </option>
+  </select>
+  <div class="container" v-for="(expo, i) in filteredByYear" :key="i">
+    <div class="background-date">
+      {{ expo.year }}
+    </div>
     <div class="presentation">
       <MyTitle font="arc" el="h2" size="medium"
-        >{{ exposition.data.title[0].text }}
+        >Exposition {{ expo.year }} - {{ parseInt(expo.year) + 1 }}
       </MyTitle>
       <p class="text">
-        {{ exposition.data.exposant[0].text }}
+        {{
+          expo.data
+            .reduce((acc, curr) => {
+              return acc + curr.name + ", ";
+            }, "")
+            .slice(0, -2)
+        }}
       </p>
     </div>
-    <ul class="galery relative">
-      <li>
-        <MyIconBis name="Losange" position="topLeft" size="small" />
-        <MyIconBis name="BottomLeft" position="bottomLeft" size="big" />
-        <MyIconBis name="TopRight" position="topRight" size="medium" />
-      </li>
-      <li v-for="(img, index) in exposition.data.images" :key="index">
-        <NuxtImg format="avif" :src="img.img.url" :alt="img.img.alt" />
-      </li>
-    </ul>
+    <div class="galery relative">
+      <MyIconBis name="Losange" position="topLeft" size="small" />
+      <MyIconBis name="BottomLeft" position="bottomLeft" size="big" />
+      <MyIconBis name="TopRight" position="topRight" size="medium" />
+      <div v-for="(artistes, index) in expo.data" :key="index">
+        <NuxtImg
+          format="avif"
+          v-for="img in artistes.images"
+          :key="img"
+          :src="img.img"
+          alt=""
+        />
+      </div>
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>
-*,
-::before,
-::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+select {
+  max-width: 200px;
+  border: 2px solid #000;
+  background: none;
+  padding: 1rem;
+  margin-left: 5%;
+  margin-top: 5%;
 }
-
-body {
-  padding: 140px 0;
-}
-
 .presentation .text {
   padding: 2%;
 }
@@ -61,51 +126,40 @@ body {
 }
 .container {
   position: relative;
-  padding: 5%;
+  padding-inline: 5%;
 }
 .galery {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2vmin;
-  padding: 0 14px;
-}
-.galery::after {
-  content: "";
-  display: block;
-  flex-grow: 10;
-}
-.galery li {
-  list-style-type: none;
-  height: 250px;
-  flex-grow: 1;
-}
-.galery img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  position: relative;
+  max-width: 90%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin: 3rem 0;
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
 }
 
 .background-date {
-  padding-top: 8%;
-  position: absolute;
-  overflow-x: hidden;
-  max-width: 100vw;
-  top: -150px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 20vw;
-  color: $g-gray2;
-  z-index: -1;
-  pointer-events: none;
-  font-family: $okine;
-  font-weight: 900;
+  display: none;
 }
 
-@media (max-width: 425px) {
+@media (min-width: 625px) {
   .background-date {
-    display: none;
+    padding-top: 8%;
+    position: absolute;
+    overflow-x: hidden;
+    max-width: 100vw;
+    top: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20vw;
+    color: $g-gray2;
+    z-index: -1;
+    pointer-events: none;
+    font-family: $okine;
+    font-weight: 900;
   }
 }
 </style>
