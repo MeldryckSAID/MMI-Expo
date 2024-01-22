@@ -63,14 +63,14 @@ useSeoMeta({
       <MyIconBis name="Losange" position="topRight" size="medium" />
       <MyIconBis name="LosangeBis" position="bottomLeft" size="small" /> </span
   ></MyOutro>
-  <select>
+  <select
+  @change="(e)=>{selectedYear = e.explicitOriginalTarget.value}">
     <option value="" disabled selected>Année</option>
-    <option value="" @click="selectedYear = ''">Toutes</option>
+    <option value="">Toutes</option>
     <option
       v-for="(expo, i) in exposition"
       :key="i"
       :value="expo.year"
-      @click="selectedYear = expo.year"
     >
       {{ expo.year }}
     </option>
